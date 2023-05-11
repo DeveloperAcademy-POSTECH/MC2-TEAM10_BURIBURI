@@ -11,7 +11,8 @@ struct ARView: View {
     @State private var isUnBoxing = false
     var body: some View {
         ZStack {
-            Image("ㅋㅋㅋ").scaledToFill()
+            Image("OnboardingBG")
+                .scaledToFill()
             VStack {
                 Spacer()
                     .frame(width: getWidth() * 0.1, height: getHeight() * 0.05)
@@ -30,26 +31,36 @@ struct ARView: View {
                 Spacer()
                     .frame(width: getWidth() * 1, height: getHeight() * 0.7)
                 Button(action: {
+                    let generator = UINotificationFeedbackGenerator()
+                                    generator.notificationOccurred(.success)
                     isUnBoxing.toggle()
                 }) {
-                    Rectangle()
-                        .aspectRatio(1, contentMode: .fit)
-                        .foregroundColor(.blue)
-                        .frame(width: getWidth() * 1, height: getHeight() * 0.1)
+                    if isUnBoxing {
+                        Rectangle()
+                            .aspectRatio(1, contentMode: .fit)
+                            .foregroundColor(.clear)
+                            .frame(width: getWidth() * 1, height: getHeight() * 0.1)
+                    } else {
+                        Rectangle()
+                            .aspectRatio(1, contentMode: .fit)
+                            .foregroundColor(.blue)
+                            .frame(width: getWidth() * 1, height: getHeight() * 0.1)
+                    }
                 }
                 Spacer()
                     .frame(width: getWidth() * 1, height: getHeight() * 0.1)
             }
-            .popover(isPresented: $isUnBoxing) {
+            .sheet(isPresented: $isUnBoxing) {
                 NavigationView {
-                    AlbumForChildView(isAnimationChild: true)
+                    AlbumForChildView()
                 }
-                
+                .clearModalBackground()
                 .presentationDetents([.height(getHeight() * 0.33)])
             }
         }
     }
 }
+
 
 
 struct ARView_Previews: PreviewProvider {
