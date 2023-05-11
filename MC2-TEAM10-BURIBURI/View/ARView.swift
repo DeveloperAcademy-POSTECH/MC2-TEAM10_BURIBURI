@@ -20,7 +20,9 @@ struct ARView: View {
                     Spacer()
                         .frame(width: getWidth() * 0.03, height: getHeight() * 0.05)
                     NavigationLink(destination: ScanView()) {
-                        Rectangle()
+//                        Rectangle()
+                        Image("C_Wand_01")
+                            .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .foregroundColor(.green)
                             .frame(width: getWidth() * 0.1, height: getHeight() * 0.05)
@@ -41,7 +43,9 @@ struct ARView: View {
                             .foregroundColor(.clear)
                             .frame(width: getWidth() * 1, height: getHeight() * 0.1)
                     } else {
-                        Rectangle()
+                        Image("C_Fedora3_02")
+                            .resizable()
+//                        Rectangle()
                             .aspectRatio(1, contentMode: .fit)
                             .foregroundColor(.blue)
                             .frame(width: getWidth() * 1, height: getHeight() * 0.1)
