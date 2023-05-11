@@ -31,6 +31,8 @@ struct ARView: View {
                 Spacer()
                     .frame(width: getWidth() * 1, height: getHeight() * 0.7)
                 Button(action: {
+                    let generator = UINotificationFeedbackGenerator()
+                                    generator.notificationOccurred(.success)
                     isUnBoxing.toggle()
                 }) {
                     if isUnBoxing {

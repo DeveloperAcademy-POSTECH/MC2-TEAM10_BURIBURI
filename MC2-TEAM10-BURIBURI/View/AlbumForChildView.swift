@@ -37,8 +37,15 @@ struct AlbumForChildView: View {
                                 // 좌우 5도씩 흔들거리는 효과
                                     .rotationEffect((Angle(degrees: isAnimationChild ? 5 : -5)))
                                 // 0.3초마다 왔다갔다하게 하는 효과
-                                    .animation(.easeInOut(duration: 0.3)
-                                        .repeatForever(autoreverses: true), value: isAnimationChild)
+//                                    .animation(.easeInOut(duration: 0.3)
+//                                        .repeatForever(autoreverses: true), value: isAnimationChild)
+                                    .onAppear {
+                                        DispatchQueue.main.async {
+                                            withAnimation(.easeInOut(duration: 0.3).repeatForever(autoreverses: true)) {
+                                                isAnimationChild.toggle()
+                                            }
+                                        }
+                                    }
                             }
                             .cornerRadius(8.0)
                             .aspectRatio(1, contentMode: .fit)
@@ -46,9 +53,9 @@ struct AlbumForChildView: View {
                     }
                     .padding()
                 }
-                .onAppear {
-                    isAnimationChild.toggle()
-                }
+//                .onAppear {
+//                    isAnimationChild.toggle()
+//                }
             }
             .background(Color.clear)
             .navigationBarTitleDisplayMode(.inline)
