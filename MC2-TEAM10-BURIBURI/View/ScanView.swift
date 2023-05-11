@@ -18,7 +18,9 @@ struct ScanView: View {
                 Spacer()
                     .frame(width: getWidth() * 0.03, height: getHeight() * 0.1)
                 NavigationLink(destination: AlbumForParentsView()) {
-                    Rectangle()
+                    Image("C_Fedora3_02")
+                        .resizable()
+//                    Rectangle()
                         .aspectRatio(1, contentMode: .fit)
                         .foregroundColor(.blue)
                         .frame(width: getWidth() * 0.2, height: getHeight() * 0.1)
