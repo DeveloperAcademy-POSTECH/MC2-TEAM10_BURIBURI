@@ -1,5 +1,5 @@
 //
-//  HEICImageView.swift
+//  HEICImageURLView.swift
 //  SwiftUI Demo 2
 //
 //  Created by Wonil Lee on 2023/05/07.
@@ -8,7 +8,7 @@
 import SwiftUI
 import ImageIO
 
-struct HEICImageView: View {
+struct HEICImageURLView: View {
 	let heicURL: URL
 	
 	var body: some View {
@@ -27,8 +27,4 @@ struct HEICImageView: View {
 	}
 }
 
-//struct HEICImageView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HEICImageView()
-//    }
-//}
+

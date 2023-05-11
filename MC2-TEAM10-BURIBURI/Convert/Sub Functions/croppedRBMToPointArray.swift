@@ -1,5 +1,5 @@
 //
-//  rbmToPointArray.swift
+//  croppedRBMToPointArray.swift
 //  MC2 Removing Background
 //
 //  Created by Wonil Lee on 2023/05/08.
@@ -7,13 +7,9 @@
 
 import Foundation
 
-func rbmToPointArray(_ input: [[Int]]) -> [CGPoint] {
-	var width: Int {
-		input.count
-	}
-	var height: Int {
-		input[0].count
-	}
+func croppedRBMToPointArray(_ input: [[Int]]) -> [CGPoint] {
+	let height = input.count
+	let width = input[0].count
 	
 	let safetySquared = 100 // 직전의 점과 거리의 제곱을 비교하는 그런 기준값..
 	
@@ -27,13 +23,18 @@ func rbmToPointArray(_ input: [[Int]]) -> [CGPoint] {
 	
 	var startPoint = (0, 0)
 	
-	for y in 0..<height {
-		for x in 0..<width {
-			if input[x][y] == 0 {
-				startPoint.0 = x
+	for x in 0..<width {
+		var breakChecker = false
+		for y in 0..<height {
+			if input[y][x] == 0 {
 				startPoint.1 = y
+				startPoint.0 = x
+				breakChecker = true
 				break
 			}
+		}
+		if breakChecker {
+			break
 		}
 	}
 	
@@ -56,9 +57,9 @@ func rbmToPointArray(_ input: [[Int]]) -> [CGPoint] {
 		innerNowPoint.0 = nowPoint.0 + circle15Boundary[i].0
 		innerNowPoint.1 = nowPoint.1 + circle15Boundary[i].1
 		
-		let innerPrevPointValue = (0 <= innerPrevPoint.0 && innerPrevPoint.0 < width && 0 <= innerPrevPoint.1 && innerPrevPoint.1 < height) ? input[max(0, min(innerPrevPoint.0, width - 1))][max(0, min(innerPrevPoint.1, height - 1))] : 2
+		let innerPrevPointValue = (0 <= innerPrevPoint.1 && innerPrevPoint.1 < height && 0 <= innerPrevPoint.0 && innerPrevPoint.0 < width) ? input[max(0, min(innerPrevPoint.1, height - 1))][max(0, min(innerPrevPoint.0, width - 1))] : 2
 		
-		let innerNowPointValue = (0 <= innerNowPoint.0 && innerNowPoint.0 < width && 0 <= innerNowPoint.1 && innerNowPoint.1 < height) ? input[max(0, min(innerNowPoint.0, width - 1))][max(0, min(innerNowPoint.1, height - 1))] : 2
+		let innerNowPointValue = (0 <= innerNowPoint.1 && innerNowPoint.1 < height && 0 <= innerNowPoint.0 && innerNowPoint.0 < width) ? input[max(0, min(innerNowPoint.1, height - 1))][max(0, min(innerNowPoint.0, width - 1))] : 2
 		
 		if innerPrevPointValue == 2 && innerNowPointValue != 2 {
 			intersectionArray.append(innerNowPoint)
@@ -89,9 +90,9 @@ func rbmToPointArray(_ input: [[Int]]) -> [CGPoint] {
 			innerNowPoint.0 = nowPoint.0 + circle15Boundary[i].0
 			innerNowPoint.1 = nowPoint.1 + circle15Boundary[i].1
 			
-			let innerPrevPointValue = (0 <= innerPrevPoint.0 && innerPrevPoint.0 < width && 0 <= innerPrevPoint.1 && innerPrevPoint.1 < height) ? input[max(0, min(innerPrevPoint.0, width - 1))][max(0, min(innerPrevPoint.1, height - 1))] : 2
+			let innerPrevPointValue = (0 <= innerPrevPoint.1 && innerPrevPoint.1 < height && 0 <= innerPrevPoint.0 && innerPrevPoint.0 < width) ? input[max(0, min(innerPrevPoint.1, height - 1))][max(0, min(innerPrevPoint.0, width - 1))] : 2
 			
-			let innerNowPointValue = (0 <= innerNowPoint.0 && innerNowPoint.0 < width && 0 <= innerNowPoint.1 && innerNowPoint.1 < height) ? input[max(0, min(innerNowPoint.0, width - 1))][max(0, min(innerNowPoint.1, height - 1))] : 2
+			let innerNowPointValue = (0 <= innerNowPoint.1 && innerNowPoint.1 < height && 0 <= innerNowPoint.0 && innerNowPoint.0 < width) ? input[max(0, min(innerNowPoint.1, height - 1))][max(0, min(innerNowPoint.0, width - 1))] : 2
 			
 			if innerPrevPointValue == 2 && innerNowPointValue != 2 {
 				if distanceSquared(from: innerNowPoint, to: prevPoint) > safetySquared {
@@ -114,6 +115,13 @@ func rbmToPointArray(_ input: [[Int]]) -> [CGPoint] {
 		if distanceSquared(from: nowPoint, to: startPoint) < 225 || toBeReturned.count >= 1000 {
 			break
 		}
+	}
+	
+	for i in 0..<toBeReturned.count {
+		toBeReturned[i].x /= CGFloat((width + height) / 2)
+		
+		toBeReturned[i].y = CGFloat(height) - toBeReturned[i].y
+		toBeReturned[i].y /= CGFloat((width + height) / 2)
 	}
 	
 	return toBeReturned

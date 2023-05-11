@@ -11,10 +11,10 @@ struct MultiarrayView: View {
 	let input: [[UIColor]]
 	var scaleDivider: Int
 	
-	var width: Int {
+	var height: Int {
 		input.count
 	}
-	var height: Int {
+	var width: Int {
 		input[0].count
 	}
 
@@ -24,7 +24,7 @@ struct MultiarrayView: View {
 			ForEach(0..<height / scaleDivider) { y in
 				HStack(spacing: 0) {
 					ForEach(0..<width / scaleDivider) { x in
-						Color(input[min(scaleDivider * x, width - 1)][min(scaleDivider * y, height - 1)])
+						Color(input[min(scaleDivider * y, height - 1)][min(scaleDivider * x, width - 1)])
 							.frame(width: 1, height: 1)
 					}
 				}

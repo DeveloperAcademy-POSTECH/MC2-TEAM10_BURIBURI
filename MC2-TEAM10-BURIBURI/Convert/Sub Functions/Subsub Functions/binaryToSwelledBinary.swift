@@ -21,34 +21,32 @@ func binaryToSwelledBinary(_ input: [[Int]]) -> [[Int]] {
 	let pixelDownRightCrescent20: [(Int, Int)] = [(-12, 16), (-10, 17), (-8, 18), (-6, 19), (-5, 19), (-4, 19), (-3, 19), (-2, 19), (0, 19), (0, 20), (1, 19), (2, 19), (3, 19), (4, 19), (5, 19), (6, 18), (6, 19), (7, 18), (8, 17), (8, 18), (9, 17), (10, 16), (10, 17), (11, 16), (12, 15), (12, 16), (13, 14), (13, 15), (14, 13), (14, 14), (15, 12), (15, 13), (16, -12), (16, 10), (16, 11), (16, 12), (17, -10), (17, 8), (17, 9), (17, 10), (18, -8), (18, 6), (18, 7), (18, 8), (19, -6), (19, -5), (19, -4), (19, -3), (19, -2), (19, 0), (19, 1), (19, 2), (19, 3), (19, 4), (19, 5), (19, 6), (20, 0)]
 
 	
-	var width: Int {
-		input.count
-	}
-	var height: Int {
-		input[0].count
-	}
 	
-	var temp = Array(repeating: Array(repeating: 1, count: height), count: width)
+	let height = input.count
 	
-	for x in 0..<width {
-		for y in 0..<height {
-			if input[x][y] == 0 {
+	let width = input[0].count
+	
+	var temp = Array(repeating: Array(repeating: 1, count: width), count: height)
+	
+	for y in 0..<height {
+		for x in 0..<width {
+			if input[y][x] == 0 {
 				
-				if x >= 1 && input[x-1][y] == 0 {
-					for factor in pixelRightCrescent20 {
-						temp[min(max(0, x + factor.0), width - 1)][min(max(0, y + factor.1), height - 1)] = 0
-					}
-				} else if y >= 1 && input[x][y-1] == 0 {
+				if y >= 1 && input[y-1][x] == 0 {
 					for factor in pixelDownCrescent20 {
-						temp[min(max(0, x + factor.0), width - 1)][min(max(0, y + factor.1), height - 1)] = 0
+						temp[min(max(0, y + factor.1), height - 1)][min(max(0, x + factor.0), width - 1)] = 0
 					}
-				} else if x >= 1 && y >= 1 && input[x-1][y-1] == 0 {
+				} else if x >= 1 && input[y][x-1] == 0 {
+					for factor in pixelRightCrescent20 {
+						temp[min(max(0, y + factor.1), height - 1)][min(max(0, x + factor.0), width - 1)] = 0
+					}
+				} else if y >= 1 && x >= 1 && input[y-1][x-1] == 0 {
 					for factor in pixelDownRightCrescent20 {
-						temp[min(max(0, x + factor.0), width - 1)][min(max(0, y + factor.1), height - 1)] = 0
+						temp[min(max(0, y + factor.1), height - 1)][min(max(0, x + factor.0), width - 1)] = 0
 					}
 				} else {
 					for factor in pixelCircle20 {
-						temp[min(max(0, x + factor.0), width - 1)][min(max(0, y + factor.1), height - 1)] = 0
+						temp[min(max(0, y + factor.1), height - 1)][min(max(0, x + factor.0), width - 1)] = 0
 					}
 				}
 			}

@@ -11,19 +11,19 @@ struct BinaryMultiarrayView: View {
 	let input: [[Int]]
 	var scaleDivider: Int
 	
-	var width: Int {
+	var height: Int {
 		input.count
 	}
-	var height: Int {
+	var width: Int {
 		input[0].count
 	}
 	
 	var body: some View {
-		VStack(spacing: 0) {
-			ForEach(0..<height/scaleDivider) { y in
-				HStack(spacing: 0) {
-					ForEach(0..<width/scaleDivider) { x in
-						switch input[min(scaleDivider * x, width - 1)][min(scaleDivider * y, height - 1)] {
+		HStack(spacing: 0) {
+			ForEach(0..<width/scaleDivider) { x in
+				VStack(spacing: 0) {
+					ForEach(0..<height/scaleDivider) { y in
+						switch input[min(scaleDivider * y, height - 1)][min(scaleDivider * x, width - 1)] {
 							case 0:
 								Color(white: 0.0)
 							case 1:

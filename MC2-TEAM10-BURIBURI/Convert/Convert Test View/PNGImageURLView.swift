@@ -1,5 +1,5 @@
 //
-//  PNGImageView.swift
+//  PNGImageURLView.swift
 //  SwiftUI Demo 2
 //
 //  Created by Wonil Lee on 2023/05/07.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PNGImageView: View {
+struct PNGImageURLView: View {
 	let pngURL: URL
 	
 	var body: some View {
@@ -25,8 +25,3 @@ struct PNGImageView: View {
 	}
 }
 
-//struct PNGImageView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PNGImageView()
-//    }
-//}

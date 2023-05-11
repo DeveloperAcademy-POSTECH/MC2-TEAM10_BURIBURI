@@ -11,11 +11,8 @@ import UIKit
 func removedBinaryMultiarrayToBackgroundRemovedPNG(_ ma: [[UIColor]], _ rbm: [[Int]]) throws -> Data {
 	// ma stands for Multiarray, rbm stands for RemovedBinaryMultiarray
 	// Create an empty image of the correct size.
-	let rows = ma.count
-	let columns = ma[0].count
-	
-	let width = rbm.count
-	let height = rbm[0].count
+	let height = ma.count
+	let width = ma[0].count
 	
 	var left = -1
 	var right = -1
@@ -25,7 +22,7 @@ func removedBinaryMultiarrayToBackgroundRemovedPNG(_ ma: [[UIColor]], _ rbm: [[I
 	for x in 0..<width {
 		var breakChecker = false
 		for y in 0..<height {
-			if rbm[x][y] != 2 {
+			if rbm[y][x] != 2 {
 				left = x
 				breakChecker = true
 				break
@@ -39,7 +36,7 @@ func removedBinaryMultiarrayToBackgroundRemovedPNG(_ ma: [[UIColor]], _ rbm: [[I
 	for x in (0..<width).reversed() {
 		var breakChecker = false
 		for y in 0..<height {
-			if rbm[x][y] != 2 {
+			if rbm[y][x] != 2 {
 				right = x
 				breakChecker = true
 				break
@@ -53,7 +50,7 @@ func removedBinaryMultiarrayToBackgroundRemovedPNG(_ ma: [[UIColor]], _ rbm: [[I
 	for y in 0..<height {
 		var breakChecker = false
 		for x in 0..<width {
-			if rbm[x][y] != 2 {
+			if rbm[y][x] != 2 {
 				up = y
 				breakChecker = true
 				break
@@ -68,7 +65,7 @@ func removedBinaryMultiarrayToBackgroundRemovedPNG(_ ma: [[UIColor]], _ rbm: [[I
 	for y in (0..<height).reversed() {
 		var breakChecker = false
 		for x in 0..<width {
-			if rbm[x][y] != 2 {
+			if rbm[y][x] != 2 {
 				down = y
 				breakChecker = true
 				break
@@ -80,36 +77,22 @@ func removedBinaryMultiarrayToBackgroundRemovedPNG(_ ma: [[UIColor]], _ rbm: [[I
 		
 	}
 	
-	let size = CGSize(width: down - up + 1, height: right - left + 1)
+	let size = CGSize(width: right - left + 1, height: down - up + 1)
 	UIGraphicsBeginImageContextWithOptions(size, true, 0)
-	//	let size = CGSize(width: columns, height: rows)
-	//	UIGraphicsBeginImageContextWithOptions(size, true, 0)
-	
+
 	
 	// Fill the image with the corresponding colors.
 	for x in left...right {
 		for y in up...down {
-			var color = ma[x][y]
-			if rbm[x][y] == 2 {
+			var color = ma[y][x]
+			if rbm[y][x] == 2 {
 				color = UIColor.clear
 			}
 			color.setFill()
-			let rect = CGRect(x: y - up, y: -x + right, width: 1, height: 1) // 왠지 몰라도 결과물이 뒤집혀있길래 여기서 y를 뒤집어줬음
+			let rect = CGRect(x: x - left, y: y - up, width: 1, height: 1)
 			UIRectFill(rect)
 		}
 	}
-	//	for row in 0..<rows {
-	//		for column in 0..<columns {
-	//			var color = ma[row][column]
-	//			if rbm[row][column] == 2 {
-	//				color = UIColor.clear
-	//			}
-	//			color.setFill()
-	//			let rect = CGRect(x: column, y: rows - 1 - row, width: 1, height: 1) // 왠지 몰라도 결과물이 뒤집혀있길래 여기서 y를 뒤집어줬음
-	//			UIRectFill(rect)
-	//		}
-	//	}
-	
 	
 	
 	// Extract the UIImage from the graphics context.

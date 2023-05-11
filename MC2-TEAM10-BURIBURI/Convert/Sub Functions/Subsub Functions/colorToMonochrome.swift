@@ -10,23 +10,23 @@ import UIKit
 
 func colorToMonochrome(_ input: [[UIColor]]) -> [[CGFloat]]{
 
-	let width = input.count
-	let height = input[0].count
+	let height = input.count
+	let width = input[0].count
 
-	var temp = Array(repeating: Array(repeating: CGFloat(0.0), count: height), count: width)
+	var temp = Array(repeating: Array(repeating: CGFloat(0.0), count: width), count: height)
 	
-	for x in 0..<width {
-		for y in 0..<height {
+	for y in 0..<height {
+		for x in 0..<width {
 			
 			var red: CGFloat = 0
 			var green: CGFloat = 0
 			var blue: CGFloat = 0
 			
-			input[x][y].getRed(&red, green: &green, blue: &blue, alpha: nil)
+			input[y][x].getRed(&red, green: &green, blue: &blue, alpha: nil)
 			
 			let brightness = (red + green + blue) / 3
 			
-			temp[x][y] = brightness
+			temp[y][x] = brightness
 		}
 		
 	}

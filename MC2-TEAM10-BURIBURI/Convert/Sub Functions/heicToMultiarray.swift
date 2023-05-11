@@ -1,5 +1,5 @@
 //
-//  heicToMultiArray.swift
+//  heicToMultiarray.swift
 //  SwiftUI Demo 2
 //
 //  Created by Wonil Lee on 2023/05/07.
@@ -9,7 +9,7 @@ import AVFoundation
 import UIKit
 import Foundation
 
-func heicToMultiArray(_ data: Data) -> [[UIColor]] {
+func heicToMultiarray(_ data: Data) -> [[UIColor]] {
 	guard let uiImage = UIImage(data: data) else {
 		fatalError("Could not create UIImage")
 	}
@@ -36,7 +36,7 @@ func heicToMultiArray(_ data: Data) -> [[UIColor]] {
 
 	var pixelArray: [[UIColor]] = []
 
-	for y in (0..<height).reversed() {
+	for y in 0..<height {
 		var row: [UIColor] = []
 		for x in 0..<width {
 			let pixelOffset = (y * bytesPerRow) + (x * 4)
