@@ -24,33 +24,34 @@ struct AlbumForChildView: View {
 
     
     var body: some View {
-        VStack {
-            // rkfhfh스크롤 가능하게 한다.
-            ScrollView(.horizontal) {
-                // 수평(H)방향으로 Grid를 사용한다.
-                LazyHGrid(rows: gridRows) {
-                    ForEach(dataModel.items) { item in
-                        GeometryReader { geo in
-                            // GridItemView를 불러와서 item에 item을 넘겨준다.
-                            GridItemView(size: geo.size.height, item: item)
-                            
-                            // 좌우 5도씩 흔들거리는 효과
-                                .rotationEffect((Angle(degrees: isAnimationChild ? 5 : -5)))
-                            // 0.3초마다 왔다갔다하게 하는 효과
-                                .animation(.easeInOut(duration: 0.3)
-                                    .repeatForever(autoreverses: true), value: isAnimationChild)
+            VStack {
+                // rkfhfh스크롤 가능하게 한다.
+                ScrollView(.horizontal) {
+                    // 수평(H)방향으로 Grid를 사용한다.
+                    LazyHGrid(rows: gridRows) {
+                        ForEach(dataModel.items) { item in
+                            GeometryReader { geo in
+                                // GridItemView를 불러와서 item에 item을 넘겨준다.
+                                GridItemView(size: geo.size.height, item: item)
+                                
+                                // 좌우 5도씩 흔들거리는 효과
+                                    .rotationEffect((Angle(degrees: isAnimationChild ? 5 : -5)))
+                                // 0.3초마다 왔다갔다하게 하는 효과
+                                    .animation(.easeInOut(duration: 0.3)
+                                        .repeatForever(autoreverses: true), value: isAnimationChild)
+                            }
+                            .cornerRadius(8.0)
+                            .aspectRatio(1, contentMode: .fit)
                         }
-                        .cornerRadius(8.0)
-                        .aspectRatio(1, contentMode: .fit)
                     }
+                    .padding()
                 }
-                .padding()
+                .onAppear {
+                    isAnimationChild.toggle()
+                }
             }
-            .onAppear {
-                isAnimationChild.toggle()
-            }
-        }
-        .navigationBarTitleDisplayMode(.inline)
+            .background(Color.clear)
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 
