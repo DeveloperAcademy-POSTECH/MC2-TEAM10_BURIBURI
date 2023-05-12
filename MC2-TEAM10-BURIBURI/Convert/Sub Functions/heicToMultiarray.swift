@@ -46,9 +46,9 @@ func heicToMultiarray(_ data: Data) -> [[UIColor]] {
 						let blue = CGFloat(pixelData.load(fromByteOffset: pixelOffset + 3, as: UInt8.self)) / 255.0
 						
 						// Change Endian
-						let newBlue = CGFloat(swapInt16LittleToBig(UInt16(alpha * 65535.0))) / 65535.0
+						let newRed = CGFloat(swapInt16LittleToBig(UInt16(alpha * 65535.0))) / 65535.0
 						let newGreen = CGFloat(swapInt16LittleToBig(UInt16(red * 65535.0))) / 65535.0
-						let newRed = CGFloat(swapInt16LittleToBig(UInt16(green * 65535.0))) / 65535.0
+						let newBlue = CGFloat(swapInt16LittleToBig(UInt16(green * 65535.0))) / 65535.0
 						let newAlpha = CGFloat(swapInt16LittleToBig(UInt16(blue * 65535.0))) / 65535.0
 						
 						let color = UIColor(red: newRed, green: newGreen, blue: newBlue, alpha: newAlpha)

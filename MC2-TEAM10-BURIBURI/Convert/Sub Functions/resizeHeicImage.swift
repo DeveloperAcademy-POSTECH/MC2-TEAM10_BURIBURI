@@ -9,10 +9,8 @@ import UIKit
 import AVFoundation
 import Photos
 
-func resizeHeicImage(at sourceURL: URL, with size: CGSize, compressionQuality: CGFloat) throws -> Data {
-	// Load source image
-	let sourceData = try Data(contentsOf: sourceURL)
-	guard let sourceImage = UIImage(data: sourceData) else {
+func resizeHeicImage(heicData: Data, with size: CGSize, compressionQuality: CGFloat) throws -> Data {
+	guard let sourceImage = UIImage(data: heicData) else {
 		throw NSError(domain: "Invalid image data", code: -1, userInfo: nil)
 	}
 	

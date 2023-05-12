@@ -7,13 +7,13 @@
 
 import Foundation
 
-func convertToBackgroundRemovedPNGDataAndPointArray(at sourceURL: URL) -> (Data, [CGPoint]) {
+func convertToBackgroundRemovedPNGDataAndPointArray(_ heicData: Data) -> (Data, [CGPoint]) {
 	
-	// 원본 HEIC 사진의 URL을 입력하면 배경이 지워진 PNG 이미지의 데이터와 (다각형을 그리기 위한) pointArray의 튜플을 반환한다.
+	// 원본 HEIC 데이터를 입력하면 배경이 지워진 PNG 이미지의 데이터와 (다각형을 그리기 위한) pointArray의 튜플을 반환한다.
 	
-	// 원본 HEIC 사진에서 해상도를 줄인 사진의 데이터를 객체로 얻기
+	// 크기 바꾼 HEIC 데이터 얻기
 	var resizedHEICData = Data()
-	do {resizedHEICData = try resizeHeicImage(at: sourceURL, with: CGSize(width: 750, height: 1000), compressionQuality: 1.0)
+	do {resizedHEICData = try resizeHeicImage(heicData: heicData, with: CGSize(width: 750, height: 1000), compressionQuality: 1.0)
 	} catch {
 		print(error)
 	}
