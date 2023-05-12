@@ -8,6 +8,9 @@ import UIKit
 import os.log
 
 class Camera: NSObject {
+	
+	static var tempPhotoData = Data()
+	
     private let captureSession = AVCaptureSession()
     private var isCaptureSessionConfigured = false
     private var deviceInput: AVCaptureDeviceInput?
@@ -336,7 +339,15 @@ extension Camera: AVCapturePhotoCaptureDelegate {
             return
         }
         
-        addToPhotoStream?(photo)
+		let photoData = photo.fileDataRepresentation()
+		
+		if let photoData = photoData {
+			Camera.tempPhotoData = photoData
+			// tempPhotoData는 Data()에서 photoData로 값이 바뀐다.
+			// tempPhotoData.isEmpty는 true에서 false가 된다.
+		}
+		
+//        addToPhotoStream?(photo)
     }
 }
 

@@ -84,4 +84,34 @@ extension FileManager {
         }
         return []
     }
+	
+	//* png data를 받아 document directory에 저장하고 저장된 파일의 URL을 반환한다.
+	func savePNGDataByFileManagerAndReturnURL(_ data: Data) -> URL? {
+		let fileManager = FileManager.default
+		do {
+			// Create a unique file name
+			let uuid = UUID().uuidString
+			let fileName = "\(uuid).png"
+			
+			// Get the document directory URL
+			guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+				print("Failed to get document directory")
+				return nil
+			}
+			
+			// Create a new file URL
+			let fileURL = documentDirectory.appendingPathComponent(fileName)
+			
+			// Write the data to the file
+			try data.write(to: fileURL)
+			
+			// Return the file URL
+			return fileURL
+		} catch {
+			// Print out any errors
+			print("Error saving data: \(error)")
+			return nil
+		}
+	}
+
 }
