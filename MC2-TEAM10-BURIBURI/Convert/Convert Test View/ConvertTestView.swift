@@ -11,10 +11,9 @@ import UIKit
 struct ConvertTestView: View {
 	
 	@State var buttonPressed: Bool = false
-	
 	@State var brPNGData = Data()
-	
 	@State var pointArray = [CGPoint]()
+    let dataModel = DataModel()
 	
 	//시뮬레이터를 실행할 맥에서의 이미지 파일 위치에 맞게 URL을 수정하세요
 	
@@ -40,8 +39,11 @@ struct ConvertTestView: View {
 							
 							let returnedTuple = convertToBackgroundRemovedPNGDataAndPointArray(heicData)
 							
-							brPNGData = returnedTuple.0
-							pointArray = returnedTuple.1
+//                            brPNGData = returnedTuple.0
+//                            pointArray = returnedTuple.1
+//                            let brPNGURL = savePNGDataByFileManagerAndReturnURL(brPNGData
+//                            let item = Item(url: brPNGURL, pointArray: pointArray)
+//                            dataModel.items.append(item)
 						}
 						
 						buttonPressed.toggle()
