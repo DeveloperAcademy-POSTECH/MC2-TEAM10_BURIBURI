@@ -60,7 +60,7 @@ struct CameraView: View {
             NavigationLink(destination: AlbumForParentsView()) {
                 Image("C_Fedora3_02")
                     .resizable()
-                    .frame(width: 80, height: 80)
+                    .frame(width: 60, height: 60)
             }
             
             Button {
@@ -71,12 +71,12 @@ struct CameraView: View {
                 } icon: {
                     Circle()
                         .foregroundColor(.white)
-                        .frame(width: 80, height: 80)
+                        .frame(width: 60, height: 60)
                         .overlay {
                             Circle()
                                 .stroke(Color.black, lineWidth: 2)
                                 .foregroundColor(.white)
-                                .frame(width: 68, height: 68)
+                                .frame(width: 48, height: 48)
                         }
 //                    Image("Stella_08")
 //                        .resizable()
@@ -87,7 +87,7 @@ struct CameraView: View {
     
             
             Spacer()
-                .frame(width: getWidth() * 0.35)
+                .frame(width: getWidth() * 0.39)
         
         }
         .buttonStyle(.plain)

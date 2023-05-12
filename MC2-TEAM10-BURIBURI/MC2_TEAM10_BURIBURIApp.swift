@@ -10,11 +10,11 @@ import SwiftUI
 // 키워드는 앱의 진입점을 나타내는 @main.
 @main
 struct MC2_TEAM10_BURIBURIApp: App {
-    
+
     init() {
         UINavigationBar.applyCustomAppearance()
     }
-    
+
     // 데이터 모델을 저장하는 @StateObject 프로퍼티 래퍼를 생성한다.
     @StateObject var dataModel = DataModel()
     // body는 앱에서 실제로 인터페이스가 보여지는 부분이다.
@@ -30,6 +30,8 @@ struct MC2_TEAM10_BURIBURIApp: App {
         }
     }
 }
+
+
 
 fileprivate extension UINavigationBar {
     

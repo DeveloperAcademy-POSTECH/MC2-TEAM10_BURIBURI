@@ -78,7 +78,7 @@ func removedBinaryMultiarrayToBackgroundRemovedPNG(_ ma: [[UIColor]], _ rbm: [[I
 	}
 	
 	let size = CGSize(width: right - left + 1, height: down - up + 1)
-	UIGraphicsBeginImageContextWithOptions(size, true, 0)
+	UIGraphicsBeginImageContextWithOptions(size, false, 0)
 
 	
 	// Fill the image with the corresponding colors.
