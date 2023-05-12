@@ -22,7 +22,7 @@ struct MC2_TEAM10_BURIBURIApp: App {
         WindowGroup {
             // 앱을 켰을 때 어떤 View를 보여준다.
             NavigationStack {
-                ARView()
+                OnboardingForParents()
             }
             // 가장 먼저 보이는 View에 environmentObject 함수를 사용하여 dataModel 객체를 전달한다.
             // 다른 View에서 dataModel을 사용할 수 있다.

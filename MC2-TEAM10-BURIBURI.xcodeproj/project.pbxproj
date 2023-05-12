@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A9931012A0E09DE0087D829 /* OnboardingForParents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9931002A0E09DE0087D829 /* OnboardingForParents.swift */; };
+		4A9931032A0E0A0A0087D829 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9931022A0E0A090087D829 /* ButtonStyle.swift */; };
+		4A9931052A0E0A800087D829 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9931042A0E0A800087D829 /* PageModel.swift */; };
+		4A9931072A0E0A8B0087D829 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9931062A0E0A8B0087D829 /* PageView.swift */; };
 		5782C9392A0DE2A3004F3A96 /* urlToHeicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5782C9382A0DE2A3004F3A96 /* urlToHeicData.swift */; };
 		57D6AE9A2A0C7CD600D5F223 /* convertToBackgroundRemovedPNGDataAndBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D6AE992A0C7CD500D5F223 /* convertToBackgroundRemovedPNGDataAndBezierPath.swift */; };
 		57D6AE9C2A0C7CDB00D5F223 /* convertToBackgroundRemovedPNGDataAndPointArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D6AE9B2A0C7CDB00D5F223 /* convertToBackgroundRemovedPNGDataAndPointArray.swift */; };
@@ -76,6 +80,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A9931002A0E09DE0087D829 /* OnboardingForParents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingForParents.swift; sourceTree = "<group>"; };
+		4A9931022A0E0A090087D829 /* ButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
+		4A9931042A0E0A800087D829 /* PageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
+		4A9931062A0E0A8B0087D829 /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		5782C9382A0DE2A3004F3A96 /* urlToHeicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urlToHeicData.swift; sourceTree = "<group>"; };
 		57D6AE992A0C7CD500D5F223 /* convertToBackgroundRemovedPNGDataAndBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertToBackgroundRemovedPNGDataAndBezierPath.swift; sourceTree = "<group>"; };
 		57D6AE9B2A0C7CDB00D5F223 /* convertToBackgroundRemovedPNGDataAndPointArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertToBackgroundRemovedPNGDataAndPointArray.swift; sourceTree = "<group>"; };
@@ -282,6 +290,8 @@
 		EEA1B54E2A0BC36B007A10B1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A9931042A0E0A800087D829 /* PageModel.swift */,
+				4A9931022A0E0A090087D829 /* ButtonStyle.swift */,
 				EEA1B54F2A0BC376007A10B1 /* DataModel.swift */,
 				EEA1B5502A0BC376007A10B1 /* FileManagerExtensions.swift */,
 				EEA1B5522A0BC377007A10B1 /* getFunction.swift */,
@@ -315,6 +325,8 @@
 		EEA1B58A2A0BC398007A10B1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A9931062A0E0A8B0087D829 /* PageView.swift */,
+				4A9931002A0E09DE0087D829 /* OnboardingForParents.swift */,
 				EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */,
 				EEA1B58B2A0BC3A3007A10B1 /* AlbumForChildView.swift */,
 				EEA1B58C2A0BC3A4007A10B1 /* AlbumForParentsView.swift */,
@@ -409,11 +421,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A9931012A0E09DE0087D829 /* OnboardingForParents.swift in Sources */,
 				EE6CA1032A0DC932000B27BF /* PhotoView.swift in Sources */,
+				4A9931052A0E0A800087D829 /* PageModel.swift in Sources */,
 				EE6CA1052A0DC932000B27BF /* PhotoCollection.swift in Sources */,
 				57D6AEC22A0C7DD300D5F223 /* ConvertTestView.swift in Sources */,
 				EEA1B5582A0BC377007A10B1 /* UIImage+.swift in Sources */,
 				57D6AE9F2A0C7D0500D5F223 /* resizeHeicImage.swift in Sources */,
+				4A9931072A0E0A8B0087D829 /* PageView.swift in Sources */,
 				EE6CA1082A0DC932000B27BF /* PhotoCollectionView.swift in Sources */,
 				57D6AEA62A0C7D0E00D5F223 /* rbmToCroppedRBM.swift in Sources */,
 				5782C9392A0DE2A3004F3A96 /* urlToHeicData.swift in Sources */,
@@ -421,6 +436,7 @@
 				EE6CA0FE2A0DC932000B27BF /* ViewfinderView.swift in Sources */,
 				EEA1B5572A0BC377007A10B1 /* getFunction.swift in Sources */,
 				57D6AEB62A0C7D2600D5F223 /* heroBinaryToRemovedBinary.swift in Sources */,
+				4A9931032A0E0A0A0087D829 /* ButtonStyle.swift in Sources */,
 				57D6AEA92A0C7D0E00D5F223 /* multiarrayToRemovedBinaryMultiarray.swift in Sources */,
 				EE6CA1062A0DC932000B27BF /* PhotoAsset.swift in Sources */,
 				57D6AEB82A0C7D2600D5F223 /* monochromeToBinary.swift in Sources */,
@@ -515,7 +531,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -569,7 +585,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
