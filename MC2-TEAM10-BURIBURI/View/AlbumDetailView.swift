@@ -27,7 +27,7 @@ struct AlbumDetailView: View {
 struct AlbumDetailView_Previews: PreviewProvider {
     static var previews: some View {
         if let url = Bundle.main.url(forResource: "111", withExtension: "png") {
-            AlbumDetailView(item: Item(url: url))
+			AlbumDetailView(item: Item(url: url, pointArray: []))
         }
     }
 }

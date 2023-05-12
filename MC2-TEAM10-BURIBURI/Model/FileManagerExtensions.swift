@@ -90,6 +90,7 @@ extension FileManager {
 		let fileManager = FileManager.default
 		do {
 			// Create a unique file name
+			// 여기서 UUID를 이용해 이름을 붙이기는 하는데, 나중에 이 이미지에 해당하는 Item 객체를 생성할 때에 그것의 식별자는 거기서 다시 생성한다. 따라서 파일 이름은 객체의 식별자와 다르다.
 			let uuid = UUID().uuidString
 			let fileName = "\(uuid).png"
 			

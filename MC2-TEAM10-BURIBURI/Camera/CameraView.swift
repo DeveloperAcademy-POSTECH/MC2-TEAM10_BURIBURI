@@ -63,8 +63,14 @@ struct CameraView: View {
 									Button {
 										let pngURL = FileManager.default.savePNGDataByFileManagerAndReturnURL(returnedTuple.0)
 										if let pngURL = pngURL {
-											let item = Item(url: pngURL)
+											let item = Item(url: pngURL, pointArray: returnedTuple.1)
 											dataModel.items.append(item)
+											dataModel.save()
+											for item in dataModel.items {
+												print("item.id: \(item.id)")
+												print("item.url: \(item.url)")
+												print("pointArray: \(item.pointArray)\n")
+											}
 											showsDecisionPage = false
 										}
 									} label: {
