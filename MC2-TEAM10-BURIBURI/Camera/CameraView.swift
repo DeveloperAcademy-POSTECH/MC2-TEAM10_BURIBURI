@@ -100,7 +100,7 @@ struct CameraView: View {
             Spacer()
                 .frame(width: getWidth() * 0.05)
             NavigationLink(destination: ARView()) {
-                Image(systemName: "chevron.left")
+                Text("AR")
             }
         }
     }
