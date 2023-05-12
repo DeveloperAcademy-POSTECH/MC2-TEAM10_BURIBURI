@@ -10,6 +10,18 @@ import ARKit // ARKit 라이브러리를 가져옴
 
 class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegate를 상속하는 Coordinator 클래스 선언
     
+    static var summonTrigger: Bool = false
+    static var scnNodeArray: [SCNNode] = []
+    static var itemPlanArray: [Item] = []
+    
+    var arView: ARSCNView?
+    var context: ARViewContainer.Context?
+    
+    init(arView: ARSCNView?, context: ARViewContainer.Context?) {
+                self.arView = arView
+                self.context = context
+    }
+    
     private func createStarPath(from points: [CGPoint]) -> UIBezierPath { // 점들의 배열로부터 별 모양의 경로를 만드는 메소드
         let path = UIBezierPath() // UIBezierPath 객체를 생성
         
@@ -56,16 +68,35 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
         return starNode // 생성한 노드를 반환
     }
     
-    func updateStarNodes(with pointsTuple: [[CGPoint]], in arView: ARSCNView) -> [SCNNode] { // 주어진 점들의 배열로 별 노드들을 업데이트 하는 메소드
-        var starNodes: [SCNNode] = [] // 별 노드들을 저장할 빈 배열을 생성
+    func updateStarNodes(with item: Item, in arView: ARSCNView) -> [SCNNode] {
+        var starNodes: [SCNNode] = [] // To store the star nodes
         
-        for points in pointsTuple { // 각 점들의 배열에 대해
-            let starNode = createStarNode(with: points, imageName: "Godliver") // 별 노드를 생성
-            arView.scene.rootNode.addChildNode(starNode) // AR 뷰의 루트 노드에 별 노드를 추가
-            starNodes.append(starNode) // 별 노드를 배열에 추가
+        for point in item.pointArray { // For each CGPoint in the pointArray of the Item
+            let imageName = item.url.lastPathComponent // Extract the filename from the URL
+            print("in updateStarNodes, item.url: \(item.url)")
+            print("in updateStarNodes, imageName: \(imageName)")
+            let starNode = createStarNode(with: [point], imageName: imageName) // Create a star node
+            arView.scene.rootNode.addChildNode(starNode) // Add the star node to the AR view's root node
+            starNodes.append(starNode)
+            print("starNodes.count: \(starNodes.count)")// Add the star node to the starNodes array
         }
         
-        return starNodes // 별 노드들의 배열을 반환
+        return starNodes // Return the array of star nodes
+    }
+
+    // 화면 프레임마다 호출되는 함수
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        if let arView = arView, let context = context {
+            if Coordinator.summonTrigger {
+                print("summonTrigger is true")
+                if Coordinator.scnNodeArray.count < Coordinator.itemPlanArray.count {
+                    print("the two arrays have different counts")
+                    Coordinator.summonTrigger = false
+                    let newStarNodes = context.coordinator.updateStarNodes(with: Coordinator.itemPlanArray.last!, in: arView)
+                    Coordinator.scnNodeArray.append(contentsOf: newStarNodes)
+                }
+            }
+        }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {

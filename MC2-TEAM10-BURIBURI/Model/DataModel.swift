@@ -36,6 +36,7 @@ class DataModel: ObservableObject {
 //			}
 //		}
 		items = load()
+        print("items.count: \(items.count)")
 	}
 	
 	func save() {

@@ -8,15 +8,23 @@
 import Foundation
 import SwiftUI
 import ARKit
+import Combine
+import RealityKit
 
 class ARViewState: ObservableObject {
+    
     @Published var scnNodeArray: [SCNNode] = [] // SCNNode 객체를 저장하는 배열
+    @Published var itemPlanArray: [Item] = []
     @Published var starNodesAdded: Bool = false // 별 노드가 추가되었는지를 나타내는 불리언 변수
+    // This property retains the cancellable object for our SceneEvents.Update subscriber
+    
 }
 
 struct ARViewContainer: UIViewRepresentable {
-    @ObservedObject var arViewState: ARViewState // AR 뷰 상태를 감시하는 ObservedObject
-    var pointsTuple: [[CGPoint]] // SCNNode 객체를 생성하기 위한 점들의 튜플 배열
+    @EnvironmentObject var dataModel: DataModel
+    @EnvironmentObject var arViewState: ARViewState // AR 뷰 상태를 감시하는 ObservedObject
+    
+    var arView: ARSCNView?
     
     func makeUIView(context: Context) -> ARSCNView {
         let arView = ARSCNView() // ARSCNView 인스턴스 생성
@@ -26,7 +34,7 @@ struct ARViewContainer: UIViewRepresentable {
         
         let scene = SCNScene() // 새로운 씬 생성
         arView.scene = scene // AR 뷰에 씬 설정
-
+        
         // AR 세션 설정 추가
         let configuration = ARWorldTrackingConfiguration() // 새로운 AR 월드 트래킹 설정 생성
         configuration.planeDetection = .horizontal // 수평 평면 감지 활성화
@@ -34,18 +42,22 @@ struct ARViewContainer: UIViewRepresentable {
         
         return arView // AR 뷰 반환
     }
-
+    
     func updateUIView(_ uiView: ARSCNView, context: Context) {
-        if !arViewState.starNodesAdded {
-            let newStarNodes = context.coordinator.updateStarNodes(with: pointsTuple, in: uiView) // AR 뷰에서 별 노드 업데이트
-
-            DispatchQueue.main.async {
-                self.arViewState.scnNodeArray = newStarNodes // AR 뷰 상태의 SCNNode 배열 업데이트
-                self.arViewState.starNodesAdded = true // 별 노드가 추가되었다는 것을 표시
-            }
-        }
+        context.coordinator.arView = uiView
+        context.coordinator.context = context
     }
+
+//    private func updateScene(for arView: ARSCNView, context: Context) {
+//        if arViewState.scnNodeArray.count < arViewState.itemPlanArray.count {
+//            let newStarNodes = context.coordinator.updateStarNodes(with: arViewState.itemPlanArray.last!, in: arView)
+//            DispatchQueue.main.async {
+//                self.arViewState.scnNodeArray.append(contentsOf: newStarNodes)
+//            }
+//        }
+//    }
+    
     func makeCoordinator() -> Coordinator {
-        Coordinator() // 새로운 코디네이터 생성
+        Coordinator(arView: self.arView, context: nil) // 새로운 코디네이터 생성
     }
 }
