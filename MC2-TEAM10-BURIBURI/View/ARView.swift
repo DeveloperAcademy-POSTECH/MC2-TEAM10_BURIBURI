@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ARView: View {
     @State private var isUnBoxing = false
+    @State private var isCameraOpen = false
     var body: some View {
         ZStack {
             Image("OnboardingBG")
@@ -19,8 +20,16 @@ struct ARView: View {
                 HStack {
                     Spacer()
                         .frame(width: getWidth() * 0.03, height: getHeight() * 0.05)
-                    NavigationLink(destination: ScanView()) {
-//                        Rectangle()
+//                    Button(action: {
+//                        isCameraOpen.toggle()
+//                    }) {
+//                        Image("C_Wand_01")
+//                            .resizable()
+//                            .aspectRatio(1, contentMode: .fit)
+//                            .foregroundColor(.green)
+//                            .frame(width: getWidth() * 0.1, height: getHeight() * 0.05)
+//                    }
+                    NavigationLink(destination: CameraView()) {
                         Image("C_Wand_01")
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
@@ -61,7 +70,13 @@ struct ARView: View {
                 .clearModalBackground()
                 .presentationDetents([.height(getHeight() * 0.33)])
             }
+//            .sheet(isPresented: $isCameraOpen) {
+//                NavigationView {
+//                    CameraView()
+//                }
+//            }
         }
+        .navigationBarHidden(true)
     }
 }
 
