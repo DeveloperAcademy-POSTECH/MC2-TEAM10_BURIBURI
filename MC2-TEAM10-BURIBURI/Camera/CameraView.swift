@@ -256,6 +256,10 @@ struct CameraView: View {
 				.frame(width: getWidth() * 0.05)
 			NavigationLink(destination: ARView()) {
 				Text("AR")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.white)
+                    .padding(.trailing)
 			}
 		}
 	}
