@@ -10,6 +10,7 @@ struct CameraView: View {
 	
 	@State var showsDecisionPage: Bool = false // true -> 선택하는 화면 띄움
 	@State var returnedTuple: (Data, [CGPoint]) = (Data(), [CGPoint]()) // convertToBackgroundRemovedPNGDataAndPointArray 함수의 반환값
+    
 	
 	private static let barHeightFactor = 0.15
 	
@@ -43,6 +44,11 @@ struct CameraView: View {
                                     .accessibilityElement()
                                     .accessibilityLabel("View Finder")
                                     .accessibilityAddTraits([.isImage])
+                            }
+                            .overlay(alignment: .bottomTrailing) {
+                                buttonsView5()
+                                    .frame(height: geometry.size.height * Self.barHeightFactor)
+                                    .padding(.trailing)
                             }
                             .background(.black)
                     } else {
@@ -290,6 +296,27 @@ struct CameraView: View {
                 .fontWeight(.bold)
                 .foregroundColor(Color.white)
                 .padding(.trailing)
+        }
+    }
+    
+    private func buttonsView5() -> some View {
+        VStack {
+            Button(action: {
+                photomodel.camera.zoomIn()
+            }) {
+                Image(systemName: "plus.circle.fill")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.white)
+            }
+            Button(action: {
+                photomodel.camera.zoomOut()
+            }) {
+                Image(systemName: "minus.circle.fill")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(.white)
+            }
         }
     }
 }

@@ -386,3 +386,86 @@ fileprivate extension UIScreen {
 fileprivate let logger = Logger(subsystem: "com.apple.swiftplaygroundscontent.capturingphotos", category: "Camera")
 
 
+
+extension Camera {
+    var maxZoomFactor: CGFloat {
+        captureDevice?.maxAvailableVideoZoomFactor ?? 1.0
+    }
+    
+    var currentZoomFactor: CGFloat {
+        captureDevice?.videoZoomFactor ?? 1.0
+    }
+    
+    func setZoomFactor(_ zoomFactor: CGFloat) {
+        guard let captureDevice = captureDevice else { return }
+        
+        let clampedZoomFactor = min(maxZoomFactor, max(1.0, zoomFactor))
+        
+        do {
+            try captureDevice.lockForConfiguration()
+            captureDevice.videoZoomFactor = clampedZoomFactor
+            captureDevice.unlockForConfiguration()
+        } catch {
+            logger.error("Failed to set zoom factor: \(error.localizedDescription)")
+        }
+    }
+    
+    func zoomIn() {
+        let newZoomFactor = currentZoomFactor + 0.1
+        setZoomFactor(newZoomFactor)
+    }
+    
+    func zoomOut() {
+        let newZoomFactor = currentZoomFactor - 0.1
+        setZoomFactor(newZoomFactor)
+    }
+}
+
+
+
+
+
+
+import UIKit.UIGestureRecognizerSubclass
+
+class PinchGestureRecognizer: UIPinchGestureRecognizer {
+    var zoomHandler: ((_ scale: CGFloat) -> Void)?
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesMoved(touches, with: event)
+        
+        if state == .changed {
+            zoomHandler?(scale)
+        }
+    }
+}
+
+extension Camera {
+    func setupZoomGesture(on view: UIView) {
+        let pinchGesture = PinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
+        pinchGesture.zoomHandler = { [weak self] scale in
+            self?.handleZoomGesture(scale)
+        }
+        view.addGestureRecognizer(pinchGesture)
+    }
+    
+    @objc private func handlePinchGesture(_ gesture: PinchGestureRecognizer) {
+        let scale = gesture.scale
+        handleZoomGesture(scale)
+        
+        if gesture.state == .ended {
+            // Reset the scale when the gesture ends
+            gesture.scale = 1.0
+        }
+    }
+    
+    private func handleZoomGesture(_ scale: CGFloat) {
+        let sensitivity: CGFloat = 0.05
+        let zoomFactorChange = (scale - 1.0) * sensitivity
+        
+        var newZoomFactor = currentZoomFactor + zoomFactorChange
+        newZoomFactor = min(maxZoomFactor, max(1.0, newZoomFactor))
+        
+        setZoomFactor(newZoomFactor)
+    }
+}
