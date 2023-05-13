@@ -87,7 +87,7 @@ struct CameraView: View {
     
             
             Spacer()
-                .frame(width: getWidth() * 0.39)
+                .frame(width: getWidth() * 0.34)
         
         }
         .buttonStyle(.plain)
