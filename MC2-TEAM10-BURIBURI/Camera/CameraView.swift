@@ -34,7 +34,7 @@ struct CameraView: View {
                             .overlay(alignment: .bottom) {
                                 buttonsView()
                                     .frame(height: geometry.size.height * Self.barHeightFactor)
-                                    .background(.black.opacity(0.75))
+                                    .background(.black.opacity(0.2))
                             }
                         
                             .overlay(alignment: .center)  {
