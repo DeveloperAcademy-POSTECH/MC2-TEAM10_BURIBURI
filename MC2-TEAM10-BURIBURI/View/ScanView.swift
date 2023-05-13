@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//현재(2023. 5. 14. 오전 5:42) CameraView가 스캔 뷰 역할을 하는 중
 struct ScanView: View {
     var body: some View {
         VStack {
