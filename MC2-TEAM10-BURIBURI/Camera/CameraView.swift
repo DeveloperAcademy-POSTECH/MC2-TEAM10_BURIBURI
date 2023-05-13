@@ -22,32 +22,131 @@ struct CameraView: View {
 		NavigationStack {
 			GeometryReader { geometry in
 				ZStack {
-					ViewfinderView(image:  $photomodel.viewfinderImage )
-						.overlay(alignment: .top) {
-							Color.black
-								.opacity(0)
-								.frame(height: geometry.size.height * Self.barHeightFactor)
-						}
-						.overlay(alignment: .topLeading) {
-							buttonsView2()
-								.frame(height: geometry.size.height * Self.barHeightFactor)
-								.background(.black.opacity(0))
-						}
-						.overlay(alignment: .bottom) {
-							buttonsView()
-								.frame(height: geometry.size.height * Self.barHeightFactor)
-								.background(.black.opacity(0.75))
-						}
-						.overlay(alignment: .center)  {
-							Color.clear
-								.frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
-								.accessibilityElement()
-								.accessibilityLabel("View Finder")
-								.accessibilityAddTraits([.isImage])
-						}
-						.background(.black)
+                    if !showsDecisionPage {
+                        ViewfinderView(image:  $photomodel.viewfinderImage )
+                            .overlay(alignment: .top) {
+                                Color.black
+                                    .opacity(0)
+                                    .frame(height: geometry.size.height * Self.barHeightFactor)
+                            }
+                            .overlay(alignment: .topLeading) {
+                                buttonsView2()
+                                    .frame(height: geometry.size.height * Self.barHeightFactor)
+                                    .background(.black.opacity(0))
+                            }
+                            .overlay(alignment: .bottom) {
+                                buttonsView()
+                                    .frame(height: geometry.size.height * Self.barHeightFactor)
+                                    .background(.black.opacity(0.2))
+                            }
+                        
+                            .overlay(alignment: .center)  {
+                                Color.clear
+                                    .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
+                                    .accessibilityElement()
+                                    .accessibilityLabel("View Finder")
+                                    .accessibilityAddTraits([.isImage])
+                            }
+                            .background(.black)
+                    } else {
+                        ZStack {
+                            ViewfinderView(image: $photomodel.viewfinderImage)
+                                .overlay {
+                                    Color.black
+                                        .opacity(0.7)
+                                }
+                                .overlay(alignment: .center) {
+                                    PNGImageDataView(pngData: returnedTuple.0)
+                                        .frame(width: getWidth() * 0.5)
+                                }
+                                .overlay(alignment: .bottom) {
+                                    buttonsView3()
+                                    .frame(height: geometry.size.height * Self.barHeightFactor)
+                                }
+                                .overlay(alignment: .topTrailing) {
+                                    buttonsView4()
+                                        .frame(height: geometry.size.height * Self.barHeightFactor)
+                                }
+                            
+                        }
+                    
+//                        ZStack {
+//                            ViewfinderView(image: $photomodel.viewfinderImage)
+//                            Color.black
+//                                .opacity(0.4)
+//                            VStack {
+//                                Spacer()
+//                                    .frame(height: getHeight() * 0.1)
+//                                HStack {
+//                                    Spacer()
+//                                        .frame(width: getWidth() * 0.7)
+//                                    Button(action: {
+//                                        returnedTuple = (Data(), [CGPoint]())
+//                                        showsDecisionPage = false
+//                                    }) {
+//                                        Text("다시 찍기")
+//                                            .font(.title3)
+//                                            .fontWeight(.bold)
+//                                            .foregroundColor(Color("AccentColor"))
+//                                    }
+//                                    .frame(width: getWidth() * 0.3)
+//                                }
+//                                .frame(height: getHeight() * 0.1)
+//                                PNGImageDataView(pngData: returnedTuple.0)
+//                                    .frame(width: getWidth() * 0.5, height: getHeight() * 0.2)
+//                                Spacer()
+//                                    .frame(height: getHeight() * 0.3)
+//                                Button(action: {
+//                                    let pngURL = FileManager.default.savePNGDataByFileManagerAndReturnURL(returnedTuple.0)
+//                                        if let pngURL = pngURL {
+//                                            let item = Item(url: pngURL, pointArray: returnedTuple.1)
+//                                            dataModel.items.append(item)
+//                                            dataModel.save()
+//                                            showsDecisionPage = false
+//                                        }
+//                                }) {
+//                                    Image(systemName: "checkmark.circle.fill")
+//                                }
+////                                .frame(height: getHeight() * 0.1)
+//                                .frame(width: 60, height: 60)
+                                
+                                
+//                                HStack {
+//                                    Button(action: {
+//                                        returnedTuple = (Data(), [CGPoint]())
+//                                        showsDecisionPage = false
+//                                    }) {
+//                                        Text("Undo")
+//                                            .font(.title3)
+//                                            .fontWeight(.bold)
+//                                            .padding()
+//                                            .background(Color.gray.opacity(0.5))
+//                                            .cornerRadius(20)
+//                                    }
+//
+//                                    Button(action: {
+//                                        let pngURL = FileManager.default.savePNGDataByFileManagerAndReturnURL(returnedTuple.0)
+//                                            if let pngURL = pngURL {
+//                                                let item = Item(url: pngURL, pointArray: returnedTuple.1)
+//                                                dataModel.items.append(item)
+//                                                dataModel.save()
+//                                                showsDecisionPage = false
+//                                            }
+//                                    }) {
+//                                        Text("Save")
+//                                            .font(.title3)
+//                                            .fontWeight(.bold)
+//                                            .padding()
+//                                            .background(Color.yellow)
+//                                            .cornerRadius(20)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
 				
 					
+
 					if showsDecisionPage {
 						// 저장할지 undo할지 선택하는 화면
 						ZStack {
@@ -149,7 +248,7 @@ struct CameraView: View {
 			
 			
 			Spacer()
-				.frame(width: getWidth() * 0.39)
+				.frame(width: getWidth() * 0.3)
 			
 		}
 		.buttonStyle(.plain)
@@ -163,11 +262,42 @@ struct CameraView: View {
 				.frame(width: getWidth() * 0.05)
 			NavigationLink(destination: ARView()) {
 				Text("AR")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.white)
+                    .padding(.trailing)
 			}
 		}
 	}
 	
+    private func buttonsView3() -> some View {
+        Button(action: {
+            let pngURL = FileManager.default.savePNGDataByFileManagerAndReturnURL(returnedTuple.0)
+               if let pngURL = pngURL {
+                   let item = Item(url: pngURL, pointArray: returnedTuple.1)
+                   dataModel.items.append(item)
+                   dataModel.save()
+                   showsDecisionPage = false
+               }
+        }) {
+            Image(systemName: "checkmark.circle.fill")
+                .resizable()
+                .frame(width: 60, height: 60)
+        }
+    }
 	
+    private func buttonsView4() -> some View {
+        Button(action: {
+            returnedTuple = (Data(), [CGPoint]())
+            showsDecisionPage = false
+        }) {
+            Text("다시 찍기")
+                .font(.title3)
+                .fontWeight(.bold)
+                .foregroundColor(Color.white)
+                .padding(.trailing)
+        }
+    }
 }
 
 

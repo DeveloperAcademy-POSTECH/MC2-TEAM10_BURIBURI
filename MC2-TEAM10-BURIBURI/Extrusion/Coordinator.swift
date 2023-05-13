@@ -38,11 +38,15 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
         return path // 경로를 반환
     }
     
-    func createStarNode(with points: [CGPoint], imageName: String) -> SCNNode { // 주어진 점들과 이미지 이름으로 별 노드를 생성하는 메소드
-        let sides = points.count // 별의 변의 수를 계산
-        let textureImage = UIImage(named: imageName) // 텍스처 이미지를 로드
-        let sideImage = UIImage(named: "SideFrame") // 변의 이미지를 로드
+    func createStarNode(with points: [CGPoint], imageURL: URL) -> SCNNode { // 주어진 점들과 이미지 이름으로 별 노드를 생성하는 메소드
         
+        let sides = points.count // 별의 변의 수를 계산
+        let sideImage = UIImage(named: "SideFrame") // 변의 이미지를 로드
+        guard let data = try? Data(contentsOf: imageURL),
+           let textureImage = UIImage(data: data) else {
+            return SCNNode()
+        }
+
         let starPath = createStarPath(from: points) // 별 경로를 생성
         let shape = SCNShape(path: starPath, extrusionDepth: 0.1) // 별 경로와 돌출 깊이로 3D 형태를 생성
         
@@ -73,12 +77,12 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
     }
     
     func updateStarNodes(with item: Item, in arView: ARSCNView) -> SCNNode {
-        let imageName = item.url.lastPathComponent // Extract the filename from the URL
+        let imageURL = item.url // Extract the filename from the URL
         
         let point = CGPoint.init(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5)
         let hitResults = arView.hitTest(point, options: nil)
         
-        let starNode = createStarNode(with: item.pointArray, imageName: imageName) // Create a star node
+        let starNode = createStarNode(with: item.pointArray, imageURL: imageURL) // Create a star node
         
         if let hitResult = hitResults.first {
             
