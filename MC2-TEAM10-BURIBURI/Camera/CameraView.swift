@@ -11,6 +11,9 @@ struct CameraView: View {
 	@State var showsDecisionPage: Bool = false // true -> 선택하는 화면 띄움
 	@State var returnedTuple: (Data, [CGPoint]) = (Data(), [CGPoint]()) // convertToBackgroundRemovedPNGDataAndPointArray 함수의 반환값
 	
+	// 화면 제어 관련 state 변수
+	@State var scanButtonActive = true
+	
 	private static let barHeightFactor = 0.15
 	
 	
@@ -56,6 +59,7 @@ struct CameraView: View {
 									Button {
 										returnedTuple = (Data(), [CGPoint]())
 										showsDecisionPage = false
+										scanButtonActive = true
 									} label: {
 										Text("Undo")
 									}
@@ -67,18 +71,16 @@ struct CameraView: View {
 											dataModel.items.append(item)
 											dataModel.save()
 											showsDecisionPage = false
+											scanButtonActive = true
 										}
 									} label: {
 										Text("Save")
 									}
 								}
 								PNGImageDataView(pngData: returnedTuple.0)
-									.frame(width: 200)
+									.frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 300)
 							}
-							
 						}
-						
-						
 					}
 				}
 			}
@@ -107,18 +109,21 @@ struct CameraView: View {
 			}
 			
 			Button {
-				photomodel.camera.takePhoto()
-				
-				// takePhoto()하고, camera가 photoOutput()해서 Camera.tempPhotoData에 무언가 채워지는지 scanTimer로 0.05초 간격으로 확인한다.
-				let scanTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) {t in
-					// Camera.tempPhotoData가 비어있지 않으면 returnedTuple에 convert함수의 반환값을 저장한다.
-					if !Camera.tempPhotoData.isEmpty {
-						returnedTuple = convertToBackgroundRemovedPNGDataAndPointArray(Camera.tempPhotoData)
-						// Camera.tempPhotoData와 t를 초기화한다.
-						Camera.tempPhotoData = Data()
-						t.invalidate()
-						// 선택 페이지가 보이게 한다.
-						showsDecisionPage = true
+				if scanButtonActive {
+					scanButtonActive = false
+					photomodel.camera.takePhoto()
+					
+					// takePhoto()하고, camera가 photoOutput()해서 Camera.tempPhotoData에 무언가 채워지는지 scanTimer로 0.05초 간격으로 확인한다.
+					let scanTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) {t in
+						// Camera.tempPhotoData가 비어있지 않으면 returnedTuple에 convert함수의 반환값을 저장한다.
+						if !Camera.tempPhotoData.isEmpty {
+							returnedTuple = convertToBackgroundRemovedPNGDataAndPointArray(Camera.tempPhotoData)
+							// Camera.tempPhotoData와 t를 초기화한다.
+							Camera.tempPhotoData = Data()
+							t.invalidate()
+							// 선택 페이지가 보이게 한다.
+							showsDecisionPage = true
+						}
 					}
 				}
 				
