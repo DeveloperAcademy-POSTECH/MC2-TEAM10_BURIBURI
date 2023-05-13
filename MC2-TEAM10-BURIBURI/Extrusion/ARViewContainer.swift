@@ -33,7 +33,17 @@ struct ARViewContainer: UIViewRepresentable {
         arView.debugOptions = [ARSCNDebugOptions.showFeaturePoints] // AR 뷰에서 특징점 표시
         
         let scene = SCNScene() // 새로운 씬 생성
+        
+        // Create and add a camera to the scene
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        scene.rootNode.addChildNode(cameraNode)
+
+        // Place the camera
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+
         arView.scene = scene // AR 뷰에 씬 설정
+        arView.allowsCameraControl = true
         
         // AR 세션 설정 추가
         let configuration = ARWorldTrackingConfiguration() // 새로운 AR 월드 트래킹 설정 생성

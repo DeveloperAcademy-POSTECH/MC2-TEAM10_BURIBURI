@@ -7,6 +7,7 @@
 
 import Foundation
 import ARKit // ARKit 라이브러리를 가져옴
+import UIKit
 
 class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegate를 상속하는 Coordinator 클래스 선언
     
@@ -16,6 +17,9 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
     
     var arView: ARSCNView?
     var context: ARViewContainer.Context?
+    
+    // Add a DispatchQueue specifically for accessing and modifying the scnNodeArray
+    static let scnNodeQueue = DispatchQueue(label: "scnNodeQueue", attributes: .concurrent)
     
     init(arView: ARSCNView?, context: ARViewContainer.Context?) {
                 self.arView = arView
@@ -62,42 +66,56 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
         shape.materials = [frontMaterial, backMaterial] + Array(repeating: sideMaterial, count: sides) // 각면에 재질을 적용
         
         let starNode = SCNNode(geometry: shape) // 생성한 형태로 SCNNode를 생성
-        starNode.position = SCNVector3(0, 0, -1) // 노드의 위치를 설정
-        starNode.scale = SCNVector3(0.5, 0.5, 0.5) // 노드의 크기를 설정
+//        starNode.position = SCNVector3(0, 0, -1) // 노드의 위치를 설정
+//        starNode.scale = SCNVector3(0.5, 0.5, 0.5) // 노드의 크기를 설정
         
         return starNode // 생성한 노드를 반환
     }
     
-    func updateStarNodes(with item: Item, in arView: ARSCNView) -> [SCNNode] {
-        var starNodes: [SCNNode] = [] // To store the star nodes
+    func updateStarNodes(with item: Item, in arView: ARSCNView) -> SCNNode {
+        let imageName = item.url.lastPathComponent // Extract the filename from the URL
         
-        for point in item.pointArray { // For each CGPoint in the pointArray of the Item
-            let imageName = item.url.lastPathComponent // Extract the filename from the URL
-            print("in updateStarNodes, item.url: \(item.url)")
-            print("in updateStarNodes, imageName: \(imageName)")
-            let starNode = createStarNode(with: [point], imageName: imageName) // Create a star node
-            arView.scene.rootNode.addChildNode(starNode) // Add the star node to the AR view's root node
-            starNodes.append(starNode)
-            print("starNodes.count: \(starNodes.count)")// Add the star node to the starNodes array
+        let point = CGPoint.init(x: UIScreen.main.bounds.width * 0.5, y: UIScreen.main.bounds.height * 0.5)
+        let hitResults = arView.hitTest(point, options: nil)
+        
+        let starNode = createStarNode(with: item.pointArray, imageName: imageName) // Create a star node
+        
+        if let hitResult = hitResults.first {
+            
+            // Add a new node at the touch location
+            starNode.position = hitResult.localCoordinates
+            starNode.scale = SCNVector3(x: 0.1, y: 0.1, z: 0.1)
+            print("starNode.position: \(starNode.position)")
+            hitResult.node.addChildNode(starNode)
         }
+//
+//        DispatchQueue.main.async {
+//            arView.scene.rootNode.addChildNode(starNode) // Add the star node to the AR view's root node on the main thread
+//        }
         
-        return starNodes // Return the array of star nodes
+        return starNode // Return the array of star nodes
     }
 
     // 화면 프레임마다 호출되는 함수
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         if let arView = arView, let context = context {
             if Coordinator.summonTrigger {
-                print("summonTrigger is true")
+//                print("summonTrigger is true")
                 if Coordinator.scnNodeArray.count < Coordinator.itemPlanArray.count {
-                    print("the two arrays have different counts")
+//                    print("the two arrays have different counts")
                     Coordinator.summonTrigger = false
-                    let newStarNodes = context.coordinator.updateStarNodes(with: Coordinator.itemPlanArray.last!, in: arView)
-                    Coordinator.scnNodeArray.append(contentsOf: newStarNodes)
+                    let newStarNode = context.coordinator.updateStarNodes(with: Coordinator.itemPlanArray.last!, in: arView)
+//                    print("newStarNode: \(newStarNode)")
+                    // Use the DispatchQueue to append the new node
+                    Coordinator.scnNodeQueue.async(flags: .barrier) {
+                        Coordinator.scnNodeArray.append(newStarNode)
+//                        print("Coordinator.scnNodeArray.count: \(Coordinator.scnNodeArray.count)")
+                    }
                 }
             }
         }
     }
+
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         // 필요한 경우 구현: AR 앵커가 추가되었을 때 호출되는 메소드

@@ -26,14 +26,17 @@ struct AlbumForChildView: View {
     @State var isAnimationChild = false
     
     var body: some View {
+        
         VStack {
             ScrollView(.horizontal) {
                 LazyHGrid(rows: gridRows) {
                     ForEach(dataModel.items) { item in
+                        
                         GeometryReader { geo in
                             GridItemView(size: geo.size.height, item: item)
                                 .rotationEffect((Angle(degrees: isAnimationChild ? 5 : -5)))
                                 .onAppear {
+                                    print("item here.. url: \(item.url)")
                                     DispatchQueue.main.async {
                                         withAnimation(.easeInOut(duration: 0.3).repeatForever(autoreverses: true)) {
                                             isAnimationChild.toggle()
@@ -42,7 +45,10 @@ struct AlbumForChildView: View {
                                 }
                                 .onTapGesture {
                                     DispatchQueue.main.async {
+                                        
+                                        print("=============")
                                         arViewState.itemPlanArray.append(item)
+                                        print("itemPlanArray: \(arViewState.itemPlanArray)")
                                         
                                         Coordinator.summonTrigger = true
                                         Coordinator.scnNodeArray = arViewState.scnNodeArray
