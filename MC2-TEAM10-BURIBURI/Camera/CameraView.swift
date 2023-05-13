@@ -277,8 +277,9 @@ struct CameraView: View {
                     let item = Item(url: pngURL, pointArray: returnedTuple.1)
                     dataModel.items.append(item)
                     dataModel.save()
-                    showsDecisionPage = false
                 }
+				showsDecisionPage = false
+				scanButtonActive = true
             }) {
                 Image(systemName: "checkmark.circle.fill")
                     .resizable()
@@ -290,6 +291,7 @@ struct CameraView: View {
             Button(action: {
                 returnedTuple = (Data(), [CGPoint]())
                 showsDecisionPage = false
+				scanButtonActive = true
             }) {
                 Text("다시 찍기")
                     .font(.title3)
