@@ -36,7 +36,7 @@
 		57D6AEC82A0C7DD300D5F223 /* HEICImageURLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D6AEC02A0C7DD300D5F223 /* HEICImageURLView.swift */; };
 		57D6AEC92A0C7DD300D5F223 /* PNGImageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D6AEC12A0C7DD300D5F223 /* PNGImageDataView.swift */; };
 		E354960A2A0E42B000FB084B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35496092A0E42B000FB084B /* Coordinator.swift */; };
-		E354960C2A0E42FB00FB084B /* TestARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E354960B2A0E42FB00FB084B /* TestARView.swift */; };
+		E354960C2A0E42FB00FB084B /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E354960B2A0E42FB00FB084B /* ARViewContainer.swift */; };
 		EE08CFFE2A0CDB1C00804713 /* ClearBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08CFFD2A0CDB1C00804713 /* ClearBackgroundView.swift */; };
 		EE6CA0FD2A0DC932000B27BF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CA0F02A0DC932000B27BF /* Camera.swift */; };
 		EE6CA0FE2A0DC932000B27BF /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CA0F12A0DC932000B27BF /* ViewfinderView.swift */; };
@@ -111,7 +111,7 @@
 		57D6AEC02A0C7DD300D5F223 /* HEICImageURLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HEICImageURLView.swift; sourceTree = "<group>"; };
 		57D6AEC12A0C7DD300D5F223 /* PNGImageDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNGImageDataView.swift; sourceTree = "<group>"; };
 		E35496092A0E42B000FB084B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		E354960B2A0E42FB00FB084B /* TestARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestARView.swift; sourceTree = "<group>"; };
+		E354960B2A0E42FB00FB084B /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		EE08CFFD2A0CDB1C00804713 /* ClearBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearBackgroundView.swift; sourceTree = "<group>"; };
 		EE6CA0F02A0DC932000B27BF /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		EE6CA0F12A0DC932000B27BF /* ViewfinderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				E35496092A0E42B000FB084B /* Coordinator.swift */,
-				E354960B2A0E42FB00FB084B /* TestARView.swift */,
+				E354960B2A0E42FB00FB084B /* ARViewContainer.swift */,
 			);
 			path = Extrusion;
 			sourceTree = "<group>";
@@ -468,7 +468,7 @@
 				57D6AE9C2A0C7CDB00D5F223 /* convertToBackgroundRemovedPNGDataAndPointArray.swift in Sources */,
 				EEA1B5552A0BC377007A10B1 /* FileManagerExtensions.swift in Sources */,
 				EE6CA1002A0DC932000B27BF /* PhotoDataModel.swift in Sources */,
-				E354960C2A0E42FB00FB084B /* TestARView.swift in Sources */,
+				E354960C2A0E42FB00FB084B /* ARViewContainer.swift in Sources */,
 				EEA1B5922A0BC3A5007A10B1 /* AlbumForParentsView.swift in Sources */,
 				57D6AEB42A0C7D2600D5F223 /* colorToMonochrome.swift in Sources */,
 				57D6AEA72A0C7D0E00D5F223 /* removedBinaryMultiarrayToBackgroundRemovedPNG.swift in Sources */,

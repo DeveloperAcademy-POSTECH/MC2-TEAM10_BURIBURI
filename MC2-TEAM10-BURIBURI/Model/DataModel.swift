@@ -36,6 +36,7 @@ class DataModel: ObservableObject {
 //			}
 //		}
 		items = load()
+        print("items.count: \(items.count)")
 	}
 	
 	func save() {
@@ -59,7 +60,7 @@ class DataModel: ObservableObject {
 		do {
 			let data = try Data(contentsOf: fileURL)
 			let items = try decoder.decode([Item].self, from: data)
-			return items
+            return items
 		} catch {
 			print("Error loading data: \(error)")
 			return []

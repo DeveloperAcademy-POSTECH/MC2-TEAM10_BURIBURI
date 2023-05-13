@@ -118,6 +118,7 @@ func croppedRBMToPointArray(_ input: [[Int]]) -> [CGPoint] {
 	}
 	
 	for i in 0..<toBeReturned.count {
+        toBeReturned[i].x -= CGFloat(width) / 2
 		toBeReturned[i].x /= CGFloat((width + height) / 2)
 		
 		toBeReturned[i].y = CGFloat(height) - toBeReturned[i].y

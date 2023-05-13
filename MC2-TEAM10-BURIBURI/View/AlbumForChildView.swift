@@ -15,49 +15,68 @@ import ARKit
 struct AlbumForChildView: View {
     // 파일 DataModel을 받아올 준비를한다.
     @EnvironmentObject var dataModel: DataModel
+    @EnvironmentObject var arViewState: ARViewState
+    
     // 앨범은 3행으로 설정한다.
     private static let Rows = 1
     // 앨범은 NX1 형태이다.
-//    @State private var gridColumns = Array(repeating: GridItem(.flexible()), count: Columns)
+    //    @State private var gridColumns = Array(repeating: GridItem(.flexible()), count: Columns)
     @State private var gridRows = Array(repeating: GridItem(.flexible()), count: Rows)
     // isAnimation의 Boolean 값에 따라 이미지가 흔들거리는 효과 여부를 결정한다.
     @State var isAnimationChild = false
-
+    
     var body: some View {
-            VStack {
-                // rkfhfh스크롤 가능하게 한다.
-                ScrollView(.horizontal) {
-                    // 수평(H)방향으로 Grid를 사용한다.
-                    LazyHGrid(rows: gridRows) {
-                        ForEach(dataModel.items) { item in
-                            GeometryReader { geo in
-                                // GridItemView를 불러와서 item에 item을 넘겨준다.
-                                GridItemView(size: geo.size.height, item: item)
-                                    // 좌우 5도씩 흔들거리는 효과
-                                    .rotationEffect((Angle(degrees: isAnimationChild ? 5 : -5)))
-                                    // 0.3초마다 왔다갔다하게 하는 효과
-                                    .onAppear {
-                                        DispatchQueue.main.async {
-                                            withAnimation(.easeInOut(duration: 0.3).repeatForever(autoreverses: true)) {
-                                                isAnimationChild.toggle()
+        
+        VStack {
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: gridRows) {
+                    ForEach(dataModel.items) { item in
+                        
+                        GeometryReader { geo in
+                            GridItemView(size: geo.size.height, item: item)
+                                .rotationEffect((Angle(degrees: isAnimationChild ? 5 : -5)))
+                                .onAppear {
+                                    print("item here.. url: \(item.url)")
+                                    DispatchQueue.main.async {
+                                        withAnimation(.easeInOut(duration: 0.3).repeatForever(autoreverses: true)) {
+                                            isAnimationChild.toggle()
+                                        }
+                                    }
+                                }
+                                .onTapGesture {
+                                    DispatchQueue.main.async {
+                                        
+                                        print("=============")
+                                        arViewState.itemPlanArray.append(item)
+                                        print("itemPlanArray: \(arViewState.itemPlanArray)")
+                                        
+                                        Coordinator.summonTrigger = true
+                                        Coordinator.scnNodeArray = arViewState.scnNodeArray
+                                        Coordinator.itemPlanArray = arViewState.itemPlanArray
+                                        
+                                        let timer = Timer(timeInterval: 0.02, repeats: true) { timer in
+                                            if !Coordinator.summonTrigger {
+                                                arViewState.scnNodeArray = Coordinator.scnNodeArray
+                                                arViewState.itemPlanArray = Coordinator.itemPlanArray
+                                                timer.invalidate()
+                                                print("success")
+                                                print("arViewState.scnNodeArray.count: \(arViewState.scnNodeArray.count)")
+                                                print("arViewState.itemPlanArray.count: \(arViewState.itemPlanArray.count)")
                                             }
                                         }
                                     }
-                                    .onTapGesture {
-                                        // 아이템이 탭될 때 Coordinator를 호출하도록 함
-                                        let coordinator = Coordinator()
-                                        coordinator.updateStarNodes(with: item.points, in: ARSCNView())
-                                    }
-                            }
-                            .cornerRadius(8.0)
-                            .aspectRatio(1, contentMode: .fit)
+                                }
+
                         }
+                        .cornerRadius(8.0)
+                        .aspectRatio(1, contentMode: .fit)
                     }
-                    .padding()
                 }
+                .padding()
             }
-            .background(Color.clear)
-            .navigationBarTitleDisplayMode(.inline)
+        }
+        .background(Color.clear)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

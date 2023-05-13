@@ -11,16 +11,17 @@ struct ARView: View {
     @State private var isUnBoxing = false
     @State private var isCameraOpen = false
     
-    @ObservedObject var arViewState = ARViewState() // ARViewState 객체 추가
-    var pointsTuple: [[CGPoint]] = [] // TestARView에서 사용한 pointsTuple 초기화
+    @EnvironmentObject var dataModel: DataModel
+    @StateObject var arViewState = ARViewState()
     
     var body: some View {
         ZStack {
-            Image("OnboardingBG")
-                .scaledToFill()
+            ARViewContainer().environmentObject(arViewState)
+                .ignoresSafeArea(.all)
+//                .onReceive(dataModel.$items, perform: { _ in
+//                    self.arViewState.scnNodeArray = []
+//                })
             VStack {
-                ARViewContainer(arViewState: self.arViewState, pointsTuple: self.pointsTuple)
-                    .frame(width: getWidth() * 0.1, height: getHeight() * 0.05)
                 Spacer()
                 HStack {
                     Spacer()
@@ -62,6 +63,7 @@ struct ARView: View {
             .sheet(isPresented: $isUnBoxing) {
                 NavigationView {
                     AlbumForChildView()
+                        .environmentObject(arViewState)
                 }
                 .clearModalBackground()
                 .presentationDetents([.height(getHeight() * 0.33)])
