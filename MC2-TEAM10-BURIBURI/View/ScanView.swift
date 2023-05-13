@@ -20,7 +20,6 @@ struct ScanView: View {
                 NavigationLink(destination: AlbumForParentsView()) {
                     Image("C_Fedora3_02")
                         .resizable()
-//                    Rectangle()
                         .aspectRatio(1, contentMode: .fit)
                         .foregroundColor(.blue)
                         .frame(width: getWidth() * 0.2, height: getHeight() * 0.1)

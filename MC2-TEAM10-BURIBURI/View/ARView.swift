@@ -25,17 +25,8 @@ struct ARView: View {
                 HStack {
                     Spacer()
                         .frame(width: getWidth() * 0.03, height: getHeight() * 0.05)
-//                    Button(action: {
-//                        isCameraOpen.toggle()
-//                    }) {
-//                        Image("C_Wand_01")
-//                            .resizable()
-//                            .aspectRatio(1, contentMode: .fit)
-//                            .foregroundColor(.green)
-//                            .frame(width: getWidth() * 0.1, height: getHeight() * 0.05)
-//                    }
                     NavigationLink(destination: CameraView()) {
-                        Image("C_Wand_01")
+                        Image("Group")
                             .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .foregroundColor(.green)
@@ -75,14 +66,10 @@ struct ARView: View {
                 .clearModalBackground()
                 .presentationDetents([.height(getHeight() * 0.33)])
             }
-//            .sheet(isPresented: $isCameraOpen) {
-//                NavigationView {
-//                    CameraView()
-//                }
-//            }
         }
         .navigationBarHidden(true)
     }
+        
 }
 
 
