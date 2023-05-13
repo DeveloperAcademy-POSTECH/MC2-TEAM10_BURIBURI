@@ -90,7 +90,7 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
             starNode.position = hitResult.localCoordinates
             starNode.scale = SCNVector3(x: 0.1, y: 0.1, z: 0.1)
             print("starNode.position: \(starNode.position)")
-            hitResult.node.addChildNode(starNode)
+            arView.scene.rootNode.addChildNode(starNode)
         }
 //
 //        DispatchQueue.main.async {
