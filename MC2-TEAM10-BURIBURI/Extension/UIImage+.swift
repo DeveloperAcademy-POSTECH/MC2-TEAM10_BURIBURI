@@ -8,43 +8,22 @@
 import Foundation
 import UIKit
 import AVFoundation
+import MobileCoreServices
 
 extension UIImage {
 	func heicData(compressionQuality: CGFloat) -> Data? {
-		guard let cgImage = self.cgImage else {
+		guard let data = self.jpegData(compressionQuality: compressionQuality) else {
 			return nil
 		}
-
-		let width = Int(self.size.width)
-		let height = Int(self.size.height)
-
-		let colorSpace = CGColorSpaceCreateDeviceRGB()
-		let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-
-		guard let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue) else {
+		
+		let heicData = NSMutableData()
+		guard let destination = CGImageDestinationCreateWithData(heicData, kUTTypeJPEG, 1, nil) else {
 			return nil
 		}
-
-		context.draw(cgImage, in: CGRect(origin: .zero, size: self.size))
-
-		guard let destinationData = CFDataCreateMutable(kCFAllocatorDefault, 0) else {
-			return nil
-		}
-
-		guard let destination = CGImageDestinationCreateWithData(destinationData, AVFileType.heic as CFString, 1, nil) else {
-			return nil
-		}
-
-		let options = [
-			kCGImageDestinationLossyCompressionQuality as String: compressionQuality
-		] as CFDictionary
-
-		CGImageDestinationAddImage(destination, context.makeImage()!, options)
-
-		if !CGImageDestinationFinalize(destination) {
-			return nil
-		}
-
-		return destinationData as Data
+		
+		CGImageDestinationAddImage(destination, self.cgImage!, nil)
+		CGImageDestinationFinalize(destination)
+		
+		return heicData as Data
 	}
 }
