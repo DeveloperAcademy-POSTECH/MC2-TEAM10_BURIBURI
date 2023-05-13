@@ -10,13 +10,18 @@ import SwiftUI
 struct ARView: View {
     @State private var isUnBoxing = false
     @State private var isCameraOpen = false
+    
+    @ObservedObject var arViewState = ARViewState() // ARViewState 객체 추가
+    var pointsTuple: [[CGPoint]] = [] // TestARView에서 사용한 pointsTuple 초기화
+    
     var body: some View {
         ZStack {
             Image("OnboardingBG")
                 .scaledToFill()
             VStack {
-                Spacer()
+                ARViewContainer(arViewState: self.arViewState, pointsTuple: self.pointsTuple)
                     .frame(width: getWidth() * 0.1, height: getHeight() * 0.05)
+                Spacer()
                 HStack {
                     Spacer()
                         .frame(width: getWidth() * 0.03, height: getHeight() * 0.05)

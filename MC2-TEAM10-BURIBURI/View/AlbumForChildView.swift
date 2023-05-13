@@ -9,6 +9,7 @@
 // -> 코드 설명
 
 import SwiftUI
+import ARKit
 
 //* 아이를 위한 앨범을 만든다.
 struct AlbumForChildView: View {
@@ -22,7 +23,6 @@ struct AlbumForChildView: View {
     // isAnimation의 Boolean 값에 따라 이미지가 흔들거리는 효과 여부를 결정한다.
     @State var isAnimationChild = false
 
-    
     var body: some View {
             VStack {
                 // rkfhfh스크롤 가능하게 한다.
@@ -33,18 +33,20 @@ struct AlbumForChildView: View {
                             GeometryReader { geo in
                                 // GridItemView를 불러와서 item에 item을 넘겨준다.
                                 GridItemView(size: geo.size.height, item: item)
-                                
-                                // 좌우 5도씩 흔들거리는 효과
+                                    // 좌우 5도씩 흔들거리는 효과
                                     .rotationEffect((Angle(degrees: isAnimationChild ? 5 : -5)))
-                                // 0.3초마다 왔다갔다하게 하는 효과
-//                                    .animation(.easeInOut(duration: 0.3)
-//                                        .repeatForever(autoreverses: true), value: isAnimationChild)
+                                    // 0.3초마다 왔다갔다하게 하는 효과
                                     .onAppear {
                                         DispatchQueue.main.async {
                                             withAnimation(.easeInOut(duration: 0.3).repeatForever(autoreverses: true)) {
                                                 isAnimationChild.toggle()
                                             }
                                         }
+                                    }
+                                    .onTapGesture {
+                                        // 아이템이 탭될 때 Coordinator를 호출하도록 함
+                                        let coordinator = Coordinator()
+                                        coordinator.updateStarNodes(with: item.points, in: ARSCNView())
                                     }
                             }
                             .cornerRadius(8.0)
@@ -53,9 +55,6 @@ struct AlbumForChildView: View {
                     }
                     .padding()
                 }
-//                .onAppear {
-//                    isAnimationChild.toggle()
-//                }
             }
             .background(Color.clear)
             .navigationBarTitleDisplayMode(.inline)

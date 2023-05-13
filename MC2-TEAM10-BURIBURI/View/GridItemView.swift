@@ -31,7 +31,7 @@ struct GridItemView: View {
 struct GridItemView_Previews: PreviewProvider {
     static var previews: some View {
         if let url = Bundle.main.url(forResource: "111", withExtension: "png") {
-            GridItemView(size: 50, item: Item(url: url))
+			GridItemView(size: 50, item: Item(url: url, pointArray: []))
         }
     }
 }
