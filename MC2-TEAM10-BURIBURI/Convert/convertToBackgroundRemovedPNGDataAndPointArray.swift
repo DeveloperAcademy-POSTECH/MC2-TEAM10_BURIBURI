@@ -13,7 +13,7 @@ func convertToBackgroundRemovedPNGDataAndPointArray(_ heicData: Data) -> (Data, 
 	
 	// 크기 바꾼 HEIC 데이터 얻기
 	var resizedHEICData = Data()
-	do {resizedHEICData = try resizeHeicImage(heicData: heicData, with: CGSize(width: 750, height: 1000), compressionQuality: 1.0)
+	do {resizedHEICData = try resizeHeicData(heicData: heicData, compressionQuality: 1.0)
 	} catch {
 		print(error)
 	}
@@ -37,6 +37,6 @@ func convertToBackgroundRemovedPNGDataAndPointArray(_ heicData: Data) -> (Data, 
 	
 	// croppedRBM에서 다각형을 그리기 위한 pointArray 얻기
 	let pointArray = croppedRBMToPointArray(croppedRBM)
-	print(pointArray)
+//	print(pointArray)
 	return (backgroundRemovedPNGData, pointArray)
 }

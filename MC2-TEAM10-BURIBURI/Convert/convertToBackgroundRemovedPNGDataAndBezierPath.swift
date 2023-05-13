@@ -14,7 +14,7 @@ func convertToBackgroundRemovedPNGDataAndUIBezierPath(_ heicData: Data) -> (Data
 
 	// 크기 바꾼 HEIC 데이터 얻기
 	var resizedHEICData = Data()
-	do {resizedHEICData = try resizeHeicImage(heicData: heicData, with: CGSize(width: 750, height: 1000), compressionQuality: 1.0)
+	do {resizedHEICData = try resizeHeicData(heicData: heicData, compressionQuality: 1.0)
 	} catch {
 		print(error)
 	}

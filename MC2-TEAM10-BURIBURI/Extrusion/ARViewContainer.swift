@@ -40,15 +40,18 @@ struct ARViewContainer: UIViewRepresentable {
         scene.rootNode.addChildNode(cameraNode)
 
         // Place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 0)
 
         arView.scene = scene // AR 뷰에 씬 설정
-        arView.allowsCameraControl = true
+        arView.allowsCameraControl = false
         
         // AR 세션 설정 추가
         let configuration = ARWorldTrackingConfiguration() // 새로운 AR 월드 트래킹 설정 생성
         configuration.planeDetection = .horizontal // 수평 평면 감지 활성화
+         
         arView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors]) // 옵션과 함께 AR 세션 실행
+        
+            
         
         return arView // AR 뷰 반환
     }

@@ -36,7 +36,7 @@ struct AlbumForParentsView: View {
                                 // GridItemView의 각 item에 NavigationLink 부여한다.
                                 NavigationLink(destination: AlbumDetailView(item: item)) {
                                     // GridItemView를 불러와서 item에 item을 넘겨준다.
-                                    GridItemView(size: geo.size.width, item: item)
+                                    GridItemView(size: geo.size.width, itemURL: item.url)
                                     // 좌우 5도씩 흔들거리는 효과
                                         .rotationEffect((Angle(degrees: isAnimationParents ? 5 : -5)))
                                     // 0.3초마다 왔다갔다하게 하는 효과
