@@ -67,7 +67,7 @@ struct ConvertTestView: View {
 							
 							HStack {
 								Text("pointArray: ")
-								
+
 								VStack {
 									ForEach(0..<pointArray.count) { i in
 										Text("x: \(pointArray[i].x), y: \(pointArray[i].y)")

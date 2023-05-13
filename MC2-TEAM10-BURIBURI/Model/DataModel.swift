@@ -37,6 +37,9 @@ class DataModel: ObservableObject {
 //		}
 		items = load()
         print("items.count: \(items.count)")
+        for i in 0..<items.count {
+            print("item \(i): \(items[i].url)")
+        }
 	}
 	
 	func save() {
@@ -68,10 +71,10 @@ class DataModel: ObservableObject {
 	}
 	
 	
-	// item을 items에 추가하는 함수를 만든다.
-	func addItem(_ item: Item) {
-		items.insert(item, at: 0)
-	}
+//	// item을 items에 추가하는 함수를 만든다.
+//	func addItem(_ item: Item) {
+//		items.insert(item, at: 0)
+//	}
 	
 	// item을 items에서 삭제하는 함수를 만든다.
 	func removeItem(_ item: Item) {

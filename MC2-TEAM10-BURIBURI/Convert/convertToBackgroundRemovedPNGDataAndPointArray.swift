@@ -37,6 +37,6 @@ func convertToBackgroundRemovedPNGDataAndPointArray(_ heicData: Data) -> (Data, 
 	
 	// croppedRBM에서 다각형을 그리기 위한 pointArray 얻기
 	let pointArray = croppedRBMToPointArray(croppedRBM)
-	print(pointArray)
+//	print(pointArray)
 	return (backgroundRemovedPNGData, pointArray)
 }

@@ -31,9 +31,8 @@ struct AlbumForChildView: View {
             ScrollView(.horizontal) {
                 LazyHGrid(rows: gridRows) {
                     ForEach(dataModel.items) { item in
-                        
                         GeometryReader { geo in
-                            GridItemView(size: geo.size.height, item: item)
+                            GridItemView(size: geo.size.height, itemURL: item.url)
                                 .rotationEffect((Angle(degrees: isAnimationChild ? 5 : -5)))
                                 .onAppear {
                                     print("item here.. url: \(item.url)")
@@ -46,9 +45,7 @@ struct AlbumForChildView: View {
                                 .onTapGesture {
                                     DispatchQueue.main.async {
                                         
-                                        print("=============")
                                         arViewState.itemPlanArray.append(item)
-                                        print("itemPlanArray: \(arViewState.itemPlanArray)")
                                         
                                         Coordinator.summonTrigger = true
                                         Coordinator.scnNodeArray = arViewState.scnNodeArray
