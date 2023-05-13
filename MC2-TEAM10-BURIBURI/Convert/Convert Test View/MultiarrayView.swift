@@ -20,12 +20,17 @@ struct MultiarrayView: View {
 
 	
 	var body: some View {
-		VStack(spacing: 0) {
-			ForEach(0..<height / scaleDivider) { y in
-				HStack(spacing: 0) {
-					ForEach(0..<width / scaleDivider) { x in
-						Color(input[min(scaleDivider * y, height - 1)][min(scaleDivider * x, width - 1)])
-							.frame(width: 1, height: 1)
+		ZStack {
+			Color.red
+				.frame(width: 100, height: 100)
+			Text("\(input.count)")
+			VStack(spacing: 0) {
+				ForEach(0..<height / scaleDivider) { y in
+					HStack(spacing: 0) {
+						ForEach(0..<width / scaleDivider) { x in
+							Color(input[min(scaleDivider * y, height - 1)][min(scaleDivider * x, width - 1)])
+								.frame(width: 1, height: 1)
+						}
 					}
 				}
 			}

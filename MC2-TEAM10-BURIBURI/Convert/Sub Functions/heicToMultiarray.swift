@@ -38,7 +38,7 @@ func heicToMultiarray(_ data: Data) -> [[UIColor]] {
 
 	for y in 0..<height {
 		var row: [UIColor] = []
-		for x in 0..<width {
+		for x in 144..<144+462 {
 			let pixelOffset = (y * bytesPerRow) + (x * 4)
 						let alpha = CGFloat(pixelData.load(fromByteOffset: pixelOffset, as: UInt8.self)) / 255.0
 						let red = CGFloat(pixelData.load(fromByteOffset: pixelOffset + 1, as: UInt8.self)) / 255.0
