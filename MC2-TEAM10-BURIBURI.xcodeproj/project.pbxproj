@@ -35,6 +35,7 @@
 		57D6AEC72A0C7DD300D5F223 /* MultiarrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D6AEBF2A0C7DD300D5F223 /* MultiarrayView.swift */; };
 		57D6AEC82A0C7DD300D5F223 /* HEICImageURLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D6AEC02A0C7DD300D5F223 /* HEICImageURLView.swift */; };
 		57D6AEC92A0C7DD300D5F223 /* PNGImageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D6AEC12A0C7DD300D5F223 /* PNGImageDataView.swift */; };
+		D18569872A10289D0073DA58 /* MovingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18569862A10289D0073DA58 /* MovingState.swift */; };
 		E354960A2A0E42B000FB084B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35496092A0E42B000FB084B /* Coordinator.swift */; };
 		E354960C2A0E42FB00FB084B /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E354960B2A0E42FB00FB084B /* ARViewContainer.swift */; };
 		EE08CFFE2A0CDB1C00804713 /* ClearBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08CFFD2A0CDB1C00804713 /* ClearBackgroundView.swift */; };
@@ -110,6 +111,7 @@
 		57D6AEBF2A0C7DD300D5F223 /* MultiarrayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiarrayView.swift; sourceTree = "<group>"; };
 		57D6AEC02A0C7DD300D5F223 /* HEICImageURLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HEICImageURLView.swift; sourceTree = "<group>"; };
 		57D6AEC12A0C7DD300D5F223 /* PNGImageDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNGImageDataView.swift; sourceTree = "<group>"; };
+		D18569862A10289D0073DA58 /* MovingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingState.swift; sourceTree = "<group>"; };
 		E35496092A0E42B000FB084B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E354960B2A0E42FB00FB084B /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		EE08CFFD2A0CDB1C00804713 /* ClearBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearBackgroundView.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				EEA1B5522A0BC377007A10B1 /* getFunction.swift */,
 				EEA1B5512A0BC376007A10B1 /* Item.swift */,
 				EE08CFFD2A0CDB1C00804713 /* ClearBackgroundView.swift */,
+				D18569862A10289D0073DA58 /* MovingState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				EEA1B5582A0BC377007A10B1 /* UIImage+.swift in Sources */,
 				E354960A2A0E42B000FB084B /* Coordinator.swift in Sources */,
 				57D6AE9F2A0C7D0500D5F223 /* resizeHeicData.swift in Sources */,
+				D18569872A10289D0073DA58 /* MovingState.swift in Sources */,
 				4A9931072A0E0A8B0087D829 /* PageView.swift in Sources */,
 				EE6CA1082A0DC932000B27BF /* PhotoCollectionView.swift in Sources */,
 				57D6AEA62A0C7D0E00D5F223 /* rbmToCroppedRBM.swift in Sources */,
@@ -619,7 +623,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2-TEAM10-BURIBURI/Preview Content\"";
-				DEVELOPMENT_TEAM = 47N48U5HD5;
+				DEVELOPMENT_TEAM = SHJRTZNP7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions for taking photos and videos";
@@ -650,7 +654,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2-TEAM10-BURIBURI/Preview Content\"";
-				DEVELOPMENT_TEAM = 47N48U5HD5;
+				DEVELOPMENT_TEAM = SHJRTZNP7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions for taking photos and videos";

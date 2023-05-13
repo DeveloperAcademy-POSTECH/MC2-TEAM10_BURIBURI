@@ -9,6 +9,8 @@ import Foundation
 import ARKit // ARKit 라이브러리를 가져옴
 import UIKit
 
+
+
 class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegate를 상속하는 Coordinator 클래스 선언
     
     static var summonTrigger: Bool = false
@@ -73,8 +75,144 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
 //        starNode.position = SCNVector3(0, 0, -1) // 노드의 위치를 설정
 //        starNode.scale = SCNVector3(0.5, 0.5, 0.5) // 노드의 크기를 설정
         
+//        let boxPhysicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: starNode.geometry!, options: nil))
+//        boxPhysicsBody.mass = 1.0
+//        starNode.physicsBody = boxPhysicsBody
+//
+//        // 노드 위치 설정
+//        starNode.position = SCNVector3(x: 0, y: 0, z: -1)
+//
+//        // 노드 추가
+//        arView?.scene.rootNode.addChildNode(starNode)
+//
+//        // 물체 이동
+//        starNode.physicsBody?.applyForce(SCNVector3(0, 0, 1), asImpulse: true)
+        
+        
+        registerGestureRecognizers()
+
+        
         return starNode // 생성한 노드를 반환
     }
+    
+    private func registerGestureRecognizers() {
+
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+
+        self.arView?.addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    // objc를 붙이면 붙여진 swift 코드를 objective-c 에서도 사용할 수 있다는 뜻
+    @objc func tapped(recognizer : UITapGestureRecognizer){
+        let arView = recognizer.view as! SCNView
+        // tapGestureRecognizer를 받은 뷰가 SceneKitView라고 캐스팅한다.
+        
+        let touchLocation : CGPoint = recognizer.location(in : arView)
+        // 해당 뷰 (sceneView) 에서 정확히 어디를 터치했는지를 판단한다.
+        
+        let hitResults : [SCNHitTestResult] = arView.hitTest(touchLocation, options: [:])
+        // 해당 부분의 터치와 맞닿은 virtual object들을 반환한다.
+        // .hitTest는 특정 포인트를 첫번째 parameter로 받아서 해당 부분의 터치와 맞닿은 virtual object들을 반환하는 함수
+        // 두번째인 options는 search에 영향을 끼치는데 SCNHitTestOption으로는 backFaceCulling, boundingBoxOnly, categoryBitMask, clipToZRange 등 다양하다.
+        // let node = hitReults[0].node
+        
+        var movingState: MovingState = [MovingState.jump, MovingState.rotate, MovingState.rattle][Int.random(in: 0..<3)]
+        
+        
+        if !hitResults.isEmpty{
+            let node = hitResults[0].node
+            // 만약에 터치 결과가 비어있지 않다면, 무언가를 터치했다는 말이므로 다음과 같이 노드를 꺼낸다.
+            
+            
+            
+            
+
+
+            switch movingState {
+                case .jump:
+                    // jump 단계 움직임 삭제
+                    node.removeAction(forKey: "jump")
+
+                    // rotate 단계 움직임 적용
+                    let rotateAction = SCNAction.rotateBy(x: 0, y: CGFloat(Float.pi), z: 0, duration: 1.0) // 1초 동안 y축을 기준으로 180도 회전하는 액션
+                    let repeatAction = SCNAction.repeatForever(rotateAction) // 액션을 무한 반복하는 액션
+                    node.runAction(repeatAction, forKey: "rotate") // 해당 노드에 액션을 적용하고, key 값을 지정해주어 나중에 해당 액션을 제거할 때 사용할 수 있도록 합니다.
+
+                    movingState = .rotate
+                case .rotate:
+                    // rotate 단계 움직임 삭제
+                    node.removeAction(forKey: "rotate")
+
+                    // rattle 단계 움직임 적용
+                    let rotateAction = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(Float.pi / 3), duration: 1.0)
+                    node.runAction(SCNAction.repeatForever(rotateAction))
+
+                    movingState = .rattle
+
+                case .rattle:
+                    // rattle 단계 움직임 삭제
+                    node.removeAction(forKey: "rotate")
+
+
+                    // jump 단계 움직임 적용
+                    node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
+                    node.physicsBody?.isAffectedByGravity = false
+                    node.physicsBody?.damping = 0.0
+
+                    let jumpHeight: Float = 0.03
+                    let jumpDuration: TimeInterval = 0.6
+
+                    let jumpAction = SCNAction.sequence([
+                        SCNAction.moveBy(x: 0, y: CGFloat(jumpHeight), z: 0, duration: jumpDuration/2),
+                        SCNAction.moveBy(x: 0, y: CGFloat(-jumpHeight), z: 0, duration: jumpDuration/2)
+                    ])
+
+                    let repeatAction = SCNAction.repeatForever(jumpAction)
+                    node.runAction(repeatAction, forKey: "jump")
+                    
+                    movingState = .jump
+
+                default:
+                    _ = 0
+
+            }
+            
+            
+//
+//            let rotateAction = SCNAction.rotateBy(x: 0, y: CGFloat(Float.pi), z: 0, duration: 1.0) // 1초 동안 y축을 기준으로 180도 회전하는 액션
+//            let repeatAction = SCNAction.repeatForever(rotateAction) // 액션을 무한 반복하는 액션
+//            node.runAction(repeatAction, forKey: "rotate") // 해당 노드에 액션을 적용하고, key 값을 지정해주어 나중에 해당 액션을 제거할 때 사용할 수 있도록 합니다.
+//
+//
+            
+            
+            
+            
+        }
+    }
+
+
+            
+            
+
+            // 중력 0으로 설정
+//            node.physicsBody?.isAffectedByGravity = false
+
+            // 앞으로 움직이는 힘 추가
+//            let forceDirection = SCNVector3(0, 0, -10)
+//            let forceMagnitude: CGFloat = 10.0
+////            let force = forceDirection * forceMagnitude
+//            node.physicsBody?.applyForce(forceDirection, asImpulse: false)
+//
+            
+            
+            
+        
+        //
+
+
+    
+    
     
     func updateStarNodes(with item: Item, in arView: ARSCNView) -> SCNNode {
         let imageURL = item.url // Extract the filename from the URL
@@ -92,10 +230,9 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
             print("starNode.position: \(starNode.position)")
             arView.scene.rootNode.addChildNode(starNode)
         }
-//
-//        DispatchQueue.main.async {
-//            arView.scene.rootNode.addChildNode(starNode) // Add the star node to the AR view's root node on the main thread
-//        }
+
+        
+        
         
         return starNode // Return the array of star nodes
     }
