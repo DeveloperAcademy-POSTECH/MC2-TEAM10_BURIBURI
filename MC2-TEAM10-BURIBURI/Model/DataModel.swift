@@ -66,7 +66,7 @@ class DataModel: ObservableObject {
             return items
 		} catch {
 			print("Error loading data: \(error)")
-			return []
+			return [Item]()
 		}
 	}
 	

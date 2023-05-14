@@ -38,6 +38,12 @@
 		D18569872A10289D0073DA58 /* MovingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18569862A10289D0073DA58 /* MovingState.swift */; };
 		E354960A2A0E42B000FB084B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35496092A0E42B000FB084B /* Coordinator.swift */; };
 		E354960C2A0E42FB00FB084B /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E354960B2A0E42FB00FB084B /* ARViewContainer.swift */; };
+		E3AAB60D2A10D54000F4BDF2 /* Title_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3AAB6092A10D54000F4BDF2 /* Title_01.gif */; };
+		E3AAB60E2A10D54000F4BDF2 /* Parents_Doodle_05.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3AAB60A2A10D54000F4BDF2 /* Parents_Doodle_05.gif */; };
+		E3AAB60F2A10D54000F4BDF2 /* Parents_Scanning_04_ns.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3AAB60B2A10D54000F4BDF2 /* Parents_Scanning_04_ns.gif */; };
+		E3AAB6102A10D54000F4BDF2 /* Parents_Scanning_03.gif in Resources */ = {isa = PBXBuildFile; fileRef = E3AAB60C2A10D54000F4BDF2 /* Parents_Scanning_03.gif */; };
+		E3D3F0DE2A10B58000B63363 /* SummonGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D3F0DD2A10B58000B63363 /* SummonGIF.swift */; };
+		E3D3F0E92A10BCF200B63363 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D3F0E82A10BCF200B63363 /* StartView.swift */; };
 		EE08CFFE2A0CDB1C00804713 /* ClearBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08CFFD2A0CDB1C00804713 /* ClearBackgroundView.swift */; };
 		EE6CA0FD2A0DC932000B27BF /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CA0F02A0DC932000B27BF /* Camera.swift */; };
 		EE6CA0FE2A0DC932000B27BF /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6CA0F12A0DC932000B27BF /* ViewfinderView.swift */; };
@@ -114,6 +120,12 @@
 		D18569862A10289D0073DA58 /* MovingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingState.swift; sourceTree = "<group>"; };
 		E35496092A0E42B000FB084B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E354960B2A0E42FB00FB084B /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
+		E3AAB6092A10D54000F4BDF2 /* Title_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Title_01.gif; sourceTree = "<group>"; };
+		E3AAB60A2A10D54000F4BDF2 /* Parents_Doodle_05.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Parents_Doodle_05.gif; sourceTree = "<group>"; };
+		E3AAB60B2A10D54000F4BDF2 /* Parents_Scanning_04_ns.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Parents_Scanning_04_ns.gif; sourceTree = "<group>"; };
+		E3AAB60C2A10D54000F4BDF2 /* Parents_Scanning_03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Parents_Scanning_03.gif; sourceTree = "<group>"; };
+		E3D3F0DD2A10B58000B63363 /* SummonGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonGIF.swift; sourceTree = "<group>"; };
+		E3D3F0E82A10BCF200B63363 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		EE08CFFD2A0CDB1C00804713 /* ClearBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearBackgroundView.swift; sourceTree = "<group>"; };
 		EE6CA0F02A0DC932000B27BF /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		EE6CA0F12A0DC932000B27BF /* ViewfinderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
@@ -230,6 +242,25 @@
 			path = Extrusion;
 			sourceTree = "<group>";
 		};
+		E3D3F0DC2A10B56400B63363 /* GIF */ = {
+			isa = PBXGroup;
+			children = (
+				E3D3F0DD2A10B58000B63363 /* SummonGIF.swift */,
+			);
+			path = GIF;
+			sourceTree = "<group>";
+		};
+		E3D3F0DF2A10B7A000B63363 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E3AAB60A2A10D54000F4BDF2 /* Parents_Doodle_05.gif */,
+				E3AAB60C2A10D54000F4BDF2 /* Parents_Scanning_03.gif */,
+				E3AAB60B2A10D54000F4BDF2 /* Parents_Scanning_04_ns.gif */,
+				E3AAB6092A10D54000F4BDF2 /* Title_01.gif */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		EE6CA10A2A0DC939000B27BF /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +309,8 @@
 				EEA1B5212A0BC356007A10B1 /* Convert */,
 				EE9092102A0BC19D00CA1EB2 /* Assets.xcassets */,
 				E391889D2A0E201100EC1FBF /* Extrusion */,
+				E3D3F0DF2A10B7A000B63363 /* Resources */,
+				E3D3F0DC2A10B56400B63363 /* GIF */,
 				EE9092122A0BC19D00CA1EB2 /* Preview Content */,
 			);
 			path = "MC2-TEAM10-BURIBURI";
@@ -347,6 +380,7 @@
 				EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */,
 				EEA1B58B2A0BC3A3007A10B1 /* AlbumForChildView.swift */,
 				EEA1B58C2A0BC3A4007A10B1 /* AlbumForParentsView.swift */,
+				E3D3F0E82A10BCF200B63363 /* StartView.swift */,
 				EEA1B58D2A0BC3A4007A10B1 /* ARView.swift */,
 				EEA1B58E2A0BC3A4007A10B1 /* GridItemView.swift */,
 				EEA1B58F2A0BC3A4007A10B1 /* ScanView.swift */,
@@ -415,6 +449,7 @@
 				EEA1B5832A0BC393007A10B1 /* D_Plane.png in Resources */,
 				EEA1B5762A0BC393007A10B1 /* D_RibbonGirl.png in Resources */,
 				EEA1B5852A0BC393007A10B1 /* D_Clouds_01.png in Resources */,
+				E3AAB60F2A10D54000F4BDF2 /* Parents_Scanning_04_ns.gif in Resources */,
 				EEA1B5782A0BC393007A10B1 /* D_Dragon.png in Resources */,
 				EEA1B57B2A0BC393007A10B1 /* D_Rocket.png in Resources */,
 				EEA1B5792A0BC393007A10B1 /* D_Bebe.png in Resources */,
@@ -422,7 +457,10 @@
 				EEA1B57D2A0BC393007A10B1 /* D_Angry_Child.png in Resources */,
 				EEA1B57A2A0BC393007A10B1 /* D_Turbo.png in Resources */,
 				EE9092142A0BC19D00CA1EB2 /* Preview Assets.xcassets in Resources */,
+				E3AAB60E2A10D54000F4BDF2 /* Parents_Doodle_05.gif in Resources */,
+				E3AAB60D2A10D54000F4BDF2 /* Title_01.gif in Resources */,
 				EEA1B5812A0BC393007A10B1 /* D_Angry_Cat.png in Resources */,
+				E3AAB6102A10D54000F4BDF2 /* Parents_Scanning_03.gif in Resources */,
 				EEA1B5752A0BC393007A10B1 /* D_Beatle.png in Resources */,
 				EEA1B5722A0BC393007A10B1 /* D_Bus.png in Resources */,
 				EE9092112A0BC19D00CA1EB2 /* Assets.xcassets in Resources */,
@@ -475,6 +513,7 @@
 				E354960C2A0E42FB00FB084B /* ARViewContainer.swift in Sources */,
 				EEA1B5922A0BC3A5007A10B1 /* AlbumForParentsView.swift in Sources */,
 				57D6AEB42A0C7D2600D5F223 /* colorToMonochrome.swift in Sources */,
+				E3D3F0DE2A10B58000B63363 /* SummonGIF.swift in Sources */,
 				57D6AEA72A0C7D0E00D5F223 /* removedBinaryMultiarrayToBackgroundRemovedPNG.swift in Sources */,
 				57D6AEC92A0C7DD300D5F223 /* PNGImageDataView.swift in Sources */,
 				57D6AE9A2A0C7CD600D5F223 /* convertToBackgroundRemovedPNGDataAndBezierPath.swift in Sources */,
@@ -488,6 +527,7 @@
 				EE6CA1012A0DC932000B27BF /* PhotoItemView.swift in Sources */,
 				EE6CA1022A0DC932000B27BF /* ThumbnailView.swift in Sources */,
 				57D6AEC82A0C7DD300D5F223 /* HEICImageURLView.swift in Sources */,
+				E3D3F0E92A10BCF200B63363 /* StartView.swift in Sources */,
 				EEA1B5912A0BC3A5007A10B1 /* AlbumForChildView.swift in Sources */,
 				EE08CFFE2A0CDB1C00804713 /* ClearBackgroundView.swift in Sources */,
 				57D6AEAB2A0C7D0E00D5F223 /* pointArrayToUIBezierPath.swift in Sources */,
@@ -654,7 +694,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2-TEAM10-BURIBURI/Preview Content\"";
-				DEVELOPMENT_TEAM = SHJRTZNP7N;
+				DEVELOPMENT_TEAM = 8H4K6TKQBU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions for taking photos and videos";

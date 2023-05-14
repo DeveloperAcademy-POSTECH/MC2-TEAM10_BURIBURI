@@ -71,6 +71,7 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
         
         shape.materials = [frontMaterial, backMaterial] + Array(repeating: sideMaterial, count: sides) // 각면에 재질을 적용
         
+
         let starNode = SCNNode(geometry: shape) // 생성한 형태로 SCNNode를 생성
         //        starNode.position = SCNVector3(0, 0, -1) // 노드의 위치를 설정
         //        starNode.scale = SCNVector3(0.5, 0.5, 0.5) // 노드의 크기를 설정
@@ -260,6 +261,16 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
             // Add a new node at the touch location
             starNode.position = hitResult.localCoordinates
             starNode.scale = SCNVector3(x: 0.1, y: 0.1, z: 0.1)
+            
+            // 사용자의 현재 위치와 방향을 가져옴
+            guard let currentFrame = arView.session.currentFrame else {
+                return SCNNode()
+            }
+
+            // starNode를 사용자를 바라보는 방향으로 회전시킴
+            starNode.eulerAngles.y = currentFrame.camera.eulerAngles.y
+
+
             print("starNode.position: \(starNode.position)")
             arView.scene.rootNode.addChildNode(starNode)
         }
