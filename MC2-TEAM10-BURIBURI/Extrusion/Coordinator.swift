@@ -135,6 +135,10 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
         self.arView?.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    
+    var tapCount = 0 // tap count 저장용 변수
+
+    
     // objc를 붙이면 붙여진 swift 코드를 objective-c 에서도 사용할 수 있다는 뜻
     @objc func tapped(recognizer : UITapGestureRecognizer){
         let arView = recognizer.view as! SCNView
@@ -149,18 +153,25 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
         // 두번째인 options는 search에 영향을 끼치는데 SCNHitTestOption으로는 backFaceCulling, boundingBoxOnly, categoryBitMask, clipToZRange 등 다양하다.
         // let node = hitReults[0].node
         
-        var movingState: MovingState = [MovingState.jump, MovingState.rotate, MovingState.rattle][Int.random(in: 0..<3)]
+        var movingState: MovingState = [MovingState.jump, MovingState.rotate, MovingState.rattle, MovingState.movingBack, MovingState.makeBig][Int.random(in: 0..<5)]
         
         
         if !hitResults.isEmpty{
             let node = hitResults[0].node
             // 만약에 터치 결과가 비어있지 않다면, 무언가를 터치했다는 말이므로 다음과 같이 노드를 꺼낸다.
             
-            
+            tapCount += 1 // tap이 일어날 때마다 count 증가
+                    
+            if tapCount >= 30 {
+                // 10번째 tap부터 특정 액션 실행
+                let fadeOutAction = SCNAction.fadeOut(duration: 1.0)
+                    node.runAction(fadeOutAction)
+                
+                }
             
             switch movingState {
-                case .jump:
-                    // jump 단계 움직임 삭제
+                case .rotate:
+//                    // jump 단계 움직임 삭제
                     node.removeAction(forKey: "jump")
                     
                     // rotate 단계 움직임 적용
@@ -168,10 +179,11 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
                     let repeatAction = SCNAction.repeatForever(rotateAction) // 액션을 무한 반복하는 액션
                     node.runAction(repeatAction, forKey: "rotate") // 해당 노드에 액션을 적용하고, key 값을 지정해주어 나중에 해당 액션을 제거할 때 사용할 수 있도록 합니다.
                     
-                    movingState = .rotate
-                case .rotate:
+//                    movingState = .rotate
+                case .rattle:
                     // rotate 단계 움직임 삭제
                     node.removeAction(forKey: "rotate")
+
                     
                     // rattle 단계 움직임 적용
                     let rotateAction = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(Float.pi / 6), duration: 1.0)
@@ -179,11 +191,22 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
 
 //                    let fadeOutAction = SCNAction.fadeOut(duration: 1.0)
 //                    node.runAction(fadeOutAction)
-                    movingState = .rattle
+//                    movingState = .rattle
+                case .makeBig:
+                    node.removeAction(forKey: "rattle")
+
+                    let scaleAction = SCNAction.scale(by: 4, duration: 1.0) // 1초 동안 크기를 1.5배로 확대하는 액션
+                    node.runAction(scaleAction)
+
+                case .movingBack:
+                    node.removeAction(forKey: "scale")
+                    let moveAction = SCNAction.moveBy(x: 0, y: 0, z: -0.3, duration: 1.0)
+                    node.runAction(moveAction)
                     
-                case .rattle:
+                    
+                case .jump:
                     // rattle 단계 움직임 삭제
-                    node.removeAction(forKey: "rotate")
+                    node.removeAction(forKey: "moveAction")
                     
 //                    node.removeAction(forKey: "fadeOut")
 
@@ -204,7 +227,7 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
                     let repeatAction = SCNAction.repeatForever(jumpAction)
                     node.runAction(repeatAction, forKey: "jump")
                     
-                    movingState = .jump
+//                    movingState = .rotate
                     
                 default:
                     _ = 0
