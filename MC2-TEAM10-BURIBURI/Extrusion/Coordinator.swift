@@ -24,8 +24,8 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
     static let scnNodeQueue = DispatchQueue(label: "scnNodeQueue", attributes: .concurrent)
     
     init(arView: ARSCNView?, context: ARViewContainer.Context?) {
-                self.arView = arView
-                self.context = context
+        self.arView = arView
+        self.context = context
     }
     
     private func createStarPath(from points: [CGPoint]) -> UIBezierPath { // 점들의 배열로부터 별 모양의 경로를 만드는 메소드
@@ -45,10 +45,10 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
         let sides = points.count // 별의 변의 수를 계산
         let sideImage = UIImage(named: "SideFrame") // 변의 이미지를 로드
         guard let data = try? Data(contentsOf: imageURL),
-           let textureImage = UIImage(data: data) else {
+              let textureImage = UIImage(data: data) else {
             return SCNNode()
         }
-
+        
         let starPath = createStarPath(from: points) // 별 경로를 생성
         let shape = SCNShape(path: starPath, extrusionDepth: 0.1) // 별 경로와 돌출 깊이로 3D 형태를 생성
         
@@ -68,43 +68,73 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
         backMaterial.diffuse.wrapS = .repeat // S 방향의 텍스처를 반복
         backMaterial.diffuse.wrapT = .repeat // T 방향의 텍스처
         backMaterial.diffuse.contentsTransform = SCNMatrix4MakeRotation(Float(rotationAngle), 0, 0, 1) // 뒷면의 텍스처를 회전
-
+        
         shape.materials = [frontMaterial, backMaterial] + Array(repeating: sideMaterial, count: sides) // 각면에 재질을 적용
         
-        // 생성한 형태로 SCNNode를 생성
-        let starNode = SCNNode(geometry: shape)
+
+        let starNode = SCNNode(geometry: shape) // 생성한 형태로 SCNNode를 생성
+        //        starNode.position = SCNVector3(0, 0, -1) // 노드의 위치를 설정
+        //        starNode.scale = SCNVector3(0.5, 0.5, 0.5) // 노드의 크기를 설정
         
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragObject(_:)))
+//        arView?.addGestureRecognizer(panGesture)
         
-//        starNode.position = SCNVector3(0, 0, -1) // 노드의 위치를 설정
-//        starNode.scale = SCNVector3(0.5, 0.5, 0.5) // 노드의 크기를 설정
-        
-//        let boxPhysicsBody = SCNPhysicsBody(type: .dynamic, shape: SCNPhysicsShape(geometry: starNode.geometry!, options: nil))
-//        boxPhysicsBody.mass = 1.0
-//        starNode.physicsBody = boxPhysicsBody
-//
-//        // 노드 위치 설정
-//        starNode.position = SCNVector3(x: 0, y: 0, z: -1)
-//
-//        // 노드 추가
-//        arView?.scene.rootNode.addChildNode(starNode)
-//
-//        // 물체 이동
-//        starNode.physicsBody?.applyForce(SCNVector3(0, 0, 1), asImpulse: true)
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(deleteObject(_:)))
+        longPressGesture.minimumPressDuration = 0.5
+        arView?.addGestureRecognizer(longPressGesture)
         
         
         registerGestureRecognizers()
-
+        
         
         return starNode // 생성한 노드를 반환
     }
     
+//    @objc func dragObject(_ gestureRecognizer: UIPanGestureRecognizer) {
+//        let touchLocation = gestureRecognizer.location(in: arView)
+//        guard let hitTestResult = arView?.hitTest(touchLocation).first else { return }
+//
+//        var node = hitTestResult.node
+//        let translation = gestureRecognizer.translation(in: arView)
+//        let x = Float(translation.x)
+//        let y = Float(-translation.y)
+//        let currentPosition = node.position
+//        let hitTestWorldCoord = hitTestResult.worldCoordinates
+//        let distance = sqrt(pow(hitTestWorldCoord.x - currentPosition.x, 2) + pow(hitTestWorldCoord.y - currentPosition.y, 2) + pow(hitTestWorldCoord.z - currentPosition.z, 2))
+//        let newPosition = SCNVector3(
+//            currentPosition.x + currentPosition.x * distance / 700,
+//            currentPosition.y + currentPosition.y * distance / 700,
+//            currentPosition.z - distance
+//        )
+//
+//        node.position = newPosition
+//
+//        if gestureRecognizer.state == .ended {
+//            node = SCNNode()
+//        }
+//    }
+
+
+
+    // 휴지통 아이콘 롱프레스 이벤트 핸들러
+        @objc func deleteObject(_ gestureRecognizer: UILongPressGestureRecognizer) {
+            if gestureRecognizer.state == .began {
+                let location = gestureRecognizer.location(in: arView)
+                let hitTestResults = arView?.hitTest(location, options: [:])
+
+                if let node = hitTestResults?.first?.node {
+                    node.removeFromParentNode()
+                }
+            }
+        }
+    
     private func registerGestureRecognizers() {
-
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
-
+        
         self.arView?.addGestureRecognizer(tapGestureRecognizer)
     }
-
+    
     // objc를 붙이면 붙여진 swift 코드를 objective-c 에서도 사용할 수 있다는 뜻
     @objc func tapped(recognizer : UITapGestureRecognizer){
         let arView = recognizer.view as! SCNView
@@ -128,92 +158,93 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
             
             
             
-            
-
-
             switch movingState {
                 case .jump:
                     // jump 단계 움직임 삭제
                     node.removeAction(forKey: "jump")
-
+                    
                     // rotate 단계 움직임 적용
                     let rotateAction = SCNAction.rotateBy(x: 0, y: CGFloat(Float.pi), z: 0, duration: 1.0) // 1초 동안 y축을 기준으로 180도 회전하는 액션
                     let repeatAction = SCNAction.repeatForever(rotateAction) // 액션을 무한 반복하는 액션
                     node.runAction(repeatAction, forKey: "rotate") // 해당 노드에 액션을 적용하고, key 값을 지정해주어 나중에 해당 액션을 제거할 때 사용할 수 있도록 합니다.
-
+                    
                     movingState = .rotate
                 case .rotate:
                     // rotate 단계 움직임 삭제
                     node.removeAction(forKey: "rotate")
-
+                    
                     // rattle 단계 움직임 적용
-                    let rotateAction = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(Float.pi / 3), duration: 1.0)
+                    let rotateAction = SCNAction.rotateBy(x: 0, y: 0, z: CGFloat(Float.pi / 6), duration: 1.0)
                     node.runAction(SCNAction.repeatForever(rotateAction))
 
+//                    let fadeOutAction = SCNAction.fadeOut(duration: 1.0)
+//                    node.runAction(fadeOutAction)
                     movingState = .rattle
-
+                    
                 case .rattle:
                     // rattle 단계 움직임 삭제
                     node.removeAction(forKey: "rotate")
+                    
+//                    node.removeAction(forKey: "fadeOut")
 
-
+                    
                     // jump 단계 움직임 적용
                     node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
                     node.physicsBody?.isAffectedByGravity = false
                     node.physicsBody?.damping = 0.0
-
+                    
                     let jumpHeight: Float = 0.03
                     let jumpDuration: TimeInterval = 0.6
-
+                    
                     let jumpAction = SCNAction.sequence([
                         SCNAction.moveBy(x: 0, y: CGFloat(jumpHeight), z: 0, duration: jumpDuration/2),
                         SCNAction.moveBy(x: 0, y: CGFloat(-jumpHeight), z: 0, duration: jumpDuration/2)
                     ])
-
+                    
                     let repeatAction = SCNAction.repeatForever(jumpAction)
                     node.runAction(repeatAction, forKey: "jump")
                     
                     movingState = .jump
-
+                    
                 default:
                     _ = 0
-
+                    
             }
             
             
-//
-//            let rotateAction = SCNAction.rotateBy(x: 0, y: CGFloat(Float.pi), z: 0, duration: 1.0) // 1초 동안 y축을 기준으로 180도 회전하는 액션
-//            let repeatAction = SCNAction.repeatForever(rotateAction) // 액션을 무한 반복하는 액션
-//            node.runAction(repeatAction, forKey: "rotate") // 해당 노드에 액션을 적용하고, key 값을 지정해주어 나중에 해당 액션을 제거할 때 사용할 수 있도록 합니다.
-//
-//
+            //
+            //            let rotateAction = SCNAction.rotateBy(x: 0, y: CGFloat(Float.pi), z: 0, duration: 1.0) // 1초 동안 y축을 기준으로 180도 회전하는 액션
+            //            let repeatAction = SCNAction.repeatForever(rotateAction) // 액션을 무한 반복하는 액션
+            //            node.runAction(repeatAction, forKey: "rotate") // 해당 노드에 액션을 적용하고, key 값을 지정해주어 나중에 해당 액션을 제거할 때 사용할 수 있도록 합니다.
+            //
+            //
             
             
             
             
         }
     }
-
-
-            
-            
-
-            // 중력 0으로 설정
-//            node.physicsBody?.isAffectedByGravity = false
-
-            // 앞으로 움직이는 힘 추가
-//            let forceDirection = SCNVector3(0, 0, -10)
-//            let forceMagnitude: CGFloat = 10.0
-////            let force = forceDirection * forceMagnitude
-//            node.physicsBody?.applyForce(forceDirection, asImpulse: false)
-//
-            
-            
-            
-        
-        //
-
-
+    
+    
+    
+    
+    
+    // 중력 0으로 설정
+    //            node.physicsBody?.isAffectedByGravity = false
+    
+    // 앞으로 움직이는 힘 추가
+    //            let forceDirection = SCNVector3(0, 0, -10)
+    //            let forceMagnitude: CGFloat = 10.0
+    ////            let force = forceDirection * forceMagnitude
+    //            node.physicsBody?.applyForce(forceDirection, asImpulse: false)
+    //
+    
+    
+    
+    
+    //
+    
+    
     
     
     
@@ -243,33 +274,33 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
             print("starNode.position: \(starNode.position)")
             arView.scene.rootNode.addChildNode(starNode)
         }
-
+        
         
         
         
         return starNode // Return the array of star nodes
     }
-
+    
     // 화면 프레임마다 호출되는 함수
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         if let arView = arView, let context = context {
             if Coordinator.summonTrigger {
-//                print("summonTrigger is true")
+                //                print("summonTrigger is true")
                 if Coordinator.scnNodeArray.count < Coordinator.itemPlanArray.count {
-//                    print("the two arrays have different counts")
+                    //                    print("the two arrays have different counts")
                     Coordinator.summonTrigger = false
                     let newStarNode = context.coordinator.updateStarNodes(with: Coordinator.itemPlanArray.last!, in: arView)
-//                    print("newStarNode: \(newStarNode)")
+                    //                    print("newStarNode: \(newStarNode)")
                     // Use the DispatchQueue to append the new node
                     Coordinator.scnNodeQueue.async(flags: .barrier) {
                         Coordinator.scnNodeArray.append(newStarNode)
-//                        print("Coordinator.scnNodeArray.count: \(Coordinator.scnNodeArray.count)")
+                        //                        print("Coordinator.scnNodeArray.count: \(Coordinator.scnNodeArray.count)")
                     }
                 }
             }
         }
     }
-
+    
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         // 필요한 경우 구현: AR 앵커가 추가되었을 때 호출되는 메소드
