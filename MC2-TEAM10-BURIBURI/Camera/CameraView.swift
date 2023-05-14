@@ -194,6 +194,7 @@ struct CameraView: View {
                 .ignoresSafeArea()
                 .statusBar(hidden: true)
             }
+        .navigationBarHidden(true)
         }
         
         private func buttonsView() -> some View {
