@@ -120,6 +120,10 @@
 		D18569862A10289D0073DA58 /* MovingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingState.swift; sourceTree = "<group>"; };
 		E35496092A0E42B000FB084B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		E354960B2A0E42FB00FB084B /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
+		E3AAB5FD2A10CDFD00F4BDF2 /* Parents_Scanning_03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Parents_Scanning_03.gif; path = "../../../Downloads/Lift-Off/Lift-Off/Resources/Parents_Scanning_03.gif"; sourceTree = "<group>"; };
+		E3AAB5FE2A10CDFD00F4BDF2 /* Parents_Doodle_05.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Parents_Doodle_05.gif; path = "../../../Downloads/Lift-Off/Lift-Off/Resources/Parents_Doodle_05.gif"; sourceTree = "<group>"; };
+		E3AAB5FF2A10CDFD00F4BDF2 /* Parents_Scanning_04_ns.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Parents_Scanning_04_ns.gif; path = "../../../Downloads/Lift-Off/Lift-Off/Resources/Parents_Scanning_04_ns.gif"; sourceTree = "<group>"; };
+		E3AAB6002A10CDFD00F4BDF2 /* Title_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Title_01.gif; path = "../../../Downloads/Lift-Off/Lift-Off/Resources/Title_01.gif"; sourceTree = "<group>"; };
 		E3D3F0DD2A10B58000B63363 /* SummonGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummonGIF.swift; sourceTree = "<group>"; };
 		E3D3F0E02A10B7BB00B63363 /* Parents_Doodle_05.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Parents_Doodle_05.gif; path = "../../../../../Downloads/Lift-Off/Lift-Off/Resources/Parents_Doodle_05.gif"; sourceTree = "<group>"; };
 		E3D3F0E12A10B7BB00B63363 /* Parents_Scanning_03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Parents_Scanning_03.gif; path = "../../../../../Downloads/Lift-Off/Lift-Off/Resources/Parents_Scanning_03.gif"; sourceTree = "<group>"; };
@@ -284,6 +288,10 @@
 		EE9092002A0BC19C00CA1EB2 = {
 			isa = PBXGroup;
 			children = (
+				E3AAB5FE2A10CDFD00F4BDF2 /* Parents_Doodle_05.gif */,
+				E3AAB5FD2A10CDFD00F4BDF2 /* Parents_Scanning_03.gif */,
+				E3AAB5FF2A10CDFD00F4BDF2 /* Parents_Scanning_04_ns.gif */,
+				E3AAB6002A10CDFD00F4BDF2 /* Title_01.gif */,
 				EE90920B2A0BC19C00CA1EB2 /* MC2-TEAM10-BURIBURI */,
 				EE90920A2A0BC19C00CA1EB2 /* Products */,
 			);
@@ -446,10 +454,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEA1B5832A0BC393007A10B1 /* D_Plane.png in Resources */,
+				E3D3F0E52A10B7BB00B63363 /* Parents_Scanning_03.gif in Resources */,
 				E3D3F0E42A10B7BB00B63363 /* Parents_Doodle_05.gif in Resources */,
-				EEA1B5762A0BC393007A10B1 /* D_RibbonGirl.png in Resources */,
 				E3D3F0E62A10B7BB00B63363 /* Parents_Scanning_04_ns.gif in Resources */,
+				E3D3F0E72A10B7BB00B63363 /* Title_01.gif in Resources */,
+				EEA1B5832A0BC393007A10B1 /* D_Plane.png in Resources */,
+				EEA1B5762A0BC393007A10B1 /* D_RibbonGirl.png in Resources */,
 				EEA1B5852A0BC393007A10B1 /* D_Clouds_01.png in Resources */,
 				EEA1B5782A0BC393007A10B1 /* D_Dragon.png in Resources */,
 				EEA1B57B2A0BC393007A10B1 /* D_Rocket.png in Resources */,
@@ -457,10 +467,8 @@
 				EEA1B57C2A0BC393007A10B1 /* ConvertSampleImage1.HEIC in Resources */,
 				EEA1B57D2A0BC393007A10B1 /* D_Angry_Child.png in Resources */,
 				EEA1B57A2A0BC393007A10B1 /* D_Turbo.png in Resources */,
-				E3D3F0E52A10B7BB00B63363 /* Parents_Scanning_03.gif in Resources */,
 				EE9092142A0BC19D00CA1EB2 /* Preview Assets.xcassets in Resources */,
 				EEA1B5812A0BC393007A10B1 /* D_Angry_Cat.png in Resources */,
-				E3D3F0E72A10B7BB00B63363 /* Title_01.gif in Resources */,
 				EEA1B5752A0BC393007A10B1 /* D_Beatle.png in Resources */,
 				EEA1B5722A0BC393007A10B1 /* D_Bus.png in Resources */,
 				EE9092112A0BC19D00CA1EB2 /* Assets.xcassets in Resources */,
