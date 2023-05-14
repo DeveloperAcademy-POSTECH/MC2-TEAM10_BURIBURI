@@ -24,5 +24,4 @@ struct Page : Identifiable, Equatable {
         Page(description: "스캔할 때는 화면에 그림이 꽉 차게 찍어주세요.", imageUrl: "Parents_Scanning_03", tag: 1),
         Page(description: "아이들에게 넓은 공간에서 ar을 사용하도록 이끌어주세요.", imageUrl: "Parents_Scanning_03", tag: 2),
     ]
-    
 }
