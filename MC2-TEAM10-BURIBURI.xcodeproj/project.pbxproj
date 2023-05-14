@@ -87,6 +87,7 @@
 		EEA1B5942A0BC3A5007A10B1 /* GridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA1B58E2A0BC3A4007A10B1 /* GridItemView.swift */; };
 		EEA1B5952A0BC3A5007A10B1 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA1B58F2A0BC3A4007A10B1 /* ScanView.swift */; };
 		EEA1B5962A0BC3A5007A10B1 /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */; };
+		EEB829BE2A1142B900287EE4 /* OnboardingTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB829BD2A1142B900287EE4 /* OnboardingTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +172,7 @@
 		EEA1B58E2A0BC3A4007A10B1 /* GridItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridItemView.swift; sourceTree = "<group>"; };
 		EEA1B58F2A0BC3A4007A10B1 /* ScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
+		EEB829BD2A1142B900287EE4 /* OnboardingTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +382,7 @@
 			children = (
 				4A9931062A0E0A8B0087D829 /* PageView.swift */,
 				4A9931002A0E09DE0087D829 /* OnboardingForParents.swift */,
+				EEB829BD2A1142B900287EE4 /* OnboardingTestView.swift */,
 				EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */,
 				EEA1B58B2A0BC3A3007A10B1 /* AlbumForChildView.swift */,
 				EEA1B58C2A0BC3A4007A10B1 /* AlbumForParentsView.swift */,
@@ -495,6 +498,7 @@
 				57D6AEB52A0C7D2600D5F223 /* binaryToSwelledBinary.swift in Sources */,
 				EE6CA0FE2A0DC932000B27BF /* ViewfinderView.swift in Sources */,
 				EEA1B5572A0BC377007A10B1 /* getFunction.swift in Sources */,
+				EEB829BE2A1142B900287EE4 /* OnboardingTestView.swift in Sources */,
 				57D6AEB62A0C7D2600D5F223 /* heroBinaryToRemovedBinary.swift in Sources */,
 				4A9931032A0E0A0A0087D829 /* ButtonStyle.swift in Sources */,
 				57D6AEA92A0C7D0E00D5F223 /* multiarrayToRemovedBinaryMultiarray.swift in Sources */,

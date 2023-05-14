@@ -19,7 +19,7 @@ struct StartView: View {
             .frame(height: getHeight() * 1.055)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) { //애니메이션이 있어야 할 듯..
-                    UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: OnboardingForParents().environmentObject(dataModel))
+                    UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: OnboardingTestView().environmentObject(dataModel))
                 }
             }
     }
