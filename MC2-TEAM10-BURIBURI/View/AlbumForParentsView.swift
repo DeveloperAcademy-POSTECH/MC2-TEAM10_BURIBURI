@@ -58,6 +58,7 @@ struct AlbumForParentsView: View {
                                     Button {
                                         withAnimation {
                                             dataModel.removeItem(item)
+											dataModel.save()
                                         }
                                     } label: {
                                         Image(systemName: "xmark.square.fill")
