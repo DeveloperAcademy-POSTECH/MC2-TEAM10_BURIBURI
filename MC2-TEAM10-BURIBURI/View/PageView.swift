@@ -11,23 +11,33 @@ struct PageView: View {
     var page: Page
     
     var body: some View {
-        VStack(spacing: 20) {
-            Image("\(page.imageUrl)")
-                .resizable()
-                .scaledToFit()
-                .padding()
-                .cornerRadius(30)
-                .background(.gray.opacity(0))
-                .padding()
-            
-            //            Text(page.name)
-            //                .font(.title)
-            
-            Text(page.description)
-                .font(.system(size: 20))
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, 20)
-        }
+//        VStack(spacing: 20) {
+//            Image("\(page.imageUrl)")
+//                .resizable()
+//                .scaledToFit()
+//                .padding()
+//                .cornerRadius(30)
+//                .background(.gray.opacity(0))
+//                .padding()
+//
+//            Text(page.description)
+//                .font(.system(size: 20))
+//                .frame(maxWidth: .infinity)
+//                .padding(.horizontal, 20)
+            VStack {
+                SummonGIF("\(page.imageUrl)")
+    //                .resizable()
+                    .scaledToFit()
+                    .padding()
+                    .cornerRadius(30)
+    //                .background(.gray.opacity(0))
+                    .padding()
+
+                Text(page.description)
+                    .font(Font.custom("Helvetica-Bold", size: 20))
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 20)
+            }
     }
     
     struct PageView_Previews: PreviewProvider {
