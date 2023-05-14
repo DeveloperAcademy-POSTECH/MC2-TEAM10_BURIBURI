@@ -45,7 +45,7 @@ struct OnboardingForParents: View {
                                     PageView(page: page)
                                     Spacer()
                                     if page.tag == 2 {
-                                        NavigationLink(destination: CameraView().environmentObject(dataModel)) {
+                                        NavigationLink(destination: TutorialCameraView().environmentObject(dataModel)) {
                                             Text("아이 그림 스캔하기")
                                                 .font(.title.bold())
                                                 .padding()

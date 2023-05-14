@@ -8,6 +8,8 @@ struct CameraView: View {
     @StateObject private var photomodel = PhotoDataModel()
     @EnvironmentObject var dataModel: DataModel
     
+	@Environment(\.dismiss) private var dismiss
+	
     @State var showsDecisionPage: Bool = false // true -> 선택하는 화면 띄움
     @State var returnedTuple: (Data, [CGPoint]) = (Data(), [CGPoint]()) // convertToBackgroundRemovedPNGDataAndPointArray 함수의 반환값
     
@@ -261,13 +263,15 @@ struct CameraView: View {
             HStack {
                 Spacer()
                     .frame(width: getWidth() * 0.05)
-                NavigationLink(destination: ARView()) {
-                    Text("AR")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.white)
-                        .padding(.trailing)
-                }
+				Button {
+					dismiss()
+				} label: {
+					Text("AR")
+						.font(.title3)
+						.fontWeight(.bold)
+						.foregroundColor(Color.white)
+						.padding(.trailing)
+				}
             }
         }
         
