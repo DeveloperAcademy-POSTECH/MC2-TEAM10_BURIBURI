@@ -671,7 +671,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2-TEAM10-BURIBURI/Preview Content\"";
-				DEVELOPMENT_TEAM = 47N48U5HD5;
+				DEVELOPMENT_TEAM = SHJRTZNP7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions for taking photos and videos";
