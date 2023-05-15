@@ -266,7 +266,7 @@ struct CameraView: View {
 				Button {
 					dismiss()
 				} label: {
-					Text("AR")
+					Text("AR로 돌아가기")
 						.font(.title3)
 						.fontWeight(.bold)
 						.foregroundColor(Color.white)

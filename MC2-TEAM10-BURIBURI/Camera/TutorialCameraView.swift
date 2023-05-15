@@ -262,7 +262,7 @@ struct TutorialCameraView: View {
 				Spacer()
 					.frame(width: getWidth() * 0.05)
 				NavigationLink(destination: ARView()) {
-					Text("AR")
+					Text("AR로 돌아가기")
 						.font(.title3)
 						.fontWeight(.bold)
 						.foregroundColor(Color.white)

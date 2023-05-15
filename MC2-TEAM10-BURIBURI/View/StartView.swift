@@ -16,10 +16,10 @@ struct StartView: View {
     var body: some View {
         SummonGIF("Title_01") //화면비 수정해야 함
             .edgesIgnoringSafeArea(.all)
-            .frame(height: getHeight() * 1.055)
+            .frame(height: getHeight() * 1.075)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) { //애니메이션이 있어야 할 듯..
-                    UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: OnboardingTestView().environmentObject(dataModel))
+                    UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: OnboardingForParents().environmentObject(dataModel))
                 }
             }
     }
