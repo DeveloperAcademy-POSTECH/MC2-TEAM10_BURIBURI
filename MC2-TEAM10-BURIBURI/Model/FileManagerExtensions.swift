@@ -19,71 +19,71 @@
 import Foundation
 
 extension FileManager {
-    
-    //* 현재 앱의 Document Directory의 URL을 반환하는 변수를 생성한다.
-    var documentDirectory: URL? {
-        // 요청한 Document Directory에 대한 URL 배열 중에서 첫번쨰 URL을 반환한다.
-        return self.urls(for: .documentDirectory, in: .userDomainMask).first
-    }
-    
-    
-    //* 앱의 Document Directory에 파일을 복사하고, 복사된 파일의 URL을 반환하거나, 이미 존재하는 파일의 URL을 반환하는 함수를 만든다. -> 앱에서 사용하는 파일을 Document Directory에 저장할 수 있다.
-    func copyItemToDocumentDirectory(from sourceURL: URL) -> URL? {
-        // 현재 앱의 Document Directory의 URL을 가져와서 documentDirectory 상수에 할당한다.
-        guard let documentDirectory = documentDirectory else { return nil }
-        // sourceURL의 URL 띄어쓰기 마지막에 있는 String을 fileName 상수에 할당한다. 이는 복사할 파일의 이름이 된다.
-        let fileName = sourceURL.lastPathComponent
-        // documentDirectory의 URL 마지막에 fileName을 추가해서 복사할 파일의 대상 URL을 만들고 destinationURL 상수에 할당한다.
-        let destinationURL = documentDirectory.appendingPathComponent(fileName)
-        // destinationURL 경로에 파일이 있다면, destinationURL을 반환한다.
-        if self.fileExists(atPath: destinationURL.path) {
-            return destinationURL
-        } else {
-            do {
-                // 없으면 sourceURL을 새로운 위치의 destinationURL에 복사하고 destinationURL을 반환한다.
-                try self.copyItem(at: sourceURL, to: destinationURL)
-                return destinationURL
-            } catch let error {
-                print("Unable to copy file: \(error.localizedDescription)")
-            }
-        }
-        return nil
-    }
-    
-    
-    //* url로 전달된 파일의 URL을 현재 앱의 Document Directory에서 삭제하는 함수를 생성한다.
-    func removeItemFromDocumentDirectory(url: URL) {
-        // 현재 앱의 Document Directory의 URL을 가져와서 documentDirectory 상수에 할당한다.
-        guard let documentDirectory = documentDirectory else { return }
-        // url의 URL 띄어쓰기 마지막에 있는 String을 fileName에 할당한다. 이는 삭제할 파일의 이름이 된다.
-        let fileName = url.lastPathComponent
-        // documentDirectory의 URL 마지막에 fileName을 추가해서 삭제할 파일의 URL을 만들고 fileUrl 상수에 할당한다.
-        let fileUrl = documentDirectory.appendingPathComponent(fileName)
-        // fileUrl 경로에 파일이 있다면, url에 있는 파일을 지워라.
-        if self.fileExists(atPath: fileUrl.path) {
-            do {
-                try self.removeItem(at: url)
-            } catch let error {
-                print("Unable to remove file: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    
-    //* url로 전달된 Directory의 내용들을 URL 배열로 반환한다.
-    func getContentsOfDirectory(_ url: URL) -> [URL] {
-        // url이 Directory인지 확인할 수 있게 isDirectory 변수를 생성한다.
-        var isDirectory: ObjCBool = false
-        // url 경로가 존재하는지 확인하고, Directory인지 아닌지에 대한 여부를 isDirectory 파라미터로 반환한다.
-        guard FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory), isDirectory.boolValue else { return [] }
-        do {
-            // url 경로가 존재하고, Directory가 맞다면, url Directory 내부의 파일들의 URL 배열을 반환한다.
-            return try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
-        } catch let error {
-            print("Unable to get directory contents: \(error.localizedDescription)")
-        }
-        return []
-    }
+	
+	//* 현재 앱의 Document Directory의 URL을 반환하는 변수를 생성한다.
+	var documentDirectory: URL? {
+		// 요청한 Document Directory에 대한 URL 배열 중에서 첫번쨰 URL을 반환한다.
+		return self.urls(for: .documentDirectory, in: .userDomainMask).first
+	}
+	
+	
+	//* 앱의 Document Directory에 파일을 복사하고, 복사된 파일의 URL을 반환하거나, 이미 존재하는 파일의 URL을 반환하는 함수를 만든다. -> 앱에서 사용하는 파일을 Document Directory에 저장할 수 있다.
+	func copyItemToDocumentDirectory(from sourceURL: URL) -> URL? {
+		// 현재 앱의 Document Directory의 URL을 가져와서 documentDirectory 상수에 할당한다.
+		guard let documentDirectory = documentDirectory else { return nil }
+		// sourceURL의 URL 띄어쓰기 마지막에 있는 String을 fileName 상수에 할당한다. 이는 복사할 파일의 이름이 된다.
+		let fileName = sourceURL.lastPathComponent
+		// documentDirectory의 URL 마지막에 fileName을 추가해서 복사할 파일의 대상 URL을 만들고 destinationURL 상수에 할당한다.
+		let destinationURL = documentDirectory.appendingPathComponent(fileName)
+		// destinationURL 경로에 파일이 있다면, destinationURL을 반환한다.
+		if self.fileExists(atPath: destinationURL.path) {
+			return destinationURL
+		} else {
+			do {
+				// 없으면 sourceURL을 새로운 위치의 destinationURL에 복사하고 destinationURL을 반환한다.
+				try self.copyItem(at: sourceURL, to: destinationURL)
+				return destinationURL
+			} catch let error {
+				print("Unable to copy file: \(error.localizedDescription)")
+			}
+		}
+		return nil
+	}
+	
+	
+	//* url로 전달된 파일의 URL을 현재 앱의 Document Directory에서 삭제하는 함수를 생성한다.
+	func removeItemFromDocumentDirectory(url: URL) {
+		// 현재 앱의 Document Directory의 URL을 가져와서 documentDirectory 상수에 할당한다.
+		guard let documentDirectory = documentDirectory else { return }
+		// url의 URL 띄어쓰기 마지막에 있는 String을 fileName에 할당한다. 이는 삭제할 파일의 이름이 된다.
+		let fileName = url.lastPathComponent
+		// documentDirectory의 URL 마지막에 fileName을 추가해서 삭제할 파일의 URL을 만들고 fileUrl 상수에 할당한다.
+		let fileUrl = documentDirectory.appendingPathComponent(fileName)
+		// fileUrl 경로에 파일이 있다면, url에 있는 파일을 지워라.
+		if self.fileExists(atPath: fileUrl.path) {
+			do {
+				try self.removeItem(at: url)
+			} catch let error {
+				print("Unable to remove file: \(error.localizedDescription)")
+			}
+		}
+	}
+	
+	
+	//* url로 전달된 Directory의 내용들을 URL 배열로 반환한다.
+	func getContentsOfDirectory(_ url: URL) -> [URL] {
+		// url이 Directory인지 확인할 수 있게 isDirectory 변수를 생성한다.
+		var isDirectory: ObjCBool = false
+		// url 경로가 존재하는지 확인하고, Directory인지 아닌지에 대한 여부를 isDirectory 파라미터로 반환한다.
+		guard FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory), isDirectory.boolValue else { return [] }
+		do {
+			// url 경로가 존재하고, Directory가 맞다면, url Directory 내부의 파일들의 URL 배열을 반환한다.
+			return try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)
+		} catch let error {
+			print("Unable to get directory contents: \(error.localizedDescription)")
+		}
+		return []
+	}
 	
 	//* png data를 받아 document directory에 저장하고 저장된 파일의 URL을 반환한다.
 	func savePNGDataByFileManagerAndReturnURL(_ data: Data) -> URL? {
@@ -91,8 +91,12 @@ extension FileManager {
 		do {
 			// Create a unique file name
 			// 여기서 UUID를 이용해 이름을 붙이기는 하는데, 나중에 이 이미지에 해당하는 Item 객체를 생성할 때에 그것의 식별자는 거기서 다시 생성한다. 따라서 파일 이름은 객체의 식별자와 다르다.
-			let uuid = UUID().uuidString
-			let fileName = "\(uuid).png"
+			let date = Date()
+			let timeInterval = date.timeIntervalSince1970
+			let timeIntervalString = String(timeInterval)
+			
+			print("in savePNGDataByFileManagerAndReturnURL function, timeIntervalString: \(timeIntervalString)")
+			let fileName = "\(timeIntervalString).png"
 			
 			// Get the document directory URL
 			guard let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -114,5 +118,5 @@ extension FileManager {
 			return nil
 		}
 	}
-
+	
 }
