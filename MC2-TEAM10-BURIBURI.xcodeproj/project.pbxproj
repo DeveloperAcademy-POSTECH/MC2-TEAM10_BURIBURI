@@ -87,6 +87,7 @@
 		EEA1B5942A0BC3A5007A10B1 /* GridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA1B58E2A0BC3A4007A10B1 /* GridItemView.swift */; };
 		EEA1B5952A0BC3A5007A10B1 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA1B58F2A0BC3A4007A10B1 /* ScanView.swift */; };
 		EEA1B5962A0BC3A5007A10B1 /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */; };
+		EEB829C02A11B1CD00287EE4 /* OnboardingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB829BF2A11B1CD00287EE4 /* OnboardingPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +172,7 @@
 		EEA1B58E2A0BC3A4007A10B1 /* GridItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridItemView.swift; sourceTree = "<group>"; };
 		EEA1B58F2A0BC3A4007A10B1 /* ScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
+		EEB829BF2A11B1CD00287EE4 /* OnboardingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,6 +389,7 @@
 				EEA1B58D2A0BC3A4007A10B1 /* ARView.swift */,
 				EEA1B58E2A0BC3A4007A10B1 /* GridItemView.swift */,
 				EEA1B58F2A0BC3A4007A10B1 /* ScanView.swift */,
+				EEB829BF2A11B1CD00287EE4 /* OnboardingPreview.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				EE6CA1082A0DC932000B27BF /* PhotoCollectionView.swift in Sources */,
 				57D6AEA62A0C7D0E00D5F223 /* rbmToCroppedRBM.swift in Sources */,
 				5782C9392A0DE2A3004F3A96 /* urlToHeicData.swift in Sources */,
+				EEB829C02A11B1CD00287EE4 /* OnboardingPreview.swift in Sources */,
 				57D6AEB52A0C7D2600D5F223 /* binaryToSwelledBinary.swift in Sources */,
 				EE6CA0FE2A0DC932000B27BF /* ViewfinderView.swift in Sources */,
 				EEA1B5572A0BC377007A10B1 /* getFunction.swift in Sources */,
@@ -698,7 +702,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2-TEAM10-BURIBURI/Preview Content\"";
-				DEVELOPMENT_TEAM = 8H4K6TKQBU;
+				DEVELOPMENT_TEAM = 47N48U5HD5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions for taking photos and videos";
