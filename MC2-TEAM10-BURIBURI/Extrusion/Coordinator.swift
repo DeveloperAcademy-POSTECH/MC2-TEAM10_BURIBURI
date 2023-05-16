@@ -63,11 +63,11 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
         let frontMaterial = SCNMaterial() // 앞면의 재질을 생성
         frontMaterial.diffuse.contents = textureImage // 앞면의 텍스처를 설정
         
-        let backMaterial = SCNMaterial() // 뒷면의 재질을 생성
-        backMaterial.diffuse.contents = textureImage // 뒷면의 텍스처를 설정
-        backMaterial.diffuse.wrapS = .repeat // S 방향의 텍스처를 반복
-        backMaterial.diffuse.wrapT = .repeat // T 방향의 텍스처
-        backMaterial.diffuse.contentsTransform = SCNMatrix4MakeRotation(Float(rotationAngle), 0, 0, 1) // 뒷면의 텍스처를 회전
+        let backMaterial = SCNMaterial() // 뒷면의 재질을 생성	
+		backMaterial.diffuse.contents = textureImage.flipHorizontally() // 뒷면의 텍스처를 설정
+//        backMaterial.diffuse.wrapS = .repeat // S 방향의 텍스처를 반복
+//        backMaterial.diffuse.wrapT = .repeat // T 방향의 텍스처
+//        backMaterial.diffuse.contentsTransform = SCNMatrix4MakeRotation(Float(rotationAngle), 0, 0, 1) // 뒷면의 텍스처를 회전
         
         shape.materials = [frontMaterial, backMaterial] + Array(repeating: sideMaterial, count: sides) // 각면에 재질을 적용
         

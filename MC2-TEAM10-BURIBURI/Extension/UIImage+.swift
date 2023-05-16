@@ -27,3 +27,22 @@ extension UIImage {
 		return heicData as Data
 	}
 }
+
+extension UIImage {
+	func flipHorizontally() -> UIImage? {
+		UIGraphicsBeginImageContextWithOptions(size, false, scale)
+		guard let context = UIGraphicsGetCurrentContext() else {
+			return nil
+		}
+		
+		context.translateBy(x: size.width, y: 0)
+		context.scaleBy(x: -1, y: 1)
+		
+		draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+		
+		let flippedImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return flippedImage
+	}
+}

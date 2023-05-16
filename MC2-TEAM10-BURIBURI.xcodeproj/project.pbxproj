@@ -96,6 +96,7 @@
 		4A9931042A0E0A800087D829 /* PageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
 		4A9931062A0E0A8B0087D829 /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		572E07032A1117B1000AE06C /* TutorialCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCameraView.swift; sourceTree = "<group>"; };
+		575842392A13C8EF00A7A8D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5782C9382A0DE2A3004F3A96 /* urlToHeicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urlToHeicData.swift; sourceTree = "<group>"; };
 		57D6AE992A0C7CD500D5F223 /* convertToBackgroundRemovedPNGDataAndBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertToBackgroundRemovedPNGDataAndBezierPath.swift; sourceTree = "<group>"; };
 		57D6AE9B2A0C7CDB00D5F223 /* convertToBackgroundRemovedPNGDataAndPointArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertToBackgroundRemovedPNGDataAndPointArray.swift; sourceTree = "<group>"; };
@@ -305,6 +306,7 @@
 		EE90920B2A0BC19C00CA1EB2 /* MC2-TEAM10-BURIBURI */ = {
 			isa = PBXGroup;
 			children = (
+				575842392A13C8EF00A7A8D6 /* Info.plist */,
 				EE90920C2A0BC19C00CA1EB2 /* MC2_TEAM10_BURIBURIApp.swift */,
 				EE6CA10A2A0DC939000B27BF /* Camera */,
 				57D6AE982A0C7C9C00D5F223 /* Extension */,
@@ -671,9 +673,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2-TEAM10-BURIBURI/Preview Content\"";
-				DEVELOPMENT_TEAM = 26JY8834V2;
+				DEVELOPMENT_TEAM = NM2S86642U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MC2-TEAM10-BURIBURI/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "드로잇";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions for taking photos and videos";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Album permissions to save videos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -681,6 +685,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -702,9 +707,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2-TEAM10-BURIBURI/Preview Content\"";
-				DEVELOPMENT_TEAM = 26JY8834V2;
+				DEVELOPMENT_TEAM = NM2S86642U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MC2-TEAM10-BURIBURI/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "드로잇";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions for taking photos and videos";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Album permissions to save videos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -712,6 +719,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -30,7 +30,7 @@ struct AlbumForChildView: View {
         VStack {
             ScrollView(.horizontal) {
                 LazyHGrid(rows: gridRows) {
-                    ForEach(dataModel.items) { item in
+					ForEach((dataModel.items).reversed()) { item in
                         GeometryReader { geo in
                             GridItemView(size: geo.size.height, itemURL: item.url)
                                 .rotationEffect((Angle(degrees: isAnimationChild ? 5 : -5)))
