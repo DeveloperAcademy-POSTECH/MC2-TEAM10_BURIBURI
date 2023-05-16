@@ -225,8 +225,8 @@ struct OnboardingForParents: View {
                                             .frame(height: geometry.size.height * 0.05)
                                         SummonGIF("Parents_Doodle_05")
                                         Text("가급적 흰 종이에 어두운 펜을 사용해주세요.\r종이와 펜의 명도 차이가 크지 않으면 인식이\r어려울 수 있어요.")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
+                                            .font(.body)
+                                            .fontWeight(.regular)
                                         Spacer()
                                             .frame(height: geometry.size.height * 0.05)
                                     }
@@ -245,7 +245,7 @@ struct OnboardingForParents: View {
                                             .cornerRadius(20)
                                     }
                                     .overlay {
-                                        Text("아이 그림 스캔하기")
+                                        Text("그림 스캔")
                                             .font(.headline)
                                             .fontWeight(.bold)
                                             .foregroundColor(Color.black)
@@ -270,8 +270,8 @@ struct OnboardingForParents: View {
                                             .frame(height: geometry.size.height * 0.05)
                                         SummonGIF("Parents_Scanning_04_ns")
                                         Text("스캔할 때는 화면에 그림이 꽉 차게 찍어주세요.")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
+                                            .font(.body)
+                                            .fontWeight(.regular)
                                             .multilineTextAlignment(.center)
                                         Spacer()
                                             .frame(height: geometry.size.height * 0.05)
@@ -291,7 +291,7 @@ struct OnboardingForParents: View {
                                             .cornerRadius(20)
                                     }
                                     .overlay {
-                                        Text("아이 그림 스캔하기")
+                                        Text("그림 스캔")
                                             .font(.headline)
                                             .fontWeight(.bold)
                                             .foregroundColor(Color.black)
@@ -316,8 +316,8 @@ struct OnboardingForParents: View {
                                             .frame(height: geometry.size.height * 0.05)
                                         SummonGIF("Parents_Scanning_04_ns")
                                         Text("아이에게 넓은 공간에서\rAR을 사용하도록 이끌어주세요.")
-                                            .font(.headline)
-                                            .fontWeight(.bold)
+                                            .font(.body)
+                                            .fontWeight(.regular)
                                             .multilineTextAlignment(.center)
                                         Spacer()
                                             .frame(height: geometry.size.height * 0.05)
@@ -337,7 +337,7 @@ struct OnboardingForParents: View {
                                             .cornerRadius(20)
                                     }
                                     .overlay {
-                                        Text("아이 그림 스캔하기")
+                                        Text("그림 스캔")
                                             .font(.headline)
                                             .fontWeight(.bold)
                                             .foregroundColor(Color.black)
