@@ -198,15 +198,26 @@ struct TutorialCameraView: View {
 		}
 		
 		private func buttonsView() -> some View {
-			HStack(spacing: 60) {
+			HStack(spacing: 0) {
 				
 				Spacer()
-				
+                    .frame(width: getWidth() * 0.05)
 				NavigationLink(destination: AlbumForParentsView()) {
-					Image("C_Fedora3_02")
-						.resizable()
-						.frame(width: 60, height: 60)
+//                    Image("C_Fedora3_02")
+                    if let safeURL = dataModel.items.last?.url {
+                        PNGImageURLView(pngURL: safeURL)
+                            .frame(width: 60, height: 60)
+                    } else {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 60, height: 60)
+                            .foregroundColor(.white)
+                            .opacity(0.2)
+                    }
 				}
+                .frame(width: getWidth() * 0.15)
+                
+                Spacer()
+                    .frame(width: getWidth() * 0.15)
 				
 				Button {
 					if scanButtonActive {
@@ -233,23 +244,22 @@ struct TutorialCameraView: View {
 					} icon: {
 						Circle()
 							.foregroundColor(.white)
-							.frame(width: 60, height: 60)
+							.frame(width: 80, height: 80)
 							.overlay {
 								Circle()
-									.stroke(Color.black, lineWidth: 2)
+									.stroke(Color.gray, lineWidth: 2)
 									.foregroundColor(.white)
-									.frame(width: 48, height: 48)
+									.frame(width: 68, height: 68)
 							}
 						//                    Image("Stella_08")
 						//                        .resizable()
 						//                        .frame(width: 90, height: 90)
 					}
 				}
-				
-				
-				
+                .frame(width: getWidth() * 0.30)
+
 				Spacer()
-					.frame(width: getWidth() * 0.3)
+					.frame(width: getWidth() * 0.35)
 				
 			}
 			.buttonStyle(.plain)
@@ -262,11 +272,16 @@ struct TutorialCameraView: View {
 				Spacer()
 					.frame(width: getWidth() * 0.05)
 				NavigationLink(destination: ARView()) {
-					Text("AR로 돌아가기")
-						.font(.title3)
-						.fontWeight(.bold)
-						.foregroundColor(Color.white)
-						.padding(.trailing)
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(Color.white)
+                        Text("AR")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.white)
+                            .padding(.trailing)
+                                
+                            }
 				}
 			}
 		}
@@ -285,6 +300,7 @@ struct TutorialCameraView: View {
 				Image(systemName: "checkmark.circle.fill")
 					.resizable()
 					.frame(width: 60, height: 60)
+                    .foregroundColor(Color.white)
 			}
 		}
 		
