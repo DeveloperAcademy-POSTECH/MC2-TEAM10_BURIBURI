@@ -12,6 +12,12 @@
 		4A9931052A0E0A800087D829 /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9931042A0E0A800087D829 /* PageModel.swift */; };
 		4A9931072A0E0A8B0087D829 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9931062A0E0A8B0087D829 /* PageView.swift */; };
 		572E07042A1117B1000AE06C /* TutorialCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572E07032A1117B1000AE06C /* TutorialCameraView.swift */; };
+		5758423B2A13CF8C00A7A8D6 /* Title_00.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5758423A2A13CF8C00A7A8D6 /* Title_00.gif */; };
+		5758423D2A13D53400A7A8D6 /* getPixelCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758423C2A13D53400A7A8D6 /* getPixelCircle.swift */; };
+		5758423F2A13D58F00A7A8D6 /* getPixelCircleBoundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5758423E2A13D58F00A7A8D6 /* getPixelCircleBoundary.swift */; };
+		575842412A13D84800A7A8D6 /* getPixelRightCrescent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575842402A13D84800A7A8D6 /* getPixelRightCrescent.swift */; };
+		575842432A13D85400A7A8D6 /* getPixelDownCrescent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575842422A13D85400A7A8D6 /* getPixelDownCrescent.swift */; };
+		575842452A13D86300A7A8D6 /* getPixelDownRightCrescent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575842442A13D86300A7A8D6 /* getPixelDownRightCrescent.swift */; };
 		5782C9392A0DE2A3004F3A96 /* urlToHeicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5782C9382A0DE2A3004F3A96 /* urlToHeicData.swift */; };
 		57D6AE9A2A0C7CD600D5F223 /* convertToBackgroundRemovedPNGDataAndBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D6AE992A0C7CD500D5F223 /* convertToBackgroundRemovedPNGDataAndBezierPath.swift */; };
 		57D6AE9C2A0C7CDB00D5F223 /* convertToBackgroundRemovedPNGDataAndPointArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D6AE9B2A0C7CDB00D5F223 /* convertToBackgroundRemovedPNGDataAndPointArray.swift */; };
@@ -97,6 +103,12 @@
 		4A9931062A0E0A8B0087D829 /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		572E07032A1117B1000AE06C /* TutorialCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCameraView.swift; sourceTree = "<group>"; };
 		575842392A13C8EF00A7A8D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5758423A2A13CF8C00A7A8D6 /* Title_00.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Title_00.gif; sourceTree = "<group>"; };
+		5758423C2A13D53400A7A8D6 /* getPixelCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getPixelCircle.swift; sourceTree = "<group>"; };
+		5758423E2A13D58F00A7A8D6 /* getPixelCircleBoundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getPixelCircleBoundary.swift; sourceTree = "<group>"; };
+		575842402A13D84800A7A8D6 /* getPixelRightCrescent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getPixelRightCrescent.swift; sourceTree = "<group>"; };
+		575842422A13D85400A7A8D6 /* getPixelDownCrescent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getPixelDownCrescent.swift; sourceTree = "<group>"; };
+		575842442A13D86300A7A8D6 /* getPixelDownRightCrescent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getPixelDownRightCrescent.swift; sourceTree = "<group>"; };
 		5782C9382A0DE2A3004F3A96 /* urlToHeicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = urlToHeicData.swift; sourceTree = "<group>"; };
 		57D6AE992A0C7CD500D5F223 /* convertToBackgroundRemovedPNGDataAndBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertToBackgroundRemovedPNGDataAndBezierPath.swift; sourceTree = "<group>"; };
 		57D6AE9B2A0C7CDB00D5F223 /* convertToBackgroundRemovedPNGDataAndPointArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = convertToBackgroundRemovedPNGDataAndPointArray.swift; sourceTree = "<group>"; };
@@ -220,6 +232,11 @@
 				57D6AEAF2A0C7D2600D5F223 /* binaryToSwelledBinary.swift */,
 				57D6AEAD2A0C7D2600D5F223 /* swelledBinaryToHeroBinary.swift */,
 				57D6AEB02A0C7D2600D5F223 /* heroBinaryToRemovedBinary.swift */,
+				5758423C2A13D53400A7A8D6 /* getPixelCircle.swift */,
+				5758423E2A13D58F00A7A8D6 /* getPixelCircleBoundary.swift */,
+				575842402A13D84800A7A8D6 /* getPixelRightCrescent.swift */,
+				575842422A13D85400A7A8D6 /* getPixelDownCrescent.swift */,
+				575842442A13D86300A7A8D6 /* getPixelDownRightCrescent.swift */,
 			);
 			path = "Subsub Functions";
 			sourceTree = "<group>";
@@ -262,6 +279,7 @@
 				E3AAB60C2A10D54000F4BDF2 /* Parents_Scanning_03.gif */,
 				E3AAB60B2A10D54000F4BDF2 /* Parents_Scanning_04_ns.gif */,
 				E3AAB6092A10D54000F4BDF2 /* Title_01.gif */,
+				5758423A2A13CF8C00A7A8D6 /* Title_00.gif */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -466,6 +484,7 @@
 				EEA1B57A2A0BC393007A10B1 /* D_Turbo.png in Resources */,
 				EE9092142A0BC19D00CA1EB2 /* Preview Assets.xcassets in Resources */,
 				E3AAB60E2A10D54000F4BDF2 /* Parents_Doodle_05.gif in Resources */,
+				5758423B2A13CF8C00A7A8D6 /* Title_00.gif in Resources */,
 				E3AAB60D2A10D54000F4BDF2 /* Title_01.gif in Resources */,
 				EEA1B5812A0BC393007A10B1 /* D_Angry_Cat.png in Resources */,
 				E3AAB6102A10D54000F4BDF2 /* Parents_Scanning_03.gif in Resources */,
@@ -488,6 +507,8 @@
 				EE6CA1032A0DC932000B27BF /* PhotoView.swift in Sources */,
 				4A9931052A0E0A800087D829 /* PageModel.swift in Sources */,
 				EE6CA1052A0DC932000B27BF /* PhotoCollection.swift in Sources */,
+				5758423D2A13D53400A7A8D6 /* getPixelCircle.swift in Sources */,
+				575842432A13D85400A7A8D6 /* getPixelDownCrescent.swift in Sources */,
 				57D6AEC22A0C7DD300D5F223 /* ConvertTestView.swift in Sources */,
 				EEA1B5582A0BC377007A10B1 /* UIImage+.swift in Sources */,
 				E354960A2A0E42B000FB084B /* Coordinator.swift in Sources */,
@@ -514,12 +535,15 @@
 				57D6AEC62A0C7DD300D5F223 /* monochromeToAverageBrightness.swift in Sources */,
 				572E07042A1117B1000AE06C /* TutorialCameraView.swift in Sources */,
 				57D6AEC52A0C7DD300D5F223 /* BinaryMultiarrayView.swift in Sources */,
+				575842452A13D86300A7A8D6 /* getPixelDownRightCrescent.swift in Sources */,
+				5758423F2A13D58F00A7A8D6 /* getPixelCircleBoundary.swift in Sources */,
 				EE6CA0FD2A0DC932000B27BF /* Camera.swift in Sources */,
 				EE6CA1092A0DC932000B27BF /* CameraView.swift in Sources */,
 				EEA1B5952A0BC3A5007A10B1 /* ScanView.swift in Sources */,
 				57D6AE9C2A0C7CDB00D5F223 /* convertToBackgroundRemovedPNGDataAndPointArray.swift in Sources */,
 				EEA1B5552A0BC377007A10B1 /* FileManagerExtensions.swift in Sources */,
 				EE6CA1002A0DC932000B27BF /* PhotoDataModel.swift in Sources */,
+				575842412A13D84800A7A8D6 /* getPixelRightCrescent.swift in Sources */,
 				E354960C2A0E42FB00FB084B /* ARViewContainer.swift in Sources */,
 				EEA1B5922A0BC3A5007A10B1 /* AlbumForParentsView.swift in Sources */,
 				57D6AEB42A0C7D2600D5F223 /* colorToMonochrome.swift in Sources */,
