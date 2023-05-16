@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//현재(2023. 5. 14. 오전 5:42) CameraView가 스캔 뷰 역할을 하는 중
 struct ScanView: View {
     var body: some View {
         VStack {
@@ -18,7 +18,8 @@ struct ScanView: View {
                 Spacer()
                     .frame(width: getWidth() * 0.03, height: getHeight() * 0.1)
                 NavigationLink(destination: AlbumForParentsView()) {
-                    Rectangle()
+                    Image("C_Fedora3_02")
+                        .resizable()
                         .aspectRatio(1, contentMode: .fit)
                         .foregroundColor(.blue)
                         .frame(width: getWidth() * 0.2, height: getHeight() * 0.1)

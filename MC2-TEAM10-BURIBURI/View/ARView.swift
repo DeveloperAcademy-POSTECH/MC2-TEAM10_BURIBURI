@@ -9,17 +9,26 @@ import SwiftUI
 
 struct ARView: View {
     @State private var isUnBoxing = false
+    @State private var isCameraOpen = false
+    
+    @EnvironmentObject var dataModel: DataModel
+    @StateObject var arViewState = ARViewState()
+    
     var body: some View {
         ZStack {
-            Image("ㅋㅋㅋ").scaledToFill()
+            ARViewContainer().environmentObject(arViewState)
+                .ignoresSafeArea(.all)
+//                .onReceive(dataModel.$items, perform: { _ in
+//                    self.arViewState.scnNodeArray = []
+//                })
             VStack {
                 Spacer()
-                    .frame(width: getWidth() * 0.1, height: getHeight() * 0.05)
                 HStack {
                     Spacer()
                         .frame(width: getWidth() * 0.03, height: getHeight() * 0.05)
-                    NavigationLink(destination: ScanView()) {
-                        Rectangle()
+                    NavigationLink(destination: CameraView()) {
+                        Image("Group")
+                            .resizable()
                             .aspectRatio(1, contentMode: .fit)
                             .foregroundColor(.green)
                             .frame(width: getWidth() * 0.1, height: getHeight() * 0.05)
@@ -30,26 +39,41 @@ struct ARView: View {
                 Spacer()
                     .frame(width: getWidth() * 1, height: getHeight() * 0.7)
                 Button(action: {
+                    let generator = UINotificationFeedbackGenerator()
+                                    generator.notificationOccurred(.success)
                     isUnBoxing.toggle()
                 }) {
-                    Rectangle()
-                        .aspectRatio(1, contentMode: .fit)
-                        .foregroundColor(.blue)
-                        .frame(width: getWidth() * 1, height: getHeight() * 0.1)
+                    if isUnBoxing {
+                        Rectangle()
+                            .aspectRatio(1, contentMode: .fit)
+                            .foregroundColor(.clear)
+                            .frame(width: getWidth() * 1, height: getHeight() * 0.1)
+                    } else {
+                        Image("C_Fedora3_02")
+                            .resizable()
+//                        Rectangle()
+                            .aspectRatio(1, contentMode: .fit)
+                            .foregroundColor(.blue)
+                            .frame(width: getWidth() * 1, height: getHeight() * 0.1)
+                    }
                 }
                 Spacer()
                     .frame(width: getWidth() * 1, height: getHeight() * 0.1)
             }
-            .popover(isPresented: $isUnBoxing) {
+            .sheet(isPresented: $isUnBoxing) {
                 NavigationView {
-                    AlbumForChildView(isAnimationChild: true)
+                    AlbumForChildView()
+                        .environmentObject(arViewState)
                 }
-                
+                .clearModalBackground()
                 .presentationDetents([.height(getHeight() * 0.33)])
             }
         }
+        .navigationBarHidden(true)
     }
+        
 }
+
 
 
 struct ARView_Previews: PreviewProvider {

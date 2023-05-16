@@ -18,7 +18,33 @@ struct Item: Identifiable, Codable {
     // 자동으로 UniqueID를 부여해주는 UUID를 사용해서 id 프로퍼티를 생성한다.
     var id: UUID = UUID()
     var url: URL
+	var pointArray: [CGPoint]
+
+	enum CodingKeys: CodingKey {
+		case id, url, pointArray
+	}
+
+	init(id: UUID = UUID(), url: URL, pointArray: [CGPoint]) {
+		self.id = id
+		self.url = url
+		self.pointArray = pointArray
+	}
+
+	init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		id = try container.decode(UUID.self, forKey: .id)
+		url = try container.decode(URL.self, forKey: .url)
+		pointArray = try container.decode([CGPoint].self, forKey: .pointArray)
+	}
+
+	func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(id, forKey: .id)
+		try container.encode(url, forKey: .url)
+		try container.encode(pointArray, forKey: .pointArray)
+	}
 }
+
 
 // lhs와 rhs를 비교하여 같은지 여부를 판단하는 함수로 Item을 확장한다.
 extension Item: Equatable {

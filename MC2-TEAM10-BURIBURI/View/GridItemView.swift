@@ -12,11 +12,11 @@ import SwiftUI
 
 struct GridItemView: View {
     let size: Double
-    let item: Item
+    let itemURL: URL
 
     var body: some View {
             ZStack(alignment: .topTrailing) {
-                AsyncImage(url: item.url) { image in
+                AsyncImage(url: itemURL) { image in
                     image
                         .resizable()
                         .scaledToFit()
@@ -28,10 +28,10 @@ struct GridItemView: View {
     }
 }
 
-struct GridItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        if let url = Bundle.main.url(forResource: "111", withExtension: "png") {
-            GridItemView(size: 50, item: Item(url: url))
-        }
-    }
-}
+//struct GridItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        if let url = Bundle.main.url(forResource: "111", withExtension: "png") {
+//            GridItemView(size: 50, item: Item(url: url, pointArray: []))
+//        }
+//    }
+//}
