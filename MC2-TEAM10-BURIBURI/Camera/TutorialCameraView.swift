@@ -5,6 +5,7 @@
 import SwiftUI
 
 struct TutorialCameraView: View {
+    @AppStorage("isFirstLaunch") private var isFirstLaunch = true
 	@StateObject private var photomodel = PhotoDataModel()
 	@EnvironmentObject var dataModel: DataModel
 	
@@ -195,6 +196,9 @@ struct TutorialCameraView: View {
 				.statusBar(hidden: true)
 			}
 		.navigationBarHidden(true)
+        .onAppear {
+            isFirstLaunch = false
+        }
 		}
 		
 		private func buttonsView() -> some View {

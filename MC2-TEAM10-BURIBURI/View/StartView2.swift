@@ -1,15 +1,15 @@
 //
-//  ContentView.swift
-//  Lift-Off
+//  StartView2.swift
+//  MC2-TEAM10-BURIBURI
 //
-//  Created by Jungsoo Lee on 2023/05/13.
+//  Created by xnoag on 2023/05/17.
 //
 
 import Foundation
 import SwiftUI
 import UIKit
 
-struct StartView: View {
+struct StartView2: View {
     
     @EnvironmentObject var dataModel : DataModel
     
@@ -21,15 +21,15 @@ struct StartView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     
                     //애니메이션이 있어야 할 듯..
-                    UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: OnboardingForParents().environmentObject(dataModel))
+                    UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: ARView().environmentObject(dataModel))
                 }
             }
     }
 }
 
     
-    struct StartView_Previews: PreviewProvider {
+    struct StartView2_Previews: PreviewProvider {
         static var previews: some View {
-            StartView()
+            StartView2()
         }
     }

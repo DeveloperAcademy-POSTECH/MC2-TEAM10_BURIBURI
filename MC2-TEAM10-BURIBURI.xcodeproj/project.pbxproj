@@ -88,6 +88,7 @@
 		EEA1B5952A0BC3A5007A10B1 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA1B58F2A0BC3A4007A10B1 /* ScanView.swift */; };
 		EEA1B5962A0BC3A5007A10B1 /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */; };
 		EEB829C02A11B1CD00287EE4 /* OnboardingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB829BF2A11B1CD00287EE4 /* OnboardingPreview.swift */; };
+		EEB829C22A13D3AC00287EE4 /* StartView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB829C12A13D3AC00287EE4 /* StartView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +174,7 @@
 		EEA1B58F2A0BC3A4007A10B1 /* ScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
 		EEB829BF2A11B1CD00287EE4 /* OnboardingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPreview.swift; sourceTree = "<group>"; };
+		EEB829C12A13D3AC00287EE4 /* StartView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +388,7 @@
 				EEA1B58B2A0BC3A3007A10B1 /* AlbumForChildView.swift */,
 				EEA1B58C2A0BC3A4007A10B1 /* AlbumForParentsView.swift */,
 				E3D3F0E82A10BCF200B63363 /* StartView.swift */,
+				EEB829C12A13D3AC00287EE4 /* StartView2.swift */,
 				EEA1B58D2A0BC3A4007A10B1 /* ARView.swift */,
 				EEA1B58E2A0BC3A4007A10B1 /* GridItemView.swift */,
 				EEA1B58F2A0BC3A4007A10B1 /* ScanView.swift */,
@@ -504,6 +507,7 @@
 				57D6AEA92A0C7D0E00D5F223 /* multiarrayToRemovedBinaryMultiarray.swift in Sources */,
 				EE6CA1062A0DC932000B27BF /* PhotoAsset.swift in Sources */,
 				57D6AEB82A0C7D2600D5F223 /* monochromeToBinary.swift in Sources */,
+				EEB829C22A13D3AC00287EE4 /* StartView2.swift in Sources */,
 				EE6CA1072A0DC932000B27BF /* PhotoAssetCollection.swift in Sources */,
 				57D6AEAA2A0C7D0E00D5F223 /* croppedRBMToPointArray.swift in Sources */,
 				EEA1B5962A0BC3A5007A10B1 /* AlbumDetailView.swift in Sources */,
@@ -671,7 +675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MC2-TEAM10-BURIBURI/Preview Content\"";
-				DEVELOPMENT_TEAM = SHJRTZNP7N;
+				DEVELOPMENT_TEAM = 47N48U5HD5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera permissions for taking photos and videos";

@@ -203,6 +203,9 @@
 import SwiftUI
 
 struct OnboardingForParents: View {
+    
+    @State private var isActive = false
+    
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -245,12 +248,52 @@ struct OnboardingForParents: View {
                                             .cornerRadius(20)
                                     }
                                     .overlay {
-                                        Text("아이 그림 스캔하기")
+                                        Text("스캔하러 가기")
                                             .font(.headline)
                                             .fontWeight(.bold)
                                             .foregroundColor(Color.black)
                                     }
                             }
+//                            Button(action: {
+//
+//                            }) {
+//                                Rectangle()
+//                                    .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.06)
+//                                    .cornerRadius(20)
+//                                    .foregroundColor(.clear)
+//                                    .overlay {
+//                                        Image("BG_Album_01")
+//                                            .resizable()
+//                                            .opacity(0.8)
+//                                            .cornerRadius(20)
+//                                    }
+//                                    .overlay {
+//                                        Text("스캔하러 가기")
+//                                            .font(.headline)
+//                                            .fontWeight(.bold)
+//                                            .foregroundColor(Color.black)
+//                                    }
+//                            }
+//                            Button(action: {
+//                                NavigationLink(destination: TutorialCameraView()) {
+//                                                            Rectangle()
+//                                                                .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.06)
+//                                                                .cornerRadius(20)
+//                                                                .foregroundColor(.clear)
+//                                                                .overlay {
+//                                                                    Image("BG_Album_01")
+//                                                                        .resizable()
+//                                                                        .opacity(0.8)
+//                                                                        .cornerRadius(20)
+//                                                                }
+//                                                                .overlay {
+//                                                                    Text("스캔하러 가기")
+//                                                                        .font(.headline)
+//                                                                        .fontWeight(.bold)
+//                                                                        .foregroundColor(Color.black)
+//                                                                }
+//                                                        }
+//                            })
                             Spacer()
                                 .frame(height: geometry.size.height * 0.03)
                         }
@@ -291,7 +334,7 @@ struct OnboardingForParents: View {
                                             .cornerRadius(20)
                                     }
                                     .overlay {
-                                        Text("아이 그림 스캔하기")
+                                        Text("스캔하러 가기")
                                             .font(.headline)
                                             .fontWeight(.bold)
                                             .foregroundColor(Color.black)
@@ -337,7 +380,7 @@ struct OnboardingForParents: View {
                                             .cornerRadius(20)
                                     }
                                     .overlay {
-                                        Text("아이 그림 스캔하기")
+                                        Text("스캔하러 가기")
                                             .font(.headline)
                                             .fontWeight(.bold)
                                             .foregroundColor(Color.black)
