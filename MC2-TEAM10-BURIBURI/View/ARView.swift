@@ -23,7 +23,7 @@ struct ARView: View {
 //                })
             VStack {
                 Spacer()
-                    .frame(height: getHeight() * 0.03)
+                    .frame(height: getHeight() * 0.1)
                 HStack {
                     Spacer()
                         .frame(width: getWidth() * 0.05, height: getHeight() * 0.2)

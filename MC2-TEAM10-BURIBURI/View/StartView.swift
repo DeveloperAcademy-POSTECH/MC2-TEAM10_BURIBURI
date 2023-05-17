@@ -14,6 +14,7 @@ struct StartView: View {
     @EnvironmentObject var dataModel : DataModel
     
     var body: some View {
+
 		ZStack {
 			SummonGIF("Title_00") //화면비 수정해야 함
 				.edgesIgnoringSafeArea(.all)
@@ -24,7 +25,7 @@ struct StartView: View {
 					}
 				}
 		}
-			
+
     }
 }
 
