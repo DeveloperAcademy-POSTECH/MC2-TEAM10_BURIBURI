@@ -60,7 +60,7 @@ struct SummonGIF_Previews: PreviewProvider {
         SummonGIF("Parents_Doodle_05")
         SummonGIF("Parents_Scanning_03")
         SummonGIF("Parents_Scanning_04_ns")
-        SummonGIF("Title_01")
+        SummonGIF("Title_00")
             .ignoresSafeArea(.all)
             .frame(height: getHeight() * 1.05)
         

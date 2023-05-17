@@ -31,7 +31,7 @@ struct AlbumForParentsView: View {
                     // 수직(V)방향으로 Grid를 사용한다.
                     LazyVGrid(columns: gridColumns) {
                         // items 배열안에 요소에 반복적인 작업을 할 건데,
-                        ForEach(dataModel.items) { item in
+						ForEach((dataModel.items).reversed()) { item in
                             GeometryReader { geo in
                                 // GridItemView의 각 item에 NavigationLink 부여한다.
                                 NavigationLink(destination: AlbumDetailView(item: item)) {
