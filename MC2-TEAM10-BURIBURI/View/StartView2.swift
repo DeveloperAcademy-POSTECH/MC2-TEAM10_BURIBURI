@@ -14,7 +14,7 @@ struct StartView2: View {
     @EnvironmentObject var dataModel : DataModel
     
     var body: some View {
-        SummonGIF("Title_01") //화면비 수정해야 함
+        SummonGIF("Title_00") //화면비 수정해야 함
             .edgesIgnoringSafeArea(.all)
             .frame(height: getHeight() * 1.075)
             .onAppear {
