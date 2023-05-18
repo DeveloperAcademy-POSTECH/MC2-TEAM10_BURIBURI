@@ -357,7 +357,7 @@ struct OnboardingForParents: View {
                                     VStack {
                                         Spacer()
                                             .frame(height: geometry.size.height * 0.05)
-                                        SummonGIF("Parents_Scanning_04_ns")
+                                        SummonGIF("Parents_OnBoarding_03")
                                         Text("아이에게 넓은 공간에서\rAR을 사용하도록 이끌어주세요.")
                                             .font(.body)
                                             .fontWeight(.regular)
