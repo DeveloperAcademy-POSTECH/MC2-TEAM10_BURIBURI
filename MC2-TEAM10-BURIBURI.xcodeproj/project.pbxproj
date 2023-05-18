@@ -95,6 +95,7 @@
 		EEA1B5962A0BC3A5007A10B1 /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */; };
 		EEB829C02A11B1CD00287EE4 /* OnboardingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB829BF2A11B1CD00287EE4 /* OnboardingPreview.swift */; };
 		EEB829C22A13D3AC00287EE4 /* StartView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB829C12A13D3AC00287EE4 /* StartView2.swift */; };
+		EEB829C42A15A42900287EE4 /* Parents_OnBoarding_03.gif in Resources */ = {isa = PBXBuildFile; fileRef = EEB829C32A15A42900287EE4 /* Parents_OnBoarding_03.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +189,7 @@
 		EEA1B5902A0BC3A4007A10B1 /* AlbumDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
 		EEB829BF2A11B1CD00287EE4 /* OnboardingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPreview.swift; sourceTree = "<group>"; };
 		EEB829C12A13D3AC00287EE4 /* StartView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView2.swift; sourceTree = "<group>"; };
+		EEB829C32A15A42900287EE4 /* Parents_OnBoarding_03.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Parents_OnBoarding_03.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +279,7 @@
 		E3D3F0DF2A10B7A000B63363 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EEB829C32A15A42900287EE4 /* Parents_OnBoarding_03.gif */,
 				E3AAB60A2A10D54000F4BDF2 /* Parents_Doodle_05.gif */,
 				E3AAB60C2A10D54000F4BDF2 /* Parents_Scanning_03.gif */,
 				E3AAB60B2A10D54000F4BDF2 /* Parents_Scanning_04_ns.gif */,
@@ -489,6 +492,7 @@
 				E3AAB60E2A10D54000F4BDF2 /* Parents_Doodle_05.gif in Resources */,
 				5758423B2A13CF8C00A7A8D6 /* Title_00.gif in Resources */,
 				E3AAB60D2A10D54000F4BDF2 /* Title_01.gif in Resources */,
+				EEB829C42A15A42900287EE4 /* Parents_OnBoarding_03.gif in Resources */,
 				EEA1B5812A0BC393007A10B1 /* D_Angry_Cat.png in Resources */,
 				E3AAB6102A10D54000F4BDF2 /* Parents_Scanning_03.gif in Resources */,
 				EEA1B5752A0BC393007A10B1 /* D_Beatle.png in Resources */,
