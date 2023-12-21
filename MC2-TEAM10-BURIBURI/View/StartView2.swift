@@ -12,6 +12,7 @@ import UIKit
 struct StartView2: View {
     
     @EnvironmentObject var dataModel : DataModel
+    @EnvironmentObject private var arViewDrawingModel: ARViewDrawingModel
     
     var body: some View {
         SummonGIF("Title_00") //화면비 수정해야 함
@@ -21,7 +22,7 @@ struct StartView2: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     
                     //애니메이션이 있어야 할 듯..
-                    UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: ARView().environmentObject(dataModel))
+                    UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: ARView().environmentObject(dataModel).environmentObject(arViewDrawingModel))
                 }
             }
     }

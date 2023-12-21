@@ -8,16 +8,13 @@
 import Foundation
 import UIKit
 
-func convertToBackgroundRemovedPNGDataAndUIBezierPath(_ heicData: Data) -> (Data, UIBezierPath) {
+func convertToBackgroundRemovedPNGDataAndUIBezierPath(_ heicData: Data) async -> (Data, UIBezierPath) {
 	
 	// 원본 HEIC 데이터를 입력하면 배경이 지워진 PNG 이미지의 데이터와 (다각형을 그리기 위한) UIBezierPath를 반환한다.
 
 	// 크기 바꾼 HEIC 데이터 얻기
 	var resizedHEICData = Data()
-	do {resizedHEICData = try resizeHeicData(heicData: heicData, compressionQuality: 1.0)
-	} catch {
-		print(error)
-	}
+	resizedHEICData = resizeHeicData(heicData: heicData, compressionQuality: 1.0)
 	
 	// resizedHEICData에서 2차원 배열 multiarray 얻기
 	let multiarray = heicToMultiarray(resizedHEICData)

@@ -12,7 +12,10 @@ import SwiftUI
 struct MC2_TEAM10_BURIBURIApp: App {
 
     @StateObject var dataModel = DataModel()
+    @StateObject var arViewDrawingModel = ARViewDrawingModel()
     @AppStorage("isFirstLaunch") private var isFirstLaunch = true
+    
+    @Environment(\.scenePhase) private var scenePhase
     
     init() {
         UINavigationBar.applyCustomAppearance()
@@ -28,12 +31,20 @@ struct MC2_TEAM10_BURIBURIApp: App {
             // 다른 View에서 dataModel을 사용할 수 있다.
             
             if isFirstLaunch {
-                            StartView()
+                StartView()
                     .environmentObject(dataModel)
-                        } else {
-                            StartView2()
-                                .environmentObject(dataModel)
-                        }
+                    .environmentObject(arViewDrawingModel)
+            } else {
+                StartView2()
+                    .environmentObject(dataModel)
+                    .environmentObject(arViewDrawingModel)
+            }
+        }
+        .onChange(of: scenePhase) { newScenePhase in
+            if newScenePhase == .active {
+                // 앱 생명주기 active가 되면 ARView를 새로 그리게 한다.
+                arViewDrawingModel.resetARView()
+            }
         }
     }
 }

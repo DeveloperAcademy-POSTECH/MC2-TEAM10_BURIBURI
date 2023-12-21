@@ -12,23 +12,28 @@ struct ARView: View {
     @State private var isCameraOpen = false
     
     @EnvironmentObject var dataModel: DataModel
+    @EnvironmentObject var arViewDrawingModel: ARViewDrawingModel
     @StateObject var arViewState = ARViewState()
+    
+    @State var viewIsDrawn = true // 뷰가 기기에서 보일 때만 화면을 그리게 하려고 만든 변수
     
     var body: some View {
 		NavigationView {
 			ZStack {
-				ARViewContainer().environmentObject(arViewState)
-					.ignoresSafeArea(.all)
-				//                .onReceive(dataModel.$items, perform: { _ in
-				//                    self.arViewState.scnNodeArray = []
-				//                })
+                if arViewDrawingModel.arViewIsDrawn {
+                    ARViewContainer().environmentObject(arViewState)
+                        .ignoresSafeArea(.all)
+                } else {
+                    EmptyView()
+                        .ignoresSafeArea(.all)
+                }
 				VStack {
 					Spacer()
 						.frame(height: getHeight() * 0.03)
 					HStack {
 						Spacer()
 							.frame(width: getWidth() * 0.05, height: getHeight() * 0.2)
-						NavigationLink(destination: CameraView()) {
+						NavigationLink(destination: CameraView().environmentObject(arViewDrawingModel)) {
 							Image("Group")
 								.resizable()
 								.aspectRatio(1, contentMode: .fit)
@@ -71,6 +76,12 @@ struct ARView: View {
 					.presentationDetents([.height(getHeight() * 0.33)])
 				}
 			}
+            .onAppear {
+                arViewDrawingModel.resetARView()
+            }
+            .onDisappear {
+                arViewDrawingModel.hideARView()
+            }
 		}
         .navigationBarHidden(true)
     }
@@ -81,6 +92,6 @@ struct ARView: View {
 
 struct ARView_Previews: PreviewProvider {
     static var previews: some View {
-        ARView().environmentObject(DataModel())
+        ARView().environmentObject(DataModel()).environmentObject(ARViewDrawingModel())
     }
 }
