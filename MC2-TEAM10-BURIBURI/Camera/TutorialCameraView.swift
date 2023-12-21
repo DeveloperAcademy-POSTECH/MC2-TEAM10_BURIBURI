@@ -232,12 +232,14 @@ struct TutorialCameraView: View {
 						let scanTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) {t in
 							// Camera.tempPhotoData가 비어있지 않으면 returnedTuple에 convert함수의 반환값을 저장한다.
 							if !Camera.tempPhotoData.isEmpty {
-								returnedTuple = convertToBackgroundRemovedPNGDataAndPointArray(Camera.tempPhotoData)
-								// Camera.tempPhotoData와 t를 초기화한다.
-								Camera.tempPhotoData = Data()
+                                Task {
+                                    returnedTuple = await convertToBackgroundRemovedPNGDataAndPointArray(Camera.tempPhotoData)
+                                    // Camera.tempPhotoData와 t를 초기화한다.
+                                    Camera.tempPhotoData = Data()
+                                    showsDecisionPage = true
+                                }
 								t.invalidate()
 								// 선택 페이지가 보이게 한다.
-								showsDecisionPage = true
 							}
 						}
 					}

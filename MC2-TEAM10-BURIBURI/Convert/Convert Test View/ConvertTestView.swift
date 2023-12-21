@@ -39,17 +39,16 @@ struct ConvertTestView: View {
 							do { heicData = try urlToHeicData(originalURL) }
 							catch { print(error) }
 							
-							do { resizedHEICData = try resizeHeicData(heicData: heicData, compressionQuality: 1.0) }
-							catch {
-								print(error)
-							}
+							resizedHEICData = resizeHeicData(heicData: heicData, compressionQuality: 1.0)
 							
 							ma = heicToMultiarray(resizedHEICData)
 							
-							let returnedTuple = convertToBackgroundRemovedPNGDataAndPointArray(heicData)
-							
-                            brPNGData = returnedTuple.0
-                            pointArray = returnedTuple.1
+                            Task {
+                                let returnedTuple = await convertToBackgroundRemovedPNGDataAndPointArray(heicData)
+                                
+                                brPNGData = returnedTuple.0
+                                pointArray = returnedTuple.1
+                            }
 						}
 						
 						buttonPressed.toggle()
