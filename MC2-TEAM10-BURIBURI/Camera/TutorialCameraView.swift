@@ -84,6 +84,9 @@ struct TutorialCameraView: View {
             .navigationBarHidden(true)
             .ignoresSafeArea()
             .statusBar(hidden: true)
+//            .onAppear {
+//                isFirstLaunch = false
+//            }
         }
         .navigationBarHidden(true)
     }
