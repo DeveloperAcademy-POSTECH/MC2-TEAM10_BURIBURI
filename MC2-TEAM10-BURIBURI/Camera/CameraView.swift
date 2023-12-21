@@ -7,7 +7,6 @@ import SwiftUI
 struct CameraView: View {
     @StateObject private var photomodel = PhotoDataModel()
     @EnvironmentObject var dataModel: DataModel
-    @EnvironmentObject var heavyViewStatusModel: HeavyViewStatusModel
     
     @Environment(\.dismiss) private var dismiss
     
@@ -23,59 +22,55 @@ struct CameraView: View {
         
         NavigationStack {
             GeometryReader { geometry in
-                if heavyViewStatusModel.cameraViewIsDrawn {
-                    ZStack {
-                        if !showsDecisionPage {
-                            ViewfinderView(image:  $photomodel.viewfinderImage )
-                                .overlay(alignment: .top) {
+                ZStack {
+                    if !showsDecisionPage {
+                        ViewfinderView(image:  $photomodel.viewfinderImage )
+                            .overlay(alignment: .top) {
+                                Color.black
+                                    .opacity(0)
+                                    .frame(height: geometry.size.height * Self.barHeightFactor)
+                            }
+                            .overlay(alignment: .topLeading) {
+                                buttonsView2()
+                                    .frame(height: geometry.size.height * Self.barHeightFactor)
+                                    .background(.black.opacity(0))
+                            }
+                            .overlay(alignment: .bottom) {
+                                buttonsView()
+                                    .frame(height: geometry.size.height * Self.barHeightFactor)
+                                    .background(.black.opacity(0.2))
+                            }
+                        
+                            .overlay(alignment: .center)  {
+                                Color.clear
+                                    .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
+                                    .accessibilityElement()
+                                    .accessibilityLabel("View Finder")
+                                    .accessibilityAddTraits([.isImage])
+                            }
+                            .background(.black)
+                    } else {
+                        ZStack {
+                            ViewfinderView(image: $photomodel.viewfinderImage)
+                                .overlay {
                                     Color.black
-                                        .opacity(0)
-                                        .frame(height: geometry.size.height * Self.barHeightFactor)
+                                        .opacity(0.7)
                                 }
-                                .overlay(alignment: .topLeading) {
-                                    buttonsView2()
-                                        .frame(height: geometry.size.height * Self.barHeightFactor)
-                                        .background(.black.opacity(0))
+                                .overlay(alignment: .center) {
+                                    PNGImageDataView(pngData: returnedTuple.0)
+                                        .frame(width: getWidth() * 0.5)
                                 }
                                 .overlay(alignment: .bottom) {
-                                    buttonsView()
+                                    buttonsView3()
                                         .frame(height: geometry.size.height * Self.barHeightFactor)
-                                        .background(.black.opacity(0.2))
+                                }
+                                .overlay(alignment: .topTrailing) {
+                                    buttonsView4()
+                                        .frame(height: geometry.size.height * Self.barHeightFactor)
                                 }
                             
-                                .overlay(alignment: .center)  {
-                                    Color.clear
-                                        .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
-                                        .accessibilityElement()
-                                        .accessibilityLabel("View Finder")
-                                        .accessibilityAddTraits([.isImage])
-                                }
-                                .background(.black)
-                        } else {
-                            ZStack {
-                                ViewfinderView(image: $photomodel.viewfinderImage)
-                                    .overlay {
-                                        Color.black
-                                            .opacity(0.7)
-                                    }
-                                    .overlay(alignment: .center) {
-                                        PNGImageDataView(pngData: returnedTuple.0)
-                                            .frame(width: getWidth() * 0.5)
-                                    }
-                                    .overlay(alignment: .bottom) {
-                                        buttonsView3()
-                                            .frame(height: geometry.size.height * Self.barHeightFactor)
-                                    }
-                                    .overlay(alignment: .topTrailing) {
-                                        buttonsView4()
-                                            .frame(height: geometry.size.height * Self.barHeightFactor)
-                                    }
-                                
-                            }
                         }
                     }
-                } else {
-                    EmptyView()
                 }
             }
             .task {
@@ -88,12 +83,6 @@ struct CameraView: View {
             .navigationBarHidden(true)
             .ignoresSafeArea()
             .statusBar(hidden: true)
-            .onAppear {
-                heavyViewStatusModel.resetCameraView()
-            }
-            .onDisappear {
-                heavyViewStatusModel.hideCameraView()
-            }
         }
         .navigationBarHidden(true)
     }
@@ -169,7 +158,10 @@ struct CameraView: View {
         HStack {
             Spacer()
                 .frame(width: getWidth() * 0.05)
-            NavigationLink(destination: ARView().environmentObject(heavyViewStatusModel)) {
+//            NavigationLink(destination: ARView().environmentObject(arViewStatusModel))
+            Button {
+                dismiss()
+            } label: {
                 HStack {
                     Image(systemName: "chevron.left")
                         .foregroundColor(Color.white)
