@@ -12,7 +12,7 @@ struct ARView: View {
     @State private var isCameraOpen = false
     
     @EnvironmentObject var dataModel: DataModel
-    @EnvironmentObject var arViewStatusModel: ARViewStatusModel
+    @EnvironmentObject var arViewDrawingModel: ARViewDrawingModel
     @StateObject var arViewState = ARViewState()
     
     @State var viewIsDrawn = true // 뷰가 기기에서 보일 때만 화면을 그리게 하려고 만든 변수
@@ -20,7 +20,7 @@ struct ARView: View {
     var body: some View {
 		NavigationView {
 			ZStack {
-                if arViewStatusModel.arViewIsDrawn {
+                if arViewDrawingModel.arViewIsDrawn {
                     ARViewContainer().environmentObject(arViewState)
                         .ignoresSafeArea(.all)
                 } else {
@@ -33,7 +33,7 @@ struct ARView: View {
 					HStack {
 						Spacer()
 							.frame(width: getWidth() * 0.05, height: getHeight() * 0.2)
-						NavigationLink(destination: CameraView().environmentObject(arViewStatusModel)) {
+						NavigationLink(destination: CameraView().environmentObject(arViewDrawingModel)) {
 							Image("Group")
 								.resizable()
 								.aspectRatio(1, contentMode: .fit)
@@ -77,10 +77,10 @@ struct ARView: View {
 				}
 			}
             .onAppear {
-                arViewStatusModel.resetARView()
+                arViewDrawingModel.resetARView()
             }
             .onDisappear {
-                arViewStatusModel.hideARView()
+                arViewDrawingModel.hideARView()
             }
 		}
         .navigationBarHidden(true)
@@ -92,6 +92,6 @@ struct ARView: View {
 
 struct ARView_Previews: PreviewProvider {
     static var previews: some View {
-        ARView().environmentObject(DataModel()).environmentObject(ARViewStatusModel())
+        ARView().environmentObject(DataModel()).environmentObject(ARViewDrawingModel())
     }
 }

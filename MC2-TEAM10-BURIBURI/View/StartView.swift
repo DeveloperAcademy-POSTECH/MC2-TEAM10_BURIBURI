@@ -12,7 +12,7 @@ import UIKit
 struct StartView: View {
     
     @EnvironmentObject var dataModel : DataModel
-    @EnvironmentObject private var arViewStatusModel: ARViewStatusModel
+    @EnvironmentObject private var arViewDrawingModel: ARViewDrawingModel
     
     var body: some View {
 
@@ -22,7 +22,7 @@ struct StartView: View {
 				.frame(height: getHeight() * 1.075)
 				.onAppear {
 					DispatchQueue.main.asyncAfter(deadline: .now() + 5) { //애니메이션이 있어야 할 듯..
-                        UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: OnboardingForParents().environmentObject(dataModel).environmentObject(arViewStatusModel))
+                        UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: OnboardingForParents().environmentObject(dataModel).environmentObject(arViewDrawingModel))
 					}
 				}
 		}

@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingForParents: View {
     
     @State private var isActive = false
-    @EnvironmentObject private var arViewStatusModel: ARViewStatusModel
+    @EnvironmentObject private var arViewDrawingModel: ARViewDrawingModel
     
     var body: some View {
         NavigationView {
@@ -42,7 +42,7 @@ struct OnboardingForParents: View {
                                 }
                             Spacer()
                                 .frame(height: geometry.size.height * 0.02)
-                            NavigationLink(destination: TutorialCameraView().environmentObject(arViewStatusModel)) {
+                            NavigationLink(destination: TutorialCameraView().environmentObject(arViewDrawingModel)) {
                                 Rectangle()
                                     .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.06)
                                     .cornerRadius(20)
@@ -88,7 +88,7 @@ struct OnboardingForParents: View {
                                 }
                             Spacer()
                                 .frame(height: geometry.size.height * 0.02)
-                            NavigationLink(destination: TutorialCameraView().environmentObject(arViewStatusModel)) {
+                            NavigationLink(destination: TutorialCameraView().environmentObject(arViewDrawingModel)) {
                                 Rectangle()
                                     .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.06)
                                     .cornerRadius(20)
@@ -134,7 +134,7 @@ struct OnboardingForParents: View {
                                 }
                             Spacer()
                                 .frame(height: geometry.size.height * 0.02)
-                            NavigationLink(destination: TutorialCameraView().environmentObject(arViewStatusModel) ) {
+                            NavigationLink(destination: TutorialCameraView().environmentObject(arViewDrawingModel) ) {
                                 Rectangle()
                                     .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.06)
                                     .cornerRadius(20)

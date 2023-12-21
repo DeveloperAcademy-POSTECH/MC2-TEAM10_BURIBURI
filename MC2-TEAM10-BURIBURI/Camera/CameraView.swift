@@ -158,7 +158,7 @@ struct CameraView: View {
         HStack {
             Spacer()
                 .frame(width: getWidth() * 0.05)
-//            NavigationLink(destination: ARView().environmentObject(arViewStatusModel))
+//            NavigationLink(destination: ARView().environmentObject(arViewDrawingModel))
             Button {
                 dismiss()
             } label: {

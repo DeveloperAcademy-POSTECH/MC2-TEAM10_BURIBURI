@@ -12,7 +12,7 @@ import SwiftUI
 struct MC2_TEAM10_BURIBURIApp: App {
 
     @StateObject var dataModel = DataModel()
-    @StateObject var arViewStatusModel = ARViewStatusModel()
+    @StateObject var arViewDrawingModel = ARViewDrawingModel()
     @AppStorage("isFirstLaunch") private var isFirstLaunch = true
     
     @Environment(\.scenePhase) private var scenePhase
@@ -33,17 +33,17 @@ struct MC2_TEAM10_BURIBURIApp: App {
             if isFirstLaunch {
                 StartView()
                     .environmentObject(dataModel)
-                    .environmentObject(arViewStatusModel)
+                    .environmentObject(arViewDrawingModel)
             } else {
                 StartView2()
                     .environmentObject(dataModel)
-                    .environmentObject(arViewStatusModel)
+                    .environmentObject(arViewDrawingModel)
             }
         }
         .onChange(of: scenePhase) { newScenePhase in
             if newScenePhase == .active {
                 // 앱 생명주기 active가 되면 ARView를 새로 그리게 한다.
-                arViewStatusModel.resetARView()
+                arViewDrawingModel.resetARView()
             }
         }
     }

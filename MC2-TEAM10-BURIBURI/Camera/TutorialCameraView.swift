@@ -8,7 +8,7 @@ struct TutorialCameraView: View {
     @AppStorage("isFirstLaunch") private var isFirstLaunch = true
     @StateObject private var photomodel = PhotoDataModel()
     @EnvironmentObject var dataModel: DataModel
-    @EnvironmentObject var arViewStatusModel: ARViewStatusModel
+    @EnvironmentObject var arViewDrawingModel: ARViewDrawingModel
     
     @State var showsDecisionPage: Bool = false // true -> 선택하는 화면 띄움
     @State var returnedTuple: (Data, [CGPoint]) = (Data(), [CGPoint]()) // convertToBackgroundRemovedPNGDataAndPointArray 함수의 반환값
@@ -167,7 +167,7 @@ struct TutorialCameraView: View {
         HStack {
             Spacer()
                 .frame(width: getWidth() * 0.05)
-            NavigationLink(destination: ARView().environmentObject(arViewStatusModel)) {
+            NavigationLink(destination: ARView().environmentObject(arViewDrawingModel)) {
                 HStack {
                     Image(systemName: "chevron.left")
                         .foregroundColor(Color.white)
