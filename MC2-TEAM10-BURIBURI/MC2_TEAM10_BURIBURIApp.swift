@@ -12,7 +12,10 @@ import SwiftUI
 struct MC2_TEAM10_BURIBURIApp: App {
 
     @StateObject var dataModel = DataModel()
+    @StateObject var heavyViewStatusModel = HeavyViewStatusModel()
     @AppStorage("isFirstLaunch") private var isFirstLaunch = true
+    
+    @Environment(\.scenePhase) private var scenePhase
     
     init() {
         UINavigationBar.applyCustomAppearance()
@@ -28,12 +31,20 @@ struct MC2_TEAM10_BURIBURIApp: App {
             // 다른 View에서 dataModel을 사용할 수 있다.
             
             if isFirstLaunch {
-                            StartView()
+                StartView()
                     .environmentObject(dataModel)
-                        } else {
-                            StartView2()
-                                .environmentObject(dataModel)
-                        }
+                    .environmentObject(heavyViewStatusModel)
+            } else {
+                StartView2()
+                    .environmentObject(dataModel)
+                    .environmentObject(heavyViewStatusModel)
+            }
+        }
+        .onChange(of: scenePhase) { newScenePhase in
+            if newScenePhase == .active {
+                print("reset!")
+                heavyViewStatusModel.resetAllHeavyViews()
+            }
         }
     }
 }
