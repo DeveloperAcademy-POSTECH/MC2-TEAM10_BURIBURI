@@ -18,6 +18,7 @@ struct CameraView: View {
     
     private static let barHeightFactor = 0.15
     
+    
     var body: some View {
         
         NavigationStack {
@@ -71,6 +72,117 @@ struct CameraView: View {
                                 }
                             
                         }
+                        
+                        //                        ZStack {
+                        //                            ViewfinderView(image: $photomodel.viewfinderImage)
+                        //                            Color.black
+                        //                                .opacity(0.4)
+                        //                            VStack {
+                        //                                Spacer()
+                        //                                    .frame(height: getHeight() * 0.1)
+                        //                                HStack {
+                        //                                    Spacer()
+                        //                                        .frame(width: getWidth() * 0.7)
+                        //                                    Button(action: {
+                        //                                        returnedTuple = (Data(), [CGPoint]())
+                        //                                        showsDecisionPage = false
+                        //                                    }) {
+                        //                                        Text("다시 찍기")
+                        //                                            .font(.title3)
+                        //                                            .fontWeight(.bold)
+                        //                                            .foregroundColor(Color("AccentColor"))
+                        //                                    }
+                        //                                    .frame(width: getWidth() * 0.3)
+                        //                                }
+                        //                                .frame(height: getHeight() * 0.1)
+                        //                                PNGImageDataView(pngData: returnedTuple.0)
+                        //                                    .frame(width: getWidth() * 0.5, height: getHeight() * 0.2)
+                        //                                Spacer()
+                        //                                    .frame(height: getHeight() * 0.3)
+                        //                                Button(action: {
+                        //                                    let pngURL = FileManager.default.savePNGDataByFileManagerAndReturnURL(returnedTuple.0)
+                        //                                        if let pngURL = pngURL {
+                        //                                            let item = Item(url: pngURL, pointArray: returnedTuple.1)
+                        //                                            dataModel.items.append(item)
+                        //                                            dataModel.save()
+                        //                                            showsDecisionPage = false
+                        //                                        }
+                        //                                }) {
+                        //                                    Image(systemName: "checkmark.circle.fill")
+                        //                                }
+                        ////                                .frame(height: getHeight() * 0.1)
+                        //                                .frame(width: 60, height: 60)
+                        
+                        
+                        //                                HStack {
+                        //                                    Button(action: {
+                        //                                        returnedTuple = (Data(), [CGPoint]())
+                        //                                        showsDecisionPage = false
+                        //                                    }) {
+                        //                                        Text("Undo")
+                        //                                            .font(.title3)
+                        //                                            .fontWeight(.bold)
+                        //                                            .padding()
+                        //                                            .background(Color.gray.opacity(0.5))
+                        //                                            .cornerRadius(20)
+                        //                                    }
+                        //
+                        //                                    Button(action: {
+                        //                                        let pngURL = FileManager.default.savePNGDataByFileManagerAndReturnURL(returnedTuple.0)
+                        //                                            if let pngURL = pngURL {
+                        //                                                let item = Item(url: pngURL, pointArray: returnedTuple.1)
+                        //                                                dataModel.items.append(item)
+                        //                                                dataModel.save()
+                        //                                                showsDecisionPage = false
+                        //                                            }
+                        //                                    }) {
+                        //                                        Text("Save")
+                        //                                            .font(.title3)
+                        //                                            .fontWeight(.bold)
+                        //                                            .padding()
+                        //                                            .background(Color.yellow)
+                        //                                            .cornerRadius(20)
+                        //                                    }
+                        //                                }
+                        //                            }
+                        //                        }
+                        //                    }
+                        
+                        
+                        
+                        //                        if showsDecisionPage {
+                        //                            // 저장할지 undo할지 선택하는 화면
+                        //                            ZStack {
+                        //                                Color.black
+                        //                                    .opacity(0.4)
+                        //
+                        //                                VStack {
+                        //                                    HStack {
+                        //                                        Button {
+                        //                                            returnedTuple = (Data(), [CGPoint]())
+                        //                                            showsDecisionPage = false
+                        //                                            scanButtonActive = true
+                        //                                        } label: {
+                        //                                            Text("Undo")
+                        //                                        }
+                        //
+                        //                                        Button {
+                        //                                            let pngURL = FileManager.default.savePNGDataByFileManagerAndReturnURL(returnedTuple.0)
+                        //                                            if let pngURL = pngURL {
+                        //                                                let item = Item(url: pngURL, pointArray: returnedTuple.1)
+                        //                                                dataModel.items.append(item)
+                        //                                                dataModel.save()
+                        //                                                showsDecisionPage = false
+                        //                                                scanButtonActive = true
+                        //                                            }
+                        //                                        } label: {
+                        //                                            Text("Save")
+                        //                                        }
+                        //                                    }
+                        //                                    PNGImageDataView(pngData: returnedTuple.0)
+                        //                                        .frame(minWidth: 0, maxWidth: 300, minHeight: 0, maxHeight: 300)
+                        //                                }
+                        //                            }
                     }
                 }
             }
@@ -114,14 +226,12 @@ struct CameraView: View {
                     let scanTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) {t in
                         // Camera.tempPhotoData가 비어있지 않으면 returnedTuple에 convert함수의 반환값을 저장한다.
                         if !Camera.tempPhotoData.isEmpty {
-                            Task(priority: .medium) {
-                                returnedTuple = await convertToBackgroundRemovedPNGDataAndPointArray(Camera.tempPhotoData)
-                                // Camera.tempPhotoData와 t를 초기화한다.
-                                Camera.tempPhotoData = Data()
-                                showsDecisionPage = true
-                            }
+                            returnedTuple = convertToBackgroundRemovedPNGDataAndPointArray(Camera.tempPhotoData)
+                            // Camera.tempPhotoData와 t를 초기화한다.
+                            Camera.tempPhotoData = Data()
                             t.invalidate()
                             // 선택 페이지가 보이게 한다.
+                            showsDecisionPage = true
                         }
                     }
                 }
@@ -159,10 +269,7 @@ struct CameraView: View {
         HStack {
             Spacer()
                 .frame(width: getWidth() * 0.05)
-//            NavigationLink(destination: ARView().environmentObject(arViewDrawingModel))
-            Button {
-                dismiss()
-            } label: {
+            NavigationLink(destination: ARView()) {
                 HStack {
                     Image(systemName: "chevron.left")
                         .foregroundColor(Color.white)
