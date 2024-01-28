@@ -49,7 +49,6 @@ struct CameraView: View {
                                     .accessibilityAddTraits([.isImage])
                             }
                             .background(.black)
-                            
                     } else {
                         ZStack {
                             ViewfinderView(image: $photomodel.viewfinderImage)
