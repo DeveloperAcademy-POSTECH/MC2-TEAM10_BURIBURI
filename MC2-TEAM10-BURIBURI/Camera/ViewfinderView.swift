@@ -14,6 +14,7 @@ struct ViewfinderView: View {
                     .resizable()
                     .scaledToFill()
                     .frame(width: geometry.size.width, height: geometry.size.height)
+                    .scaleEffect(x: 2, y: 2)
             }
         }
     }
@@ -24,4 +25,3 @@ struct ViewfinderView_Previews: PreviewProvider {
         ViewfinderView(image: .constant(Image(systemName: "pencil")))
     }
 }
-
