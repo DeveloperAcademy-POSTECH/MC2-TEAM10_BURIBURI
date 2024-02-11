@@ -17,7 +17,7 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
     static var scnNodeArray: [SCNNode] = []
     static var itemPlanArray: [Item] = []
     
-    var arView: ARSCNView?
+    weak var arView: ARSCNView?
     var context: ARViewContainer.Context?
     
     // Add a DispatchQueue specifically for accessing and modifying the scnNodeArray
@@ -83,7 +83,11 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
 
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(deleteObject(_:)))
         longPressGesture.minimumPressDuration = 0.5
-        arView?.addGestureRecognizer(longPressGesture)
+        DispatchQueue.main.async {
+            if let arView = self.arView {
+                arView.addGestureRecognizer(longPressGesture)
+            }
+        }
         
         
         registerGestureRecognizers()
@@ -133,8 +137,11 @@ class Coordinator: NSObject, ARSCNViewDelegate { // NSObject와 ARSCNViewDelegat
     private func registerGestureRecognizers() {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        
-        self.arView?.addGestureRecognizer(tapGestureRecognizer)
+        DispatchQueue.main.async {
+            if let arView = self.arView {
+                self.arView?.addGestureRecognizer(tapGestureRecognizer)
+            }
+        }
     }
     
     

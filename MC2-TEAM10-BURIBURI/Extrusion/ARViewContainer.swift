@@ -71,6 +71,7 @@ struct ARViewContainer: UIViewRepresentable {
 //    }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(arView: self.arView, context: nil) // 새로운 코디네이터 생성
+        
+        return Coordinator(arView: self.arView, context: nil) // 새로운 코디네이터 생성
     }
 }
